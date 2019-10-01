@@ -1,5 +1,9 @@
-﻿################################################################################
-# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
-################################################################################
-
+﻿# Directories
 /.vs
+/bin/
+/bin-int/
+
+# Files
+*.users
+/Cherrybell/Cherrybell.vcxproj.user
+/Sandbox/Sandbox.vcxproj.user
