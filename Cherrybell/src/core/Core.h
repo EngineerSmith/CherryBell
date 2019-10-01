@@ -7,7 +7,7 @@
 		#define CB_API __declspec(dllimport)
 	#endif // CB_BUILD_DLL
 #else
-	#error CherryBell only supports Windows
+	#error CherryBell does not support this platform
 #endif // CB_PLATFORM_WINDOWS
 
 

@@ -5,12 +5,12 @@ namespace CherryBell {
 	class CB_API Application
 	{
 	public:
-		Application();
-		virtual ~Application();
+		Application() = default;
+		virtual ~Application() = default;
 
 		void Run();
 	};
 
-	//To be define in client
+	//To be define in client application - EntryPoint.h
 	Application* CreateApplication();
 }
