@@ -1,0 +1,3 @@
+[submodule "CherryBell/vendor/spdlog"]
+	path = CherryBell/vendor/spdlog
+	url = https://github.com/gabime/spdlog
