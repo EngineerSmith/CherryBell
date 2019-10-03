@@ -155,15 +155,19 @@
     <ClInclude Include="src\core\Core.h" />
     <ClInclude Include="src\core\EntryPoint.h" />
     <ClInclude Include="src\core\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\core\Input.h" />
+    <ClInclude Include="src\core\KeyCodes.h" />
     <ClInclude Include="src\core\Layer.h" />
     <ClInclude Include="src\core\LayerStack.h" />
     <ClInclude Include="src\core\Log.h" />
+    <ClInclude Include="src\core\MouseButtonCodes.h" />
     <ClInclude Include="src\core\Window.h" />
     <ClInclude Include="src\core\events\ApplicationEvent.h" />
     <ClInclude Include="src\core\events\Event.h" />
     <ClInclude Include="src\core\events\KeyEvent.h" />
     <ClInclude Include="src\core\events\MouseEvent.h" />
     <ClInclude Include="src\platform\OpenGL\ImGuiOpenGLRender.h" />
+    <ClInclude Include="src\platform\Windows\WindowsInput.h" />
     <ClInclude Include="src\platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
@@ -176,6 +180,7 @@
     <ClCompile Include="src\core\LayerStack.cpp" />
     <ClCompile Include="src\core\Log.cpp" />
     <ClCompile Include="src\platform\OpenGL\ImGuiOpenGLRender.cpp" />
+    <ClCompile Include="src\platform\Windows\WindowsInput.cpp" />
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>

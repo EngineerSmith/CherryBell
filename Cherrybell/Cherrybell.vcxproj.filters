@@ -35,6 +35,9 @@
     <ClInclude Include="src\core\ImGui\ImGuiLayer.h">
       <Filter>core\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\Input.h">
+      <Filter>core</Filter>
+    </ClInclude>
     <ClInclude Include="src\core\Layer.h">
       <Filter>core</Filter>
     </ClInclude>
@@ -62,9 +65,14 @@
     <ClInclude Include="src\platform\OpenGL\ImGuiOpenGLRender.h">
       <Filter>platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\platform\Windows\WindowsInput.h">
+      <Filter>platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\platform\Windows\WindowsWindow.h">
       <Filter>platform\Windows</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\KeyCodes.h" />
+    <ClInclude Include="src\core\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cbpch.cpp" />
@@ -85,6 +93,9 @@
     </ClCompile>
     <ClCompile Include="src\platform\OpenGL\ImGuiOpenGLRender.cpp">
       <Filter>platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\platform\Windows\WindowsInput.cpp">
+      <Filter>platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp">
       <Filter>platform\Windows</Filter>

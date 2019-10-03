@@ -5,6 +5,8 @@
 
 #include <glad/glad.h>
 
+#include "core/Input.h"
+
 namespace CherryBell {
 	Application* Application::s_instance = nullptr;
 
