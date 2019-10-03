@@ -16,6 +16,7 @@ IncludeDir = {}
 IncludeDir["GLFW"] = "CherryBell/vendor/GLFW/include"
 IncludeDir["Glad"] = "CherryBell/vendor/Glad/include"
 IncludeDir["imgui"] = "CherryBell/vendor/imgui"
+IncludeDir["glm"] = "CherryBell/vendor/glm"
 
 -- Includes premake5 file
 group "Dependencies"
@@ -48,7 +49,8 @@ project "CherryBell"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.imgui}"
+		"%{IncludeDir.imgui}",
+		"%{IncludeDir.glm}"
 	}
 	
 	links
@@ -108,7 +110,8 @@ project "Sandbox"
 	includedirs
 	{
 		"CherryBell/vendor/spdlog/include",
-		"CherryBell/src"
+		"CherryBell/src",
+		"${IncludeDir.glm}"
 	}
 	
 	links 

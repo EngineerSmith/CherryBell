@@ -38,6 +38,9 @@
     <ClInclude Include="src\core\Input.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\KeyCodes.h">
+      <Filter>core</Filter>
+    </ClInclude>
     <ClInclude Include="src\core\Layer.h">
       <Filter>core</Filter>
     </ClInclude>
@@ -45,6 +48,9 @@
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="src\core\Log.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\MouseButtonCodes.h">
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="src\core\Window.h">
@@ -71,8 +77,6 @@
     <ClInclude Include="src\platform\Windows\WindowsWindow.h">
       <Filter>platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\KeyCodes.h" />
-    <ClInclude Include="src\core\MouseButtonCodes.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cbpch.cpp" />
