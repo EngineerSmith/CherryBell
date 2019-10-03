@@ -157,6 +157,7 @@
     <ClInclude Include="src\core\Application.h" />
     <ClInclude Include="src\core\Core.h" />
     <ClInclude Include="src\core\EntryPoint.h" />
+    <ClInclude Include="src\core\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\core\Layer.h" />
     <ClInclude Include="src\core\LayerStack.h" />
     <ClInclude Include="src\core\Log.h" />
@@ -165,6 +166,7 @@
     <ClInclude Include="src\core\events\Event.h" />
     <ClInclude Include="src\core\events\KeyEvent.h" />
     <ClInclude Include="src\core\events\MouseEvent.h" />
+    <ClInclude Include="src\platform\OpenGL\ImGuiOpenGLRender.h" />
     <ClInclude Include="src\platform\Windows\WindowsWindow.h" />
   </ItemGroup>
   <ItemGroup>
@@ -172,9 +174,11 @@
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="src\core\Application.cpp" />
+    <ClCompile Include="src\core\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\core\Layer.cpp" />
     <ClCompile Include="src\core\LayerStack.cpp" />
     <ClCompile Include="src\core\Log.cpp" />
+    <ClCompile Include="src\platform\OpenGL\ImGuiOpenGLRender.cpp" />
     <ClCompile Include="src\platform\Windows\WindowsWindow.cpp" />
   </ItemGroup>
   <ItemGroup>

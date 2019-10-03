@@ -6,8 +6,13 @@
 #include <glad/glad.h>
 
 namespace CherryBell {
+	Application* Application::s_instance = nullptr;
+
 	Application::Application()
 	{
+		CB_CORE_ASSERT(!s_instance, "Application already exists!");
+		s_instance = this;
+
 		_window = std::unique_ptr<Window>(Window::Create());
 		_window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
 	}

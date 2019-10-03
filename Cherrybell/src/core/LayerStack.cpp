@@ -16,11 +16,13 @@ namespace CherryBell {
 	void LayerStack::PushLayer(Layer* layer)
 	{
 		_layerInsert = _layers.emplace(_layerInsert, layer);
+		layer->OnAttach();
 	}
 
 	void LayerStack::PushOverlay(Layer* layer)
 	{
 		_layers.emplace_back(layer);
+		layer->OnAttach();
 	}
 
 	void LayerStack::PopLayer(Layer* layer)
@@ -31,6 +33,7 @@ namespace CherryBell {
 			_layers.erase(it);
 			_layerInsert--;
 		}
+		layer->OnDetach();
 	}
 
 	void LayerStack::PopOverlay(Layer* layer)
@@ -38,5 +41,6 @@ namespace CherryBell {
 		auto it = std::find(_layers.begin(), _layers.end(), layer);
 		if (it != _layers.end())
 			_layers.erase(it);
+		layer->OnDetach();
 	}
 }

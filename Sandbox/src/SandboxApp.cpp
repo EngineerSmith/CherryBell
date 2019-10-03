@@ -9,7 +9,7 @@ public:
 
 	void OnUpdate() override
 	{
-		CB_INFO("ExampleLayer: Update");
+		//CB_INFO("ExampleLayer: Update");
 	}
 
 	void OnEvent(CherryBell::Event& event) override
@@ -23,6 +23,7 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
+		PushOverlay(new CherryBell::ImGuiLayer());
 	}
 	virtual ~Sandbox() = default;
 };

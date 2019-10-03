@@ -36,7 +36,7 @@ namespace CherryBell {
 		_data.Title = props.Title;
 		_data.Width = props.Width;
 		_data.Height = props.Height;
-		
+
 		CB_CORE_INFO("Creating Window \"{0}\" ({1}, {2})", _data.Title, _data.Width, _data.Height);
 
 		if (!s_GLFWInitialized)
@@ -49,7 +49,7 @@ namespace CherryBell {
 
 		_window = glfwCreateWindow((int)_data.Width, (int)_data.Height, _data.Title.c_str(), nullptr, nullptr);
 		glfwMakeContextCurrent(_window);
-		
+
 		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
 		CB_CORE_ASSERT(status, "Failed to initialize Glad!");
 
@@ -57,13 +57,13 @@ namespace CherryBell {
 		SetVSync(true);
 
 		//GLFW Callbacks
-		glfwSetWindowSizeCallback(_window, 
-			[](GLFWwindow* window, int width, int height) 
+		glfwSetWindowSizeCallback(_window,
+			[](GLFWwindow* window, int width, int height)
 			{
 				auto& data = *(WindowData*)glfwGetWindowUserPointer(window);
 				data.Width = width;
 				data.Height = height;
-				
+
 				WindowResizeEvent event(width, height);
 				data.EventCallback(event);
 			});
@@ -83,28 +83,34 @@ namespace CherryBell {
 				//TODO convert keycodes from GLFW to CherryBell keycodes
 				switch (action)
 				{
-					case GLFW_PRESS:
-					{
-						KeyPressedEvent event(key, 0);
-						data.EventCallback(event);
-						break;
-					}
-					case GLFW_RELEASE:
-					{
-						KeyReleasedEvent event(key);
-						data.EventCallback(event);
-						break;
-					}
-					case GLFW_REPEAT:
-					{
-						KeyPressedEvent event(key, 1); //TODO repeat counter
-						data.EventCallback(event);
+				case GLFW_PRESS:
+				{
+					KeyPressedEvent event(key, 0);
+					data.EventCallback(event);
 					break;
-					}
-					default:
-						CB_CORE_WARN("GLFW Key press event recorded with action: {0}, key: {1}", action, key);
-						break;
 				}
+				case GLFW_RELEASE:
+				{
+					KeyReleasedEvent event(key);
+					data.EventCallback(event);
+					break;
+				}
+				case GLFW_REPEAT:
+				{
+					KeyPressedEvent event(key, 1); //TODO repeat counter
+					data.EventCallback(event);
+					break;
+				}
+				default:
+					CB_CORE_WARN("GLFW Key press event recorded with action: {0}, key: {1}", action, key);
+					break;
+				}
+			});
+		glfwSetCharCallback(_window,
+			[](GLFWwindow* window, unsigned int key){
+				auto& data = *(WindowData*)glfwGetWindowUserPointer(window);
+				KeyTypedEvent event(key);
+				data.EventCallback(event);
 			});
 		glfwSetMouseButtonCallback(_window,
 			[](GLFWwindow* window, int button, int action, int mods)

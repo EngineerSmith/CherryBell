@@ -19,12 +19,16 @@ namespace CherryBell {
 
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
+		inline static Application& Get() { return *s_instance; }
+		inline Window& GetWindow() const { return *_window; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& event);
 	private:
 		std::unique_ptr<Window> _window;
 		bool _running = true;
 		LayerStack _layerStack;
+
+		static Application* s_instance;
 	};
 
 	//To be define in client application - EntryPoint.h
