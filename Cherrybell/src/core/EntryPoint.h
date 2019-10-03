@@ -6,9 +6,7 @@ extern CherryBell::Application* CherryBell::CreateApplication();
 
 int main(int argc, char* argv) {
 	CherryBell::Log::Init();
-	CB_CORE_INFO("Initialized logging.");
-	int a = 5;
-	CB_ERROR("UH OH: {0}", a);
+	CB_CORE_INFO("Welcome to CherryBell!");
 
 	auto app = CherryBell::CreateApplication();
 	app->Run();

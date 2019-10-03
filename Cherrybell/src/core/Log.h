@@ -1,8 +1,7 @@
 #pragma once
-#include <memory>
-
-#include "Core.h"
+#include "core/Core.h"
 #include <spdlog/spdlog.h>
+#include <spdlog/fmt/ostr.h>
 
 namespace CherryBell {
 	class CB_API Log {

@@ -9,6 +9,15 @@ workspace "CherryBell"
 	}
 	
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+
+--
+IncludeDir = {}
+IncludeDir["GLFW"] = "CherryBell/vendor/GLFW/include"
+IncludeDir["Glad"] = "CherryBell/vendor/Glad/include"
+
+-- Includes premake5 file
+include "CherryBell/vendor/GLFW"
+include "CherryBell/vendor/Glad"
 	
 project "CherryBell"
 	location "CherryBell"
@@ -18,6 +27,9 @@ project "CherryBell"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 	
+	pchheader "cbpch.h"
+	pchsource "%{prj.name}/src/cbpch.cpp"
+	
 	files 
 	{
 		"%{prj.name}/src/**.h",
@@ -26,7 +38,17 @@ project "CherryBell"
 	
 	includedirs
 	{
-		"%{prj.name}/vendor/spdlog/include"
+		"%{prj.name}/src",
+		"%{prj.name}/vendor/spdlog/include",
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.Glad}"
+	}
+	
+	links
+	{
+		"GLFW",
+		"Glad",
+		"opengl32.lib"
 	}
 	
 	filter "system:windows"
@@ -37,7 +59,8 @@ project "CherryBell"
 		defines
 		{
 			"CB_PLATFORM_WINDOWS",
-			"CB_BUILD_DLL"
+			"CB_BUILD_DLL",
+			"GLFW_INCLUDE_NONE"
 		}
 		
 		postbuildcommands
@@ -46,15 +69,18 @@ project "CherryBell"
 		}
 		
 	filter "configurations:Debug"
-		defines "CB_DEBUG"
+		defines {"CB_DEBUG","CB_ENABLE_ASSERTS"}
+		buildoptions "/MDd"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "CB_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 		
 	filter "configurations:Dist"
 		defines "CB_DIST"
+		buildoptions "/MD"
 		optimize "On"
 		
 project "Sandbox"
@@ -94,14 +120,17 @@ project "Sandbox"
 		
 	filter "configurations:Debug"
 		defines "CB_DEBUG"
+		buildoptions "/MDd"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "CB_RELEASE"
+		buildoptions "/MD"
 		optimize "On"
 		
 	filter "configurations:Dist"
 		defines "CB_DIST"
+		buildoptions "/MD"
 		optimize "On"
 	
 	

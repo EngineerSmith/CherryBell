@@ -10,4 +10,12 @@
 	#error CherryBell does not support this platform
 #endif // CB_PLATFORM_WINDOWS
 
+#ifdef CB_ENABLE_ASSERTS
+	#define CB_CORE_ASSERT(x, ...) {if(!x){CB_CORE_ERROR("Assertion Failed: {0} {1} {2}", __LINE__, __FILE__, __VA_ARGS__); __debugbreak();}}
+	#define CB_ASSERT(x, ...) {if(!x){CB_ERROR("Assertion Failed: {0} {1} {2}", __LINE__, __FILE__, __VA_ARGS__); __debugbreak();}}
+#else
+	#define CB_CORE_ASSERT(x, ...)
+	#define CB_ASSERT(x, ...)
+#endif // CB_ENABLE_ASSERTS
 
+#define BIT(x) (1 << x)

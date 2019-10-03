@@ -2,6 +2,7 @@
 //For use by CherryBell Applications
 
 #include "core/Application.h"
+#include "core/Layer.h"
 #include "core/Log.h"
 
 // ----- Entry Point -------------------

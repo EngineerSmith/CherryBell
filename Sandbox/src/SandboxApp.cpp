@@ -1,8 +1,29 @@
 #include <CherryBell.h>
 
+class ExampleLayer : public CherryBell::Layer
+{
+public:
+	ExampleLayer() 
+		: Layer("Example")
+	{}
+
+	void OnUpdate() override
+	{
+		CB_INFO("ExampleLayer: Update");
+	}
+
+	void OnEvent(CherryBell::Event& event) override
+	{
+		CB_TRACE("{0}", event);
+	}
+};
+
 class Sandbox : public CherryBell::Application {
 public:
-	Sandbox() = default;
+	Sandbox()
+	{
+		PushLayer(new ExampleLayer());
+	}
 	virtual ~Sandbox() = default;
 };
 
