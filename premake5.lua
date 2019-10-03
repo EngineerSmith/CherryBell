@@ -1,5 +1,6 @@
 workspace "CherryBell"
 	architecture "x64"
+	startproject "Sandbox"
 	
 	configurations
 	{
@@ -17,14 +18,17 @@ IncludeDir["Glad"] = "CherryBell/vendor/Glad/include"
 IncludeDir["imgui"] = "CherryBell/vendor/imgui"
 
 -- Includes premake5 file
-include "CherryBell/vendor/GLFW"
-include "CherryBell/vendor/Glad"
-include "CherryBell/vendor/imgui"
+group "Dependencies"
+	include "CherryBell/vendor/GLFW"
+	include "CherryBell/vendor/Glad"
+	include "CherryBell/vendor/imgui"
+group ""
 	
 project "CherryBell"
 	location "CherryBell"
 	kind "SharedLib"
 	language "c++"
+	staticruntime "off"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -57,7 +61,6 @@ project "CherryBell"
 	
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 		
 		defines
@@ -69,28 +72,29 @@ project "CherryBell"
 		
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox\"")
 		}
 		
 	filter "configurations:Debug"
 		defines {"CB_DEBUG","CB_ENABLE_ASSERTS"}
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "CB_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 		
 	filter "configurations:Dist"
 		defines "CB_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 		
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "c++"
+	staticruntime "off"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -114,7 +118,6 @@ project "Sandbox"
 	
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 		
 		defines
@@ -124,17 +127,17 @@ project "Sandbox"
 		
 	filter "configurations:Debug"
 		defines "CB_DEBUG"
-		buildoptions "/MDd"
+		runtime "Debug"
 		symbols "On"
 		
 	filter "configurations:Release"
 		defines "CB_RELEASE"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 		
 	filter "configurations:Dist"
 		defines "CB_DIST"
-		buildoptions "/MD"
+		runtime "Release"
 		optimize "On"
 	
 	
