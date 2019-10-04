@@ -3,8 +3,10 @@
 #ifdef CB_PLATFORM_WINDOWS
 	#ifdef CB_BUILD_DLL
 		#define CB_API __declspec(dllexport)
+		//#define IMGUI_API __declspec(dllexport)
 	#else
 		#define CB_API __declspec(dllimport)
+		//#define IMGUI_API __declspec(dllimport)
 	#endif // CB_BUILD_DLL
 #else
 	#error CherryBell does not support this platform

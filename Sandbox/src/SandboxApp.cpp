@@ -7,9 +7,11 @@ public:
 		: Layer("Example")
 	{}
 
-	void OnUpdate() override
+	void OnImGuiRender() override
 	{
-		//CB_INFO("ExampleLayer: Update");
+		ImGui::Begin("Heyo");
+		ImGui::Text("Hello world");
+		ImGui::End();
 	}
 
 	void OnEvent(CherryBell::Event& event) override
@@ -23,7 +25,6 @@ public:
 	Sandbox()
 	{
 		PushLayer(new ExampleLayer());
-		PushOverlay(new CherryBell::ImGuiLayer());
 	}
 	virtual ~Sandbox() = default;
 };

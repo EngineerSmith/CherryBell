@@ -5,7 +5,9 @@
 #include "core/Layer.h"
 #include "core/Log.h"
 
-#include "core/imgui/ImGuiLayer.h"
+// ----- GUI ---------------------------
+#include <imgui.h>
+// -------------------------------------
 
 // ----- Input -------------------------
 #include "core/Input.h"

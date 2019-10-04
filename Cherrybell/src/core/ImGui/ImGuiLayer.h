@@ -13,20 +13,11 @@ namespace CherryBell {
 
 		void OnAttach() override;
 		void OnDetach() override;
+		void OnImGuiRender() override;
 
-		void OnUpdate() override;
-		void OnEvent(Event& event) override;
+		void Begin();
+		void End();
 	private:
-		bool OnMouseButtonPressedEvent(MouseButtonPressedEvent& event);
-		bool OnMouseButtonReleasedEvent(MouseButtonReleasedEvent& event);
-		bool OnMouseMoveEvent(MouseMovedEvent& event);
-		bool OnMouseScrolledEvent(MouseScrolledEvent& event);
-		bool OnKeyPressedEvent(KeyPressedEvent& event);
-		bool OnKeyReleasedEvent(KeyReleasedEvent& event);
-		bool OnKeyTypedEvent(KeyTypedEvent& event);
-		bool OnWindowResizeEvent(WindowResizeEvent& event);
-	private:
-
 		float _time = 0.0f;
 	};
 }

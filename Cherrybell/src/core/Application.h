@@ -5,6 +5,8 @@
 #include "core/events/Event.h"
 #include "core/events/ApplicationEvent.h"
 
+#include "core/ImGui/ImGuiLayer.h"
+
 namespace CherryBell {
 	class CB_API Application
 	{
@@ -25,6 +27,7 @@ namespace CherryBell {
 	private:
 		//TODO allow for more than one window per application
 		std::unique_ptr<Window> _window;
+		ImGuiLayer* _imGuiLayer;
 		bool _running = true;
 		LayerStack _layerStack;
 

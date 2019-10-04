@@ -60,6 +60,10 @@ project "CherryBell"
 		"ImGui",
 		"opengl32.lib"
 	}
+
+	defines {
+		"IMGUI_API=__declspec(dllexport)"
+	}
 	
 	filter "system:windows"
 		cppdialect "C++17"
@@ -111,12 +115,17 @@ project "Sandbox"
 	{
 		"CherryBell/vendor/spdlog/include",
 		"CherryBell/src",
-		"${IncludeDir.glm}"
+		"%{IncludeDir.imgui}",
+		"%{IncludeDir.glm}"
 	}
 	
 	links 
 	{
 		"CherryBell"
+	}
+
+	defines {
+		"IMGUI_API=__declspec(dllimport)"
 	}
 	
 	filter "system:windows"

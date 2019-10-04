@@ -4,7 +4,6 @@
 namespace CherryBell {
 	LayerStack::LayerStack()
 	{
-		_layerInsert = _layers.begin();
 	}
 
 	LayerStack::~LayerStack()
@@ -15,7 +14,8 @@ namespace CherryBell {
 
 	void LayerStack::PushLayer(Layer* layer)
 	{
-		_layerInsert = _layers.emplace(_layerInsert, layer);
+		_layers.emplace(_layers.begin() + _layerInsertIndex, layer);
+		_layerInsertIndex++;
 		layer->OnAttach();
 	}
 
@@ -31,7 +31,7 @@ namespace CherryBell {
 		if (it != _layers.end())
 		{
 			_layers.erase(it);
-			_layerInsert--;
+			_layerInsertIndex--;
 		}
 		layer->OnDetach();
 	}

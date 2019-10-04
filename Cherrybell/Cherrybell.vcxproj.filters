@@ -13,9 +13,6 @@
     <Filter Include="platform">
       <UniqueIdentifier>{4A63C33C-3630-1E48-5F49-0CF04B7553D6}</UniqueIdentifier>
     </Filter>
-    <Filter Include="platform\OpenGL">
-      <UniqueIdentifier>{3E351A86-AAC0-874A-B3D1-0A3F1FDCE34A}</UniqueIdentifier>
-    </Filter>
     <Filter Include="platform\Windows">
       <UniqueIdentifier>{84B77CA1-70B0-9BF3-99E2-8078853A7BFF}</UniqueIdentifier>
     </Filter>
@@ -68,9 +65,6 @@
     <ClInclude Include="src\core\events\MouseEvent.h">
       <Filter>core\events</Filter>
     </ClInclude>
-    <ClInclude Include="src\platform\OpenGL\ImGuiOpenGLRender.h">
-      <Filter>platform\OpenGL</Filter>
-    </ClInclude>
     <ClInclude Include="src\platform\Windows\WindowsInput.h">
       <Filter>platform\Windows</Filter>
     </ClInclude>
@@ -83,6 +77,9 @@
     <ClCompile Include="src\core\Application.cpp">
       <Filter>core</Filter>
     </ClCompile>
+    <ClCompile Include="src\core\ImGui\ImGuiBuild.cpp">
+      <Filter>core\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\core\ImGui\ImGuiLayer.cpp">
       <Filter>core\ImGui</Filter>
     </ClCompile>
@@ -94,9 +91,6 @@
     </ClCompile>
     <ClCompile Include="src\core\Log.cpp">
       <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\platform\OpenGL\ImGuiOpenGLRender.cpp">
-      <Filter>platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\platform\Windows\WindowsInput.cpp">
       <Filter>platform\Windows</Filter>
