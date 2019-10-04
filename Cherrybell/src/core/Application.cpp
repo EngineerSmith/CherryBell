@@ -37,9 +37,9 @@ namespace CherryBell {
 
 	void Application::Run()
 	{
+		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		while (_running)
 		{
-			glClearColor(0, 1, 1, 1);
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			for (Layer* layer : _layerStack)

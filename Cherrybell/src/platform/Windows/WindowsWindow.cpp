@@ -5,8 +5,7 @@
 #include "core/events/ApplicationEvent.h"
 #include "core/events/MouseEvent.h"
 #include "core/events/KeyEvent.h"
-
-#include <glad/glad.h>
+#include "platform/OpenGL/OpenGLContext.h"
 
 namespace CherryBell {
 	static bool s_GLFWInitialized = false;
@@ -48,11 +47,10 @@ namespace CherryBell {
 		}
 
 		_window = glfwCreateWindow((int)_data.Width, (int)_data.Height, _data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(_window);
-
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		CB_CORE_ASSERT(status, "Failed to initialize Glad!");
-
+		
+		_context = new OpenGLContext(_window);
+		_context->Init();
+		
 		glfwSetWindowUserPointer(_window, &_data);
 		SetVSync(true);
 
@@ -164,7 +162,7 @@ namespace CherryBell {
 	void WindowsWindow::OnUpdate()
 	{
 		glfwPollEvents();
-		glfwSwapBuffers(_window);
+		_context->SwapBuffers();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

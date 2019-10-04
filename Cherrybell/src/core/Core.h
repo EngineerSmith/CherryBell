@@ -1,7 +1,7 @@
 #pragma once
 
 #ifdef CB_PLATFORM_WINDOWS
-
+	
 #else
 	#error CherryBell does not support this platform
 #endif // CB_PLATFORM_WINDOWS

@@ -1,5 +1,7 @@
 #pragma once
 #include "core/Window.h"
+#include "core/renderer/GraphicsContext.h"
+
 #include <GLFW/glfw3.h>
 
 namespace CherryBell {
@@ -24,8 +26,9 @@ namespace CherryBell {
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
-
+	private:
 		GLFWwindow* _window;
+		GraphicsContext* _context;
 
 		struct WindowData
 		{
