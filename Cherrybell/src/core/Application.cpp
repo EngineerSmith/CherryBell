@@ -29,7 +29,7 @@ namespace CherryBell {
 			(*--it)->OnEvent(e);
 			if (e.Handled())
 				break;
-		}
+		} 
 	}
 
 	void Application::Run()
