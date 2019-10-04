@@ -2,7 +2,7 @@
 #include "Event.h"
 
 namespace CherryBell {
-	class CB_API MouseMovedEvent : public Event
+	class MouseMovedEvent : public Event
 	{
 	public:
 		MouseMovedEvent(float x, float y)
@@ -25,7 +25,7 @@ namespace CherryBell {
 		float _mouseX, _mouseY;
 	};
 
-	class CB_API MouseScrolledEvent : public Event
+	class  MouseScrolledEvent : public Event
 	{
 	public:
 		MouseScrolledEvent(float offsetX, float offsetY)
@@ -48,7 +48,7 @@ namespace CherryBell {
 		float _offsetX, _offsetY;
 	};
 
-	class CB_API MouseButtonEvent : public Event
+	class  MouseButtonEvent : public Event
 	{
 	public:
 		inline int GetMouseButton() const { return _button; }
@@ -62,7 +62,7 @@ namespace CherryBell {
 		int _button;
 	};
 
-	class CB_API MouseButtonPressedEvent : public MouseButtonEvent
+	class  MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonPressedEvent(int button)
@@ -79,7 +79,7 @@ namespace CherryBell {
 		EVENT_CLASS_TYPE(MouseButtonPressed)
 	};
 
-	class CB_API MouseButtonReleasedEvent : public MouseButtonEvent
+	class  MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
 		MouseButtonReleasedEvent(int button)

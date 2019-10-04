@@ -2,7 +2,7 @@
 #include "Event.h"
 
 namespace CherryBell {
-	class CB_API WindowResizeEvent : public Event
+	class WindowResizeEvent : public Event
 	{
 	public:
 		WindowResizeEvent(unsigned int width, unsigned int height)
@@ -26,7 +26,7 @@ namespace CherryBell {
 		unsigned int _width, _height;
 	};
 
-	class CB_API WindowCloseEvent : public Event
+	class  WindowCloseEvent : public Event
 	{
 	public:
 		WindowCloseEvent() = default;

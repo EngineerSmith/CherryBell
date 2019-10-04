@@ -5,7 +5,7 @@
 #include "core/events/ApplicationEvent.h"
 
 namespace CherryBell {
-	class CB_API ImGuiLayer : public Layer
+	class ImGuiLayer : public Layer
 	{
 	public:
 		ImGuiLayer();

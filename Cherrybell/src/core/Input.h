@@ -3,7 +3,7 @@
 #include "core/Core.h"
 
 namespace CherryBell {
-	class CB_API Input
+	class Input
 	{
 	public:
 		inline static bool IsKeyPressed(int keycode) { return s_instance->IsKeyPressedImpl(keycode); }

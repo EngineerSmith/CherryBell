@@ -16,7 +16,7 @@ namespace CherryBell {
 		{}
 	};
 
-	class CB_API Window
+	class Window
 	{
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;

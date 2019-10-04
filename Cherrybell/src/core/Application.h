@@ -8,7 +8,7 @@
 #include "core/ImGui/ImGuiLayer.h"
 
 namespace CherryBell {
-	class CB_API Application
+	class Application
 	{
 	public:
 		Application();

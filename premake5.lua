@@ -27,9 +27,10 @@ group ""
 	
 project "CherryBell"
 	location "CherryBell"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "c++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -62,45 +63,39 @@ project "CherryBell"
 	}
 
 	defines {
-		"IMGUI_API=__declspec(dllexport)"
+		"_CRT_SECURE_NO_WARNINGS"
 	}
 	
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 		
 		defines
 		{
 			"CB_PLATFORM_WINDOWS",
-			"CB_BUILD_DLL",
 			"GLFW_INCLUDE_NONE"
-		}
-		
-		postbuildcommands
-		{
-			("{COPY} %{cfg.buildtarget.relpath} \"../bin/" .. outputdir .. "/Sandbox\"")
 		}
 		
 	filter "configurations:Debug"
 		defines {"CB_DEBUG","CB_ENABLE_ASSERTS"}
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 		
 	filter "configurations:Release"
 		defines "CB_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 		
 	filter "configurations:Dist"
 		defines "CB_DIST"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 		
 project "Sandbox"
 	location "Sandbox"
 	kind "ConsoleApp"
 	language "c++"
-	staticruntime "off"
+	cppdialect "C++17"
+	staticruntime "on"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -123,13 +118,8 @@ project "Sandbox"
 	{
 		"CherryBell"
 	}
-
-	defines {
-		"IMGUI_API=__declspec(dllimport)"
-	}
 	
 	filter "system:windows"
-		cppdialect "C++17"
 		systemversion "latest"
 		
 		defines
@@ -140,16 +130,14 @@ project "Sandbox"
 	filter "configurations:Debug"
 		defines "CB_DEBUG"
 		runtime "Debug"
-		symbols "On"
+		symbols "on"
 		
 	filter "configurations:Release"
 		defines "CB_RELEASE"
 		runtime "Release"
-		optimize "On"
+		optimize "on"
 		
 	filter "configurations:Dist"
 		defines "CB_DIST"
 		runtime "Release"
-		optimize "On"
-	
-	
+		optimize "on"

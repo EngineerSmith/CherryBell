@@ -2,7 +2,7 @@
 #include "core/Input.h"
 
 namespace CherryBell {
-	class CB_API WindowsInput : public Input
+	class WindowsInput : public Input
 	{
 	protected:
 		bool IsKeyPressedImpl(int keycode) override;

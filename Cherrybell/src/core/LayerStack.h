@@ -5,7 +5,7 @@
 #include <vector>
 
 namespace CherryBell {
-	class CB_API LayerStack 
+	class LayerStack 
 	{
 	public:
 		LayerStack();

@@ -2,7 +2,7 @@
 #include "Event.h"
 
 namespace CherryBell {
-	class CB_API KeyEvent : public Event {
+	class KeyEvent : public Event {
 	public:
 		inline int GetKeyCode() const { return _keyCode; }
 
@@ -15,7 +15,7 @@ namespace CherryBell {
 		int _keyCode;
 	};
 
-	class CB_API KeyPressedEvent : public KeyEvent {
+	class  KeyPressedEvent : public KeyEvent {
 	public:
 		KeyPressedEvent(int keyCode, int repeatCount) 
 			: KeyEvent(keyCode), _repeatCount(repeatCount)
@@ -35,7 +35,7 @@ namespace CherryBell {
 		int _repeatCount;
 	};
 
-	class CB_API KeyReleasedEvent : public KeyEvent {
+	class  KeyReleasedEvent : public KeyEvent {
 	public:
 		KeyReleasedEvent(int keyCode) 
 			: KeyEvent(keyCode)
@@ -51,7 +51,7 @@ namespace CherryBell {
 		EVENT_CLASS_TYPE(KeyReleased)
 	};
 
-	class CB_API KeyTypedEvent : public KeyEvent {
+	class  KeyTypedEvent : public KeyEvent {
 	public:
 		KeyTypedEvent(int keyCode)
 			: KeyEvent(keyCode)
