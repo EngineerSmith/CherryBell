@@ -102,7 +102,7 @@ namespace CherryBell {
 					break;
 				}
 				default:
-					CB_CORE_WARN("GLFW Key press event recorded with action: {0}, key: {1}", action, key);
+					CB_CORE_WARN("GLFW Key press event recorded but no event created with action: {0}, key: {1}", action, key);
 					break;
 				}
 			});
@@ -132,7 +132,7 @@ namespace CherryBell {
 						break;
 					}
 					default:
-						CB_CORE_WARN("GLFW Mouse button event recorded with action: {0}, button: {1}", action, button);
+						CB_CORE_WARN("GLFW Mouse button event recorded but no event created with action: {0}, button: {1}", action, button);
 						break;
 				}
 			});
@@ -154,7 +154,6 @@ namespace CherryBell {
 				MouseMovedEvent event((float)x, (float)y);
 				data.EventCallback(event);
 			});
-		
 	}
 
 	void WindowsWindow::Shutdown()

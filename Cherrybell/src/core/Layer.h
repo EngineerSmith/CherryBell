@@ -16,7 +16,7 @@ namespace CherryBell {
 		virtual void OnUpdate() {}
 		virtual void OnEvent(Event& event) {}
 
-		// Debug - shouldn't be relyed on
+		// For debugging - shouldn't be relyed on
 		inline const std::string& GetName() const { return _name; }
 	protected:
 		std::string _name; // Debug

@@ -6,6 +6,7 @@ namespace CherryBell {
 	{
 	protected:
 		bool IsKeyPressedImpl(int keycode) override;
+		bool IsKeyPressedNotRepeatImpl(int keycode) override;
 
 		bool IsMouseButtonPressedImpl(int button) override;
 		std::pair<float, float> GetMousePositionImpl() override;
