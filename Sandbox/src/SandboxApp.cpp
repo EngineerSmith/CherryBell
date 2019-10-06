@@ -4,7 +4,7 @@ class ExampleLayer : public CherryBell::Layer
 {
 public:
 	ExampleLayer() 
-		: Layer("Example"), _camera(-1.6f, 1.6f, -0.9f, 0.9f)
+		: Layer("Example"), _camera(-1.6f, 1.6f, -0.9f, 0.9f), _cameraPosition(0)
 	{}
 
 	void OnAttach() override
@@ -72,27 +72,32 @@ public:
 
 	void OnUpdate() override
 	{
+		if (CherryBell::Input::IsKeyPressed(CB_KEY_LEFT) || CherryBell::Input::IsKeyPressed(CB_KEY_A))
+			_cameraPosition.x -= _cameraSpeed;
+		if (CherryBell::Input::IsKeyPressed(CB_KEY_RIGHT) || CherryBell::Input::IsKeyPressed(CB_KEY_D))
+			_cameraPosition.x += _cameraSpeed;
+		if (CherryBell::Input::IsKeyPressed(CB_KEY_UP) || CherryBell::Input::IsKeyPressed(CB_KEY_W))
+			_cameraPosition.y += _cameraSpeed;
+		if (CherryBell::Input::IsKeyPressed(CB_KEY_DOWN) || CherryBell::Input::IsKeyPressed(CB_KEY_S))
+			_cameraPosition.y -= _cameraSpeed;
+
 		CherryBell::RenderCommand::SetClearColor({ 1.0, 0.0, 1.0, 1.0 });
 		CherryBell::RenderCommand::Clear();
 
+		_camera.SetPosition(_cameraPosition);
+
 		CherryBell::Renderer::BeginScene(_camera);
-
 		CherryBell::Renderer::Submit(_shader, _vertexArray);
-
 		CherryBell::Renderer::EndScene();
 	}
 
-	void OnImGuiRender() override
-	{
-	}
-
-	void OnEvent(CherryBell::Event& event) override
-	{ }
 private:
 	std::shared_ptr<CherryBell::Shader> _shader;
 	std::shared_ptr<CherryBell::VertexArray> _vertexArray;
 
 	CherryBell::OrthorgraphicCamera _camera;
+	glm::vec3 _cameraPosition;
+	float _cameraSpeed = 0.01f;
 };
 
 class Sandbox : public CherryBell::Application {
