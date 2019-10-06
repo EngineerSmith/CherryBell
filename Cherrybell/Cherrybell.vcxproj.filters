@@ -38,22 +38,7 @@
     <ClInclude Include="src\core\ImGui\ImGuiLayer.h">
       <Filter>core\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\Input.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\core\KeyCodes.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\core\Layer.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\core\LayerStack.h">
-      <Filter>core</Filter>
-    </ClInclude>
     <ClInclude Include="src\core\Log.h">
-      <Filter>core</Filter>
-    </ClInclude>
-    <ClInclude Include="src\core\MouseButtonCodes.h">
       <Filter>core</Filter>
     </ClInclude>
     <ClInclude Include="src\core\Window.h">
@@ -95,6 +80,21 @@
     <ClInclude Include="src\core\renderer\OrthorgraphicCamera.h" />
     <ClInclude Include="src\core\renderer\RendererID.h" />
     <ClInclude Include="src\core\TimeStep.h" />
+    <ClInclude Include="src\core\input\Input.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\input\MouseButtonCodes.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\input\KeyCodes.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\layer\LayerStack.h">
+      <Filter>core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\layer\Layer.h">
+      <Filter>core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cbpch.cpp" />
@@ -106,12 +106,6 @@
     </ClCompile>
     <ClCompile Include="src\core\ImGui\ImGuiLayer.cpp">
       <Filter>core\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\Layer.cpp">
-      <Filter>core</Filter>
-    </ClCompile>
-    <ClCompile Include="src\core\LayerStack.cpp">
-      <Filter>core</Filter>
     </ClCompile>
     <ClCompile Include="src\core\Log.cpp">
       <Filter>core</Filter>
@@ -135,5 +129,11 @@
     <ClCompile Include="src\core\renderer\RenderCommand.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLRendererAPI.cpp" />
     <ClCompile Include="src\core\renderer\OrthorgraphicCamera.cpp" />
+    <ClCompile Include="src\core\layer\Layer.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\layer\LayerStack.cpp">
+      <Filter>core</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,5 +1,5 @@
 #pragma once
-#include "core/Input.h"
+#include "core/input/Input.h"
 
 namespace CherryBell {
 	class WindowsInput : public Input

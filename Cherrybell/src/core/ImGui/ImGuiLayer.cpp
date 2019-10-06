@@ -6,7 +6,7 @@
 #include "examples/imgui_impl_opengl3.h"
 
 #include "core/Application.h"
-#include "core/KeyCodes.h"
+#include "core/input/KeyCodes.h"
 
 //HACK temporary
 #include <GLFW/glfw3.h>

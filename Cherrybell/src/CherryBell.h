@@ -9,8 +9,8 @@
 // -------------------------------------
 
 // ----- Layers ------------------------
-#include "core/LayerStack.h"
-#include "core/Layer.h"
+#include "core/layer/LayerStack.h"
+#include "core/layer/Layer.h"
 // -------------------------------------
 
 // ----- Render API --------------------
@@ -30,9 +30,9 @@
 // -------------------------------------
 
 // ----- Input -------------------------
-#include "core/Input.h"
-#include "core/KeyCodes.h"
-#include "core/MouseButtonCodes.h"
+#include "core/input/Input.h"
+#include "core/input/KeyCodes.h"
+#include "core/input/MouseButtonCodes.h"
 // -------------------------------------
 
 // ----- Entry Point -------------------
