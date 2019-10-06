@@ -73,18 +73,24 @@ public:
 	void OnUpdate() override
 	{
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_LEFT) || CherryBell::Input::IsKeyPressed(CB_KEY_A))
-			_cameraPosition.x -= _cameraSpeed;
+			_cameraPosition.x -= _cameraSpeedPosition;
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_RIGHT) || CherryBell::Input::IsKeyPressed(CB_KEY_D))
-			_cameraPosition.x += _cameraSpeed;
+			_cameraPosition.x += _cameraSpeedPosition;
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_UP) || CherryBell::Input::IsKeyPressed(CB_KEY_W))
-			_cameraPosition.y += _cameraSpeed;
-		if (CherryBell::Input::IsKeyPressed(CB_KEY_DOWN) || CherryBell::Input::IsKeyPressed(CB_KEY_S))
-			_cameraPosition.y -= _cameraSpeed;
+			_cameraPosition.y += _cameraSpeedPosition;
+		else if (CherryBell::Input::IsKeyPressed(CB_KEY_DOWN) || CherryBell::Input::IsKeyPressed(CB_KEY_S))
+			_cameraPosition.y -= _cameraSpeedPosition;
+
+		if (CherryBell::Input::IsKeyPressed(CB_KEY_Q))
+			_cameraRotation += _cameraSpeedRotation;
+		if (CherryBell::Input::IsKeyPressed(CB_KEY_E))
+			_cameraRotation -= _cameraSpeedRotation;
 
 		CherryBell::RenderCommand::SetClearColor({ 1.0, 0.0, 1.0, 1.0 });
 		CherryBell::RenderCommand::Clear();
 
 		_camera.SetPosition(_cameraPosition);
+		_camera.SetRotation(_cameraRotation);
 
 		CherryBell::Renderer::BeginScene(_camera);
 		CherryBell::Renderer::Submit(_shader, _vertexArray);
@@ -97,7 +103,9 @@ private:
 
 	CherryBell::OrthorgraphicCamera _camera;
 	glm::vec3 _cameraPosition;
-	float _cameraSpeed = 0.01f;
+	float _cameraRotation = 0.0f;
+	float _cameraSpeedPosition = 0.01f;
+	float _cameraSpeedRotation = 3.0f;
 };
 
 class Sandbox : public CherryBell::Application {
