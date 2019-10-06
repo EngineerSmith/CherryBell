@@ -7,6 +7,7 @@ namespace CherryBell {
 	{
 	public:
 		OpenGLVertexArray();
+		~OpenGLVertexArray();
 
 		void Bind() const override;
 		void Unbind() const override;

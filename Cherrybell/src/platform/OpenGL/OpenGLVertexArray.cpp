@@ -28,7 +28,11 @@ namespace CherryBell {
 	OpenGLVertexArray::OpenGLVertexArray()
 	{
 		glGenVertexArrays(1, &_rendererID);
-		//glBindVertexArray(_rendererID);
+	}
+
+	OpenGLVertexArray::~OpenGLVertexArray()
+	{
+		glDeleteVertexArrays(1, &_rendererID);
 	}
 
 	void OpenGLVertexArray::Bind() const

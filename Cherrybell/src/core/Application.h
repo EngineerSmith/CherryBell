@@ -37,8 +37,6 @@ namespace CherryBell {
 		
 		std::shared_ptr<Shader> _shader;
 		std::shared_ptr<VertexArray> _vertexArray;
-		std::shared_ptr<VertexBuffer> _vertexBuffer;
-		std::shared_ptr<IndexBuffer> _indexBuffer;
 
 		static Application* s_instance;
 	};

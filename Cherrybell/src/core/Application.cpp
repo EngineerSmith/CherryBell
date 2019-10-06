@@ -28,21 +28,22 @@ namespace CherryBell {
 			 0.5f, -0.5f, 0.0f, 0.5f, 0.0f, 1.0f, 1.0f,
 			 0.0f,  0.5f, 0.0f, 1.0f, 0.5f, 0.0f, 1.0f
 		};
-
-		_vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
+		std::shared_ptr<VertexBuffer> vertexBuffer;
+		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		BufferLayout layout = {
 			{ShaderDataType::Float3, "_position"},
 			{ShaderDataType::Float4, "_color"}
 		};
 			
-		_vertexBuffer->SetLayout(layout);
-		_vertexArray->AddVertexBuffer(_vertexBuffer);
+		vertexBuffer->SetLayout(layout);
+		_vertexArray->AddVertexBuffer(vertexBuffer);
 
 		uint32_t indices[3] = { 0u,1u,2u };
 		
-		_indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)/sizeof(uint32_t)));
-		_vertexArray->SetIndexBuffer(_indexBuffer);
+		std::shared_ptr<IndexBuffer> indexBuffer;
+		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)/sizeof(uint32_t)));
+		_vertexArray->SetIndexBuffer(indexBuffer);
 
 		std::string vertexSrc = R"(
 			#version 330 core
@@ -101,7 +102,7 @@ namespace CherryBell {
 
 			_shader->Bind();
 			_vertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, _indexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, _vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : _layerStack)
 				layer->OnUpdate();
