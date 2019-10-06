@@ -1,6 +1,6 @@
 #pragma once
 #include "core/renderer/VertexArray.h"
-#include "core/renderer/Shader.h"
+#include "core/renderer/RendererID.h"
 
 namespace CherryBell {
 	class OpenGLVertexArray : public VertexArray

@@ -10,6 +10,7 @@ namespace CherryBell {
 	Application* Application::s_instance = nullptr;
 
 	Application::Application()
+		: _camera(-1.6f, 1.6f, -0.9f, 0.9f)
 	{
 		CB_CORE_ASSERT(!s_instance, "Application already exists!");
 		s_instance = this;
@@ -31,8 +32,8 @@ namespace CherryBell {
 		vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		BufferLayout layout = {
-			{ShaderDataType::Float3, "_position"},
-			{ShaderDataType::Float4, "_color"}
+			{ShaderDataType::Float3, "a_position"},
+			{ShaderDataType::Float4, "a_color"}
 		};
 			
 		vertexBuffer->SetLayout(layout);
@@ -47,17 +48,19 @@ namespace CherryBell {
 		std::string vertexSrc = R"(
 			#version 330 core
 			
-			layout(location = 0) in vec3 _position;
-			layout(location = 1) in vec4 _color;
+			layout(location = 0) in vec3 a_position;
+			layout(location = 1) in vec4 a_color;
 
-			out vec3 position;
-			out vec4 color;
+			uniform mat4 u_viewProjection;
+
+			out vec3 v_position;
+			out vec4 v_color;
 
 			void main()
 			{
-				position = _position;
-				color = _color;
-				gl_Position = vec4(_position,1.0);
+				v_position = a_position;
+				v_color = a_color;
+				gl_Position = u_viewProjection * vec4(a_position,1.0);
 			}
 		)";
 
@@ -66,12 +69,12 @@ namespace CherryBell {
 			
 			layout(location = 0) out vec4 _color;
 			
-			in vec3 position;
-			in vec4 color;
+			in vec3 v_position;
+			in vec4 v_color;
 
 			void main()
 			{
-				_color = color;
+				_color = v_color;
 			}
 		)";
 
@@ -99,10 +102,9 @@ namespace CherryBell {
 			RenderCommand::SetClearColor({1.0, 0.0, 1.0, 1.0});
 			RenderCommand::Clear();
 
-			Renderer::BeginScene();
+			Renderer::BeginScene(_camera);
 
-			_shader->Bind();
-			Renderer::Submit(_vertexArray);
+			Renderer::Submit(_shader, _vertexArray);
 
 			Renderer::EndScene();
 

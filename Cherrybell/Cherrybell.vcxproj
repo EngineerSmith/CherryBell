@@ -153,9 +153,11 @@
     <ClInclude Include="src\core\Log.h" />
     <ClInclude Include="src\core\MouseButtonCodes.h" />
     <ClInclude Include="src\core\renderer\Buffer.h" />
+    <ClInclude Include="src\core\renderer\OrthorgraphicCamera.h" />
     <ClInclude Include="src\core\renderer\RenderCommand.h" />
     <ClInclude Include="src\core\renderer\Renderer.h" />
     <ClInclude Include="src\core\renderer\RendererAPI.h" />
+    <ClInclude Include="src\core\renderer\RendererID.h" />
     <ClInclude Include="src\core\renderer\Shader.h" />
     <ClInclude Include="src\core\renderer\VertexArray.h" />
     <ClInclude Include="src\core\Window.h" />
@@ -182,6 +184,7 @@
     <ClCompile Include="src\core\LayerStack.cpp" />
     <ClCompile Include="src\core\Log.cpp" />
     <ClCompile Include="src\core\renderer\Buffer.cpp" />
+    <ClCompile Include="src\core\renderer\OrthorgraphicCamera.cpp" />
     <ClCompile Include="src\core\renderer\RenderCommand.cpp" />
     <ClCompile Include="src\core\renderer\Renderer.cpp" />
     <ClCompile Include="src\core\renderer\RendererAPI.cpp" />

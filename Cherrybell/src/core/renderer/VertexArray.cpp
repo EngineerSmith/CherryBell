@@ -1,7 +1,6 @@
 #include "cbpch.h"
 #include "VertexArray.h"
-#include "Renderer.h"
-
+#include "core/renderer/Renderer.h"
 #include "platform/OpenGL/OpenGLVertexArray.h"
 
 namespace CherryBell {

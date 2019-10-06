@@ -1,18 +1,21 @@
 #pragma once
-#include <string>
+#include "core/renderer/RendererID.h"
 
-typedef uint32_t RendererID;
-	
+#include <string>
+#include <glm/glm.hpp>
+
 namespace CherryBell {
 	//TODO make generic and move OPENGL code to its own instance 
 	class Shader
 	{
 	public:
-		Shader(std::string vertexSrc, std::string fragmentSrc);
+		Shader(const std::string& vertexSrc, const std::string& fragmentSrc);
 		~Shader();
 
 		void Bind() const;
 		void Unbind() const;
+
+		void UploadUniformMat4(const glm::mat4& matrix, const std::string& name);
 	private:
 		RendererID _rendererID;
 	};

@@ -1,6 +1,6 @@
 #pragma once
 #include "core/renderer/Buffer.h"
-#include "core/renderer/Shader.h"
+#include "core/renderer/RendererID.h"
 
 namespace CherryBell {
 	class OpenGLVertexBuffer : public VertexBuffer

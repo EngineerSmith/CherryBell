@@ -92,6 +92,8 @@
     <ClInclude Include="src\core\renderer\RendererAPI.h" />
     <ClInclude Include="src\core\renderer\RenderCommand.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLRendererAPI.h" />
+    <ClInclude Include="src\core\renderer\OrthorgraphicCamera.h" />
+    <ClInclude Include="src\core\renderer\RendererID.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cbpch.cpp" />
@@ -131,5 +133,6 @@
     <ClCompile Include="src\core\renderer\RendererAPI.cpp" />
     <ClCompile Include="src\core\renderer\RenderCommand.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLRendererAPI.cpp" />
+    <ClCompile Include="src\core\renderer\OrthorgraphicCamera.cpp" />
   </ItemGroup>
 </Project>
