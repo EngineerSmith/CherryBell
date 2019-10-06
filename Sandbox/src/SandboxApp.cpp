@@ -70,21 +70,21 @@ public:
 		_shader = std::make_shared<CherryBell::Shader>(vertexSrc, fragmentSrc);
 	}
 
-	void OnUpdate() override
+	void OnUpdate(CherryBell::Timestep timestep) override
 	{
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_LEFT) || CherryBell::Input::IsKeyPressed(CB_KEY_A))
-			_cameraPosition.x -= _cameraSpeedPosition;
+			_cameraPosition.x -= _cameraSpeedPosition * timestep.GetSeconds();
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_RIGHT) || CherryBell::Input::IsKeyPressed(CB_KEY_D))
-			_cameraPosition.x += _cameraSpeedPosition;
+			_cameraPosition.x += _cameraSpeedPosition * timestep.GetSeconds();
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_UP) || CherryBell::Input::IsKeyPressed(CB_KEY_W))
-			_cameraPosition.y += _cameraSpeedPosition;
+			_cameraPosition.y += _cameraSpeedPosition * timestep.GetSeconds();
 		else if (CherryBell::Input::IsKeyPressed(CB_KEY_DOWN) || CherryBell::Input::IsKeyPressed(CB_KEY_S))
-			_cameraPosition.y -= _cameraSpeedPosition;
+			_cameraPosition.y -= _cameraSpeedPosition * timestep.GetSeconds();
 
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_Q))
-			_cameraRotation += _cameraSpeedRotation;
+			_cameraRotation += _cameraSpeedRotation * timestep.GetSeconds();
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_E))
-			_cameraRotation -= _cameraSpeedRotation;
+			_cameraRotation -= _cameraSpeedRotation * timestep.GetSeconds();
 
 		CherryBell::RenderCommand::SetClearColor({ 1.0, 0.0, 1.0, 1.0 });
 		CherryBell::RenderCommand::Clear();
@@ -104,8 +104,8 @@ private:
 	CherryBell::OrthorgraphicCamera _camera;
 	glm::vec3 _cameraPosition;
 	float _cameraRotation = 0.0f;
-	float _cameraSpeedPosition = 0.01f;
-	float _cameraSpeedRotation = 3.0f;
+	float _cameraSpeedPosition = 3.0f;
+	float _cameraSpeedRotation = 20.0f;
 };
 
 class Sandbox : public CherryBell::Application {

@@ -10,7 +10,6 @@
 
 //HACK temporary
 #include <GLFW/glfw3.h>
-#include <glad/glad.h>
 
 namespace CherryBell {
 	ImGuiLayer::ImGuiLayer()
@@ -80,7 +79,4 @@ namespace CherryBell {
 			glfwMakeContextCurrent(backup_context);
 		}
 	}
-
-
-
 }

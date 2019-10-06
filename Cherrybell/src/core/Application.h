@@ -6,6 +6,7 @@
 #include "core/events/ApplicationEvent.h"
 
 #include "core/ImGui/ImGuiLayer.h"
+#include "core/TimeStep.h"
 
 namespace CherryBell {
 	class Application
@@ -30,7 +31,8 @@ namespace CherryBell {
 		ImGuiLayer* _imGuiLayer;
 		bool _running = true;
 		LayerStack _layerStack;
-
+		float _lastFrameTime = 0.0f;
+	private:
 		static Application* s_instance;
 	};
 

@@ -1,6 +1,7 @@
 #pragma once
 #include "core/Core.h"
 #include "core/events/Event.h"
+#include "core/TimeStep.h"
 
 #include <string>
 
@@ -13,7 +14,7 @@ namespace CherryBell {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(Timestep timestep) {}
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 

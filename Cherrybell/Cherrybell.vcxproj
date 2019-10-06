@@ -160,6 +160,7 @@
     <ClInclude Include="src\core\renderer\RendererID.h" />
     <ClInclude Include="src\core\renderer\Shader.h" />
     <ClInclude Include="src\core\renderer\VertexArray.h" />
+    <ClInclude Include="src\core\TimeStep.h" />
     <ClInclude Include="src\core\Window.h" />
     <ClInclude Include="src\core\events\ApplicationEvent.h" />
     <ClInclude Include="src\core\events\Event.h" />

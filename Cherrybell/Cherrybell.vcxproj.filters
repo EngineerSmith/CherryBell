@@ -94,6 +94,7 @@
     <ClInclude Include="src\platform\OpenGL\OpenGLRendererAPI.h" />
     <ClInclude Include="src\core\renderer\OrthorgraphicCamera.h" />
     <ClInclude Include="src\core\renderer\RendererID.h" />
+    <ClInclude Include="src\core\TimeStep.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cbpch.cpp" />

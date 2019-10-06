@@ -6,6 +6,8 @@
 
 #include "core/Input.h"
 
+#include <GLFW/glfw3.h>
+
 namespace CherryBell {
 	Application* Application::s_instance = nullptr;
 
@@ -38,8 +40,12 @@ namespace CherryBell {
 	{
 		while (_running)
 		{
+			float time = (float)glfwGetTime(); //TODO platform::GetTime()
+			Timestep timestep = time - _lastFrameTime;
+			_lastFrameTime = time;
+
 			for (Layer* layer : _layerStack)
-				layer->OnUpdate();
+				layer->OnUpdate(timestep);
 
 			_imGuiLayer->Begin();
 			for (Layer* layer : _layerStack)

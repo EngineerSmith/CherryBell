@@ -17,7 +17,5 @@ namespace CherryBell {
 
 		void Begin();
 		void End();
-	private:
-		float _time = 0.0f;
 	};
 }
