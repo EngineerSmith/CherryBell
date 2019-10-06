@@ -10,27 +10,6 @@
 namespace CherryBell {
 	Application* Application::s_instance = nullptr;
 
-	static GLenum ShaderDataTypeToOpenGLBaseType(ShaderDataType type)
-	{
-		switch (type)
-		{
-		case ShaderDataType::Float:		return GL_FLOAT;
-		case ShaderDataType::Float2:	return GL_FLOAT;
-		case ShaderDataType::Float3:	return GL_FLOAT;
-		case ShaderDataType::Float4:	return GL_FLOAT;
-		case ShaderDataType::Int:		return GL_INT;
-		case ShaderDataType::Int2:		return GL_INT;
-		case ShaderDataType::Int3:		return GL_INT;
-		case ShaderDataType::Int4:		return GL_INT;
-		case ShaderDataType::Mat3:		return GL_FLOAT;
-		case ShaderDataType::Mat4:		return GL_FLOAT;
-		case ShaderDataType::Bool:		return GL_BOOL;
-		default:
-			CB_CORE_ASSERT(false, "Unknown ShaderDataType!");
-			return 0;
-		}
-	}
-
 	Application::Application()
 	{
 		CB_CORE_ASSERT(!s_instance, "Application already exists!");
@@ -42,10 +21,8 @@ namespace CherryBell {
 		_imGuiLayer = new ImGuiLayer();
 		PushOverlay(_imGuiLayer);
 
-
-		glGenVertexArrays(1, &_vertexArray);
-		glBindVertexArray(_vertexArray);
-
+		_vertexArray.reset(VertexArray::Create());
+		
 		float vertices[] = {
 			-0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
 			 0.5f, -0.5f, 0.0f, 0.5f, 0.0f, 1.0f, 1.0f,
@@ -55,29 +32,17 @@ namespace CherryBell {
 		_vertexBuffer.reset(VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		BufferLayout layout = {
-			{ShaderDataType::Float3, "_position" },
-			{ShaderDataType::Float4, "_color" }
+			{ShaderDataType::Float3, "_position"},
+			{ShaderDataType::Float4, "_color"}
 		};
 			
 		_vertexBuffer->SetLayout(layout);
-
-		uint32_t index = 0;
-		for (const auto& element : layout)
-		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index, 
-						element.GetComponentCount(), 
-						ShaderDataTypeToOpenGLBaseType(element.Type), 
-						element.Normalized ? GL_TRUE : GL_FALSE, 
-						layout.GetStride(), 
-						(const void*)element.Offset
-			);
-			index++;
-		}
+		_vertexArray->AddVertexBuffer(_vertexBuffer);
 
 		uint32_t indices[3] = { 0u,1u,2u };
 		
 		_indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices)/sizeof(uint32_t)));
+		_vertexArray->SetIndexBuffer(_indexBuffer);
 
 		std::string vertexSrc = R"(
 			#version 330 core
@@ -110,7 +75,7 @@ namespace CherryBell {
 			}
 		)";
 
-		_shader = std::make_unique<Shader>(vertexSrc, fragmentSrc);
+		_shader = std::make_shared<Shader>(vertexSrc, fragmentSrc);
 
 	}
 
@@ -135,8 +100,7 @@ namespace CherryBell {
 			glClear(GL_COLOR_BUFFER_BIT);
 
 			_shader->Bind();
-
-			glBindVertexArray(_vertexArray);
+			_vertexArray->Bind();
 			glDrawElements(GL_TRIANGLES, _indexBuffer->GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			for (Layer* layer : _layerStack)

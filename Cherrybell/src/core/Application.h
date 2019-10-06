@@ -9,6 +9,7 @@
 
 #include "core/renderer/Shader.h"
 #include "core/renderer/Buffer.h"
+#include "core/renderer/VertexArray.h"
 
 namespace CherryBell {
 	class Application
@@ -34,11 +35,10 @@ namespace CherryBell {
 		bool _running = true;
 		LayerStack _layerStack;
 		
-		unsigned int _vertexArray;
-		std::unique_ptr<Shader> _shader;
-		std::unique_ptr<VertexBuffer> _vertexBuffer;
-		std::unique_ptr<IndexBuffer> _indexBuffer;
-
+		std::shared_ptr<Shader> _shader;
+		std::shared_ptr<VertexArray> _vertexArray;
+		std::shared_ptr<VertexBuffer> _vertexBuffer;
+		std::shared_ptr<IndexBuffer> _indexBuffer;
 
 		static Application* s_instance;
 	};

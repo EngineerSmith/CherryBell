@@ -87,6 +87,8 @@
     <ClInclude Include="src\core\renderer\Buffer.h" />
     <ClInclude Include="src\platform\OpenGL\OpenGLBuffer.h" />
     <ClInclude Include="src\core\renderer\Renderer.h" />
+    <ClInclude Include="src\core\renderer\VertexArray.h" />
+    <ClInclude Include="src\platform\OpenGL\OpenGLVertexArray.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cbpch.cpp" />
@@ -121,5 +123,7 @@
     <ClCompile Include="src\core\renderer\Buffer.cpp" />
     <ClCompile Include="src\platform\OpenGL\OpenGLBuffer.cpp" />
     <ClCompile Include="src\core\renderer\Renderer.cpp" />
+    <ClCompile Include="src\core\renderer\VertexArray.cpp" />
+    <ClCompile Include="src\platform\OpenGL\OpenGLVertexArray.cpp" />
   </ItemGroup>
 </Project>
