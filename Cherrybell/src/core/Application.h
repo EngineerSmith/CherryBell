@@ -7,10 +7,6 @@
 
 #include "core/ImGui/ImGuiLayer.h"
 
-#include "core/renderer/Shader.h"
-#include "core/renderer/VertexArray.h"
-#include "core/renderer/OrthorgraphicCamera.h"
-
 namespace CherryBell {
 	class Application
 	{
@@ -34,11 +30,6 @@ namespace CherryBell {
 		ImGuiLayer* _imGuiLayer;
 		bool _running = true;
 		LayerStack _layerStack;
-		
-		std::shared_ptr<Shader> _shader;
-		std::shared_ptr<VertexArray> _vertexArray;
-
-		OrthorgraphicCamera _camera;
 
 		static Application* s_instance;
 	};
