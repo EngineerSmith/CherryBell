@@ -2,8 +2,7 @@
 #include "Application.h"
 #include "core/events/Event.h"
 #include "core/Log.h"
-
-#include <glad/glad.h>
+#include "core/renderer/Renderer.h"
 
 #include "core/Input.h"
 
@@ -97,17 +96,19 @@ namespace CherryBell {
 	{
 		while (_running)
 		{
-			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
-			glClear(GL_COLOR_BUFFER_BIT);
+			RenderCommand::SetClearColor({1.0, 0.0, 1.0, 1.0});
+			RenderCommand::Clear();
+
+			Renderer::BeginScene();
 
 			_shader->Bind();
-			_vertexArray->Bind();
-			glDrawElements(GL_TRIANGLES, _vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
+			Renderer::Submit(_vertexArray);
+
+			Renderer::EndScene();
 
 			for (Layer* layer : _layerStack)
 				layer->OnUpdate();
 
-			// TODO move to render thread
 			_imGuiLayer->Begin();
 			for (Layer* layer : _layerStack)
 				layer->OnImGuiRender();

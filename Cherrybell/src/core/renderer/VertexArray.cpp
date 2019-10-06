@@ -9,8 +9,8 @@ namespace CherryBell {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::OpenGL: return new OpenGLVertexArray();
-		case RendererAPI::None:
+		case RendererAPI::API::OpenGL: return new OpenGLVertexArray();
+		case RendererAPI::API::None:
 			CB_CORE_ASSERT(false, "Renderer API \"None\" currently unsupported!");
 			return nullptr;
 		default:
