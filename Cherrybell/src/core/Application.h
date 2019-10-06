@@ -7,6 +7,9 @@
 
 #include "core/ImGui/ImGuiLayer.h"
 
+#include "core/renderer/Shader.h"
+#include "core/renderer/Buffer.h"
+
 namespace CherryBell {
 	class Application
 	{
@@ -31,7 +34,11 @@ namespace CherryBell {
 		bool _running = true;
 		LayerStack _layerStack;
 		
-		unsigned int _vertexArray, _vertexBuffer, _indexBuffer;
+		unsigned int _vertexArray;
+		std::unique_ptr<Shader> _shader;
+		std::unique_ptr<VertexBuffer> _vertexBuffer;
+		std::unique_ptr<IndexBuffer> _indexBuffer;
+
 
 		static Application* s_instance;
 	};
