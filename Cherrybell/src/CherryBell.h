@@ -1,6 +1,7 @@
 #pragma once
 //For use by CherryBell Applications
 
+#include "core/Core.h"
 #include "core/Application.h"
 #include "core/Timestep.h"
 

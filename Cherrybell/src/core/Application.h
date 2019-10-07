@@ -27,7 +27,7 @@ namespace CherryBell {
 		bool OnWindowClose(WindowCloseEvent& event);
 	private:
 		//TODO allow for more than one window per application
-		std::unique_ptr<Window> _window;
+		Scope<Window> _window;
 		ImGuiLayer* _imGuiLayer;
 		bool _running = true;
 		LayerStack _layerStack;

@@ -1,4 +1,6 @@
 #pragma once
 #include <stdint.h>
 
-typedef uint32_t RendererID;
+namespace CherryBell {
+	typedef uint32_t RendererID;
+}

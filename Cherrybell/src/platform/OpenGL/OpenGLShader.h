@@ -23,8 +23,6 @@ namespace CherryBell {
 		void UploadUniformFloat(float value, const std::string& name);
 
 		void UploadUniformInt(int value, const std::string& name);
-
-
 	private:
 		RendererID _rendererID;
 	};

@@ -19,7 +19,7 @@ public:
 			 0.5f, -0.5f, 0.0f, 0.5f, 0.0f, 1.0f, 1.0f,
 			 0.0f,  0.5f, 0.0f, 1.0f, 0.5f, 0.0f, 1.0f
 		};
-		std::shared_ptr<CherryBell::VertexBuffer> vertexBuffer;
+		CherryBell::Ref<CherryBell::VertexBuffer> vertexBuffer;
 		vertexBuffer.reset(CherryBell::VertexBuffer::Create(vertices, sizeof(vertices)));
 
 		CherryBell::BufferLayout layout = {
@@ -32,7 +32,7 @@ public:
 
 		uint32_t indices[3] = { 0u,1u,2u };
 
-		std::shared_ptr<CherryBell::IndexBuffer> indexBuffer;
+		CherryBell::Ref<CherryBell::IndexBuffer> indexBuffer;
 		indexBuffer.reset(CherryBell::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		_vertexArray->SetIndexBuffer(indexBuffer);
 
@@ -121,8 +121,8 @@ public:
 	}
 
 private:
-	std::shared_ptr<CherryBell::Shader> _shader;
-	std::shared_ptr<CherryBell::VertexArray> _vertexArray;
+	CherryBell::Ref<CherryBell::Shader> _shader;
+	CherryBell::Ref<CherryBell::VertexArray> _vertexArray;
 
 	CherryBell::OrthorgraphicCamera _camera;
 	glm::vec3 _cameraPosition;
