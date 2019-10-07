@@ -95,6 +95,7 @@
     <ClInclude Include="src\core\layer\Layer.h">
       <Filter>core</Filter>
     </ClInclude>
+    <ClInclude Include="src\platform\OpenGL\OpenGLShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cbpch.cpp" />
@@ -135,5 +136,6 @@
     <ClCompile Include="src\core\layer\LayerStack.cpp">
       <Filter>core</Filter>
     </ClCompile>
+    <ClCompile Include="src\platform\OpenGL\OpenGLShader.cpp" />
   </ItemGroup>
 </Project>
