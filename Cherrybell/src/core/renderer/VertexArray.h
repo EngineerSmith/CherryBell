@@ -8,7 +8,7 @@ namespace CherryBell {
 	public:
 		virtual ~VertexArray() = default;
 
-		static VertexArray* Create();
+		static Ref<VertexArray> Create();
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;

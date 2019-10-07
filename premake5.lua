@@ -17,6 +17,7 @@ IncludeDir["GLFW"] = "CherryBell/vendor/GLFW/include"
 IncludeDir["Glad"] = "CherryBell/vendor/Glad/include"
 IncludeDir["imgui"] = "CherryBell/vendor/imgui"
 IncludeDir["glm"] = "CherryBell/vendor/glm"
+IncludeDir["stb"] = "CherryBell/vendor/stb"
 
 -- Includes premake5 file
 group "Dependencies"
@@ -41,7 +42,9 @@ project "CherryBell"
 	files 
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb/**.cpp",
+		"%{prj.name}/vendor/stb/**.h"
 	}
 	
 	includedirs
@@ -51,7 +54,8 @@ project "CherryBell"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.imgui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb}"
 	}
 	
 	links

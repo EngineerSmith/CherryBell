@@ -28,6 +28,7 @@
 
 #include "core/renderer/Buffer.h"
 #include "core/renderer/Shader.h"
+#include "core/renderer/Texture.h"
 #include "core/renderer/VertexArray.h"
 
 #include "core/renderer/OrthorgraphicCamera.h"

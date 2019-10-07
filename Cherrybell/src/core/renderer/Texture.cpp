@@ -1,14 +1,14 @@
 #include "cbpch.h"
-#include "Shader.h"
+#include "Texture.h"
 #include "core/renderer/Renderer.h"
-#include "platform/OpenGL/OpenGLShader.h"
+#include "platform/OpenGL/OpenGLTexture.h"
 
 namespace CherryBell {
-	Ref<Shader> Shader::Create(const std::string& vertexSrc, const std::string& fragmentSrc)
+	Ref<Texture2D> Texture2D::Create(const std::string& path)
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLShader>(vertexSrc, fragmentSrc);
+		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLTexture2D>(path);
 		case RendererAPI::API::None:
 			CB_CORE_ASSERT(false, "Renderer API \"None\" currently unsupported!");
 			return nullptr;

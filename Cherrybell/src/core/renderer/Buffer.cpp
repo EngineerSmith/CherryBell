@@ -5,11 +5,11 @@
 #include "platform/OpenGL/OpenGLBuffer.h"
 
 namespace CherryBell {
-	VertexBuffer* VertexBuffer::Create(float* vertices, size_t size)
+	Ref<VertexBuffer> VertexBuffer::Create(float* vertices, size_t size)
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::OpenGL: return new OpenGLVertexBuffer(vertices, size);
+		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexBuffer>(vertices, size);
 		case RendererAPI::API::None:
 			CB_CORE_ASSERT(false, "Renderer API \"None\" currently unsupported!");
 			return nullptr;

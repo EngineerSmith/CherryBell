@@ -11,26 +11,26 @@ public:
 
 	void OnAttach() override
 	{
-		_vertexArray.reset(CherryBell::VertexArray::Create());
+		_vertexArray = CherryBell::VertexArray::Create();
 
 		float vertices[] = {
 		   //a_position		  //a_color
-			-0.5f, -0.5f, 0.0f, 0.0f, 1.0f, 0.5f, 1.0f,
-			 0.5f, -0.5f, 0.0f, 0.5f, 0.0f, 1.0f, 1.0f,
-			 0.0f,  0.5f, 0.0f, 1.0f, 0.5f, 0.0f, 1.0f
+			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			-0.5f,  0.5f, 0.0f, 0.0f, 1.0f,
 		};
-		CherryBell::Ref<CherryBell::VertexBuffer> vertexBuffer;
-		vertexBuffer.reset(CherryBell::VertexBuffer::Create(vertices, sizeof(vertices)));
+		CherryBell::Ref<CherryBell::VertexBuffer> vertexBuffer = CherryBell::VertexBuffer::Create(vertices, sizeof(vertices));
 
 		CherryBell::BufferLayout layout = {
 			{CherryBell::ShaderDataType::Float3, "a_position"},
-			{CherryBell::ShaderDataType::Float4, "a_color"}
+			{CherryBell::ShaderDataType::Float2, "a_texCoord"}
 		};
 
 		vertexBuffer->SetLayout(layout);
 		_vertexArray->AddVertexBuffer(vertexBuffer);
 
-		uint32_t indices[3] = { 0u,1u,2u };
+		uint32_t indices[] = { 0u,1u,2u, 2u,3u,0u };
 
 		CherryBell::Ref<CherryBell::IndexBuffer> indexBuffer;
 		indexBuffer.reset(CherryBell::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
@@ -40,16 +40,16 @@ public:
 			#version 330 core
 			
 			layout(location = 0) in vec3 a_position;
-			layout(location = 1) in vec4 a_color;
+			layout(location = 1) in vec2 a_texCoord;
 
 			uniform mat4 u_viewProjection;
 			uniform mat4 u_transform;
 
-			out vec4 v_color;
+			out vec2 v_texCoord;
 
 			void main()
 			{
-				v_color = a_color;
+				v_texCoord = a_texCoord;
 				gl_Position = u_viewProjection * u_transform * vec4(a_position,1.0);
 			}
 		)";
@@ -60,16 +60,22 @@ public:
 			layout(location = 0) out vec4 _color;
 			
 			uniform vec3 u_color;
+			uniform sampler2D u_texture;
 
-			in vec4 v_color;
+			in vec2 v_texCoord;
 
 			void main()
 			{
-				_color = v_color * vec4(u_color,1);
+				_color = texture(u_texture, v_texCoord) * vec4(u_color,1);
 			}
 		)";
 		
-		_shader.reset(CherryBell::Shader::Create(vertexSrc, fragmentSrc));
+		_shader = CherryBell::Shader::Create(vertexSrc, fragmentSrc);
+
+		_texture = CherryBell::Texture2D::Create("assets/textures/brick-up.png");
+
+		_shader->Bind();
+		std::dynamic_pointer_cast<CherryBell::OpenGLShader>(_shader)->UploadUniformInt(0, "u_texture");
 	}
 
 	void OnUpdate(CherryBell::Timestep timestep) override
@@ -103,6 +109,8 @@ public:
 
 		_shader->Bind();
 		std::dynamic_pointer_cast<CherryBell::OpenGLShader>(_shader)->UploadUniformFloat3(_modelColor, "u_color");
+		
+		_texture->Bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), _modelPosition);
 		CherryBell::Renderer::Submit(_shader, _vertexArray, transform);
@@ -123,6 +131,8 @@ public:
 private:
 	CherryBell::Ref<CherryBell::Shader> _shader;
 	CherryBell::Ref<CherryBell::VertexArray> _vertexArray;
+
+	CherryBell::Ref<CherryBell::Texture2D> _texture;
 
 	CherryBell::OrthorgraphicCamera _camera;
 	glm::vec3 _cameraPosition;

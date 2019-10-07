@@ -109,7 +109,7 @@ namespace CherryBell {
 	public:
 		virtual ~VertexBuffer() = default;
 
-		static VertexBuffer* Create(float* vertices, size_t size);
+		static Ref<VertexBuffer> Create(float* vertices, size_t size);
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
