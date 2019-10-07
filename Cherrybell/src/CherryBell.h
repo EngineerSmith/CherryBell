@@ -4,6 +4,12 @@
 #include "core/Application.h"
 #include "core/Timestep.h"
 
+// ----- Math --------------------------
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+// -------------------------------------
+
+
 // ----- Debugging ---------------------
 #include "core/Log.h"
 // -------------------------------------

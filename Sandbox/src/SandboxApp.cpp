@@ -41,6 +41,7 @@ public:
 			layout(location = 1) in vec4 a_color;
 
 			uniform mat4 u_viewProjection;
+			uniform mat4 u_transform;
 
 			out vec3 v_position;
 			out vec4 v_color;
@@ -49,7 +50,7 @@ public:
 			{
 				v_position = a_position;
 				v_color = a_color;
-				gl_Position = u_viewProjection * vec4(a_position,1.0);
+				gl_Position = u_viewProjection * u_transform * vec4(a_position,1.0);
 			}
 		)";
 
@@ -86,6 +87,11 @@ public:
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_E))
 			_cameraRotation -= _cameraSpeedRotation * timestep.GetSeconds();
 
+		if (CherryBell::Input::IsKeyPressed(CB_KEY_H))
+			_modelPosition.x -= _cameraSpeedPosition * 0.5f * timestep.GetSeconds();
+		if (CherryBell::Input::IsKeyPressed(CB_KEY_K))
+			_modelPosition.x += _cameraSpeedPosition * 0.5f * timestep.GetSeconds();
+
 		CherryBell::RenderCommand::SetClearColor({ 1.0, 0.0, 1.0, 1.0 });
 		CherryBell::RenderCommand::Clear();
 
@@ -93,7 +99,10 @@ public:
 		_camera.SetRotation(_cameraRotation);
 
 		CherryBell::Renderer::BeginScene(_camera);
-		CherryBell::Renderer::Submit(_shader, _vertexArray);
+
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), _modelPosition);
+
+		CherryBell::Renderer::Submit(_shader, _vertexArray, transform);
 		CherryBell::Renderer::EndScene();
 	}
 
@@ -106,6 +115,8 @@ private:
 	float _cameraRotation = 0.0f;
 	float _cameraSpeedPosition = 3.0f;
 	float _cameraSpeedRotation = 20.0f;
+
+	glm::vec3 _modelPosition = glm::vec3(0);
 };
 
 class Sandbox : public CherryBell::Application {
