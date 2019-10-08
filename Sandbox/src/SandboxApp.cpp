@@ -1,12 +1,13 @@
 #include <CherryBell.h>
 
+// TODO move shader into render API
 #include "platform/OpenGL/OpenGLShader.h"
 
 class ExampleLayer : public CherryBell::Layer
 {
 public:
 	ExampleLayer() 
-		: Layer("Example"), _camera(-1.6f, 1.6f, -0.9f, 0.9f), _cameraPosition(0)
+		: Layer("Example"), _cameraController(1280.0f / 720.0f, true)
 	{}
 
 	void OnAttach() override
@@ -45,33 +46,18 @@ public:
 	}
 
 	void OnUpdate(CherryBell::Timestep timestep) override
-	{
-		if (CherryBell::Input::IsKeyPressed(CB_KEY_LEFT) || CherryBell::Input::IsKeyPressed(CB_KEY_A))
-			_cameraPosition.x -= _cameraSpeedPosition * timestep.GetSeconds();
-		if (CherryBell::Input::IsKeyPressed(CB_KEY_RIGHT) || CherryBell::Input::IsKeyPressed(CB_KEY_D))
-			_cameraPosition.x += _cameraSpeedPosition * timestep.GetSeconds();
-		if (CherryBell::Input::IsKeyPressed(CB_KEY_UP) || CherryBell::Input::IsKeyPressed(CB_KEY_W))
-			_cameraPosition.y += _cameraSpeedPosition * timestep.GetSeconds();
-		else if (CherryBell::Input::IsKeyPressed(CB_KEY_DOWN) || CherryBell::Input::IsKeyPressed(CB_KEY_S))
-			_cameraPosition.y -= _cameraSpeedPosition * timestep.GetSeconds();
-
-		if (CherryBell::Input::IsKeyPressed(CB_KEY_Q))
-			_cameraRotation += _cameraSpeedRotation * timestep.GetSeconds();
-		if (CherryBell::Input::IsKeyPressed(CB_KEY_E))
-			_cameraRotation -= _cameraSpeedRotation * timestep.GetSeconds();
+	{ 
+		_cameraController.OnUpdate(timestep);
 
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_H))
-			_modelPosition.x -= _cameraSpeedPosition * 0.5f * timestep.GetSeconds();
+			_modelPosition.x -= 3.0f * 0.5f * timestep.GetSeconds();
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_K))
-			_modelPosition.x += _cameraSpeedPosition * 0.5f * timestep.GetSeconds();
+			_modelPosition.x += 3.0f * 0.5f * timestep.GetSeconds();
 
 		CherryBell::RenderCommand::SetClearColor({ 1.0, 0.0, 1.0, 1.0 });
 		CherryBell::RenderCommand::Clear();
 
-		_camera.SetPosition(_cameraPosition);
-		_camera.SetRotation(_cameraRotation);
-
-		CherryBell::Renderer::BeginScene(_camera);
+		CherryBell::Renderer::BeginScene(_cameraController.GetCamera());
 
 		auto& shader = _shaderLibrary.Get("Texture");
 		shader->Bind();
@@ -88,6 +74,11 @@ public:
 		CherryBell::Renderer::EndScene();
 	}
 
+	void OnEvent(CherryBell::Event& event) override
+	{
+		_cameraController.OnEvent(event);
+	}
+
 	void OnImGuiRender() override
 	{
 		ImGui::Begin("Model Settings");
@@ -101,11 +92,7 @@ private:
 
 	CherryBell::Ref<CherryBell::Texture2D> _texture;
 
-	CherryBell::OrthorgraphicCamera _camera;
-	glm::vec3 _cameraPosition;
-	float _cameraRotation = 0.0f;
-	float _cameraSpeedPosition = 3.0f;
-	float _cameraSpeedRotation = 20.0f;
+	CherryBell::OrthorgraphicCameraController _cameraController;
 
 	glm::vec3 _modelPosition = glm::vec3(1,0,0);
 	glm::vec3 _modelColor = glm::vec3(1);

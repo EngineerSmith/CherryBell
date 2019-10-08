@@ -5,8 +5,14 @@
 
 namespace CherryBell {
 	OrthorgraphicCamera::OrthorgraphicCamera(float left, float right, float bottom, float top)
-		: _projectionMatrix(glm::ortho(left, right, bottom, top, -1.0f, 1.0f)), _viewMatrix(1.0f), _position(0,0,0)
+		: _projectionMatrix(glm::ortho(left, right, bottom, top, -1.0f, 1.0f)), _viewMatrix(1.0f)
 	{ 
+		_viewProjectionMatrix = _projectionMatrix * _viewMatrix;
+	}
+
+	void OrthorgraphicCamera::SetProjection(float left, float right, float bottom, float top)
+	{
+		_projectionMatrix = glm::ortho(left, right, bottom, top, -1.0f, 1.0f);
 		_viewProjectionMatrix = _projectionMatrix * _viewMatrix;
 	}
 
