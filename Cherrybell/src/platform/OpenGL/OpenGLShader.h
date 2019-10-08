@@ -11,12 +11,14 @@ namespace CherryBell {
 	{
 	public:
 		OpenGLShader(const std::string& filepath);
-		OpenGLShader(const std::string& vertexSrc, const std::string& fragmentSrc);
+		OpenGLShader(const std::string& name, const std::string& filepath);
+		OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);
 		~OpenGLShader();
 
 		void Bind() const override;
 		void Unbind() const override;
 
+		const std::string& GetName() const override { return _name; }
 		
 		void UploadUniformMat3(const glm::mat3& matrix, const std::string& name);
 		void UploadUniformMat4(const glm::mat4& matrix, const std::string& name);
@@ -33,5 +35,6 @@ namespace CherryBell {
 		void Compile(const std::unordered_map<GLenum, std::string>& shaderSources);
 	private:
 		RendererID _rendererID;
+		std::string _name;
 	};
 }

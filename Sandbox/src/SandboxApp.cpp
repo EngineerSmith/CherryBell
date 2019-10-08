@@ -36,12 +36,12 @@ public:
 		indexBuffer.reset(CherryBell::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		_vertexArray->SetIndexBuffer(indexBuffer);
 
-		_shader = CherryBell::Shader::Create("assets/shaders/Texture.glsl");
+		auto& shader = _shaderLibrary.Load("assets/shaders/Texture.glsl");
 
 		_texture = CherryBell::Texture2D::Create("assets/textures/icecream.png");
 
-		_shader->Bind();
-		std::dynamic_pointer_cast<CherryBell::OpenGLShader>(_shader)->UploadUniformInt(0, "u_texture");
+		shader->Bind();
+		std::dynamic_pointer_cast<CherryBell::OpenGLShader>(shader)->UploadUniformInt(0, "u_texture");
 	}
 
 	void OnUpdate(CherryBell::Timestep timestep) override
@@ -73,16 +73,17 @@ public:
 
 		CherryBell::Renderer::BeginScene(_camera);
 
-		_shader->Bind();
-		std::dynamic_pointer_cast<CherryBell::OpenGLShader>(_shader)->UploadUniformFloat3(_modelColor, "u_color");
+		auto& shader = _shaderLibrary.Get("Texture");
+		shader->Bind();
+		std::dynamic_pointer_cast<CherryBell::OpenGLShader>(shader)->UploadUniformFloat3(_modelColor, "u_color");
 		
 		_texture->Bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), _modelPosition);
-		CherryBell::Renderer::Submit(_shader, _vertexArray, transform);
+		CherryBell::Renderer::Submit(shader, _vertexArray, transform);
 
 		transform = glm::translate(glm::mat4(1.0f), _modelPosition * -1.0f);
-		CherryBell::Renderer::Submit(_shader, _vertexArray, transform);
+		CherryBell::Renderer::Submit(shader, _vertexArray, transform);
 
 		CherryBell::Renderer::EndScene();
 	}
@@ -95,7 +96,7 @@ public:
 	}
 
 private:
-	CherryBell::Ref<CherryBell::Shader> _shader;
+	CherryBell::ShaderLibrary _shaderLibrary;
 	CherryBell::Ref<CherryBell::VertexArray> _vertexArray;
 
 	CherryBell::Ref<CherryBell::Texture2D> _texture;
@@ -106,7 +107,7 @@ private:
 	float _cameraSpeedPosition = 3.0f;
 	float _cameraSpeedRotation = 20.0f;
 
-	glm::vec3 _modelPosition = glm::vec3(0);
+	glm::vec3 _modelPosition = glm::vec3(1,0,0);
 	glm::vec3 _modelColor = glm::vec3(1);
 };
 
