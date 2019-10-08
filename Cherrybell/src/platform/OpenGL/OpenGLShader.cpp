@@ -39,7 +39,7 @@ namespace CherryBell {
 	std::string OpenGLShader::ReadFile(const std::string& filepath)
 	{
 		std::string fileContents;
-		std::ifstream in(filepath, std::ios::in, std::ios::binary);
+		std::ifstream in(filepath, std::ios::in | std::ios::binary);
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
@@ -81,7 +81,9 @@ namespace CherryBell {
 	void OpenGLShader::Compile(const std::unordered_map<GLenum, std::string>& shaderSources)
 	{
 		GLuint program = glCreateProgram();
-		std::vector<GLenum> glShaderIDs(shaderSources.size());
+		CB_CORE_ASSERT(shaderSources.size() <= 2, "Currently only support 2 shader functions.");
+		std::array<GLenum, 2> glShaderIDs;
+		int glShaderIDIndex = 0;
 		for (auto& kv : shaderSources)
 		{
 			GLenum shaderType = kv.first;
@@ -113,7 +115,7 @@ namespace CherryBell {
 			}
 
 			glAttachShader(program, shader);
-			glShaderIDs.push_back(shader);
+			glShaderIDs[glShaderIDIndex++] = shader;
 		}
 
 		glLinkProgram(program);
