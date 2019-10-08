@@ -87,6 +87,9 @@
     <ClInclude Include="src\core\input\MouseButtonCodes.h">
       <Filter>src\core\input</Filter>
     </ClInclude>
+    <ClInclude Include="src\core\input\OrthorgraphicCameraController.h">
+      <Filter>src\core\input</Filter>
+    </ClInclude>
     <ClInclude Include="src\core\layer\Layer.h">
       <Filter>src\core\layer</Filter>
     </ClInclude>
@@ -150,7 +153,6 @@
     <ClInclude Include="vendor\stb\stb_image.h">
       <Filter>vendor\stb</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\input\OrthorgraphicCameraController.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cbpch.cpp">
@@ -167,6 +169,9 @@
     </ClCompile>
     <ClCompile Include="src\core\Log.cpp">
       <Filter>src\core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\core\input\OrthorgraphicCameraController.cpp">
+      <Filter>src\core\input</Filter>
     </ClCompile>
     <ClCompile Include="src\core\layer\Layer.cpp">
       <Filter>src\core\layer</Filter>
@@ -225,6 +230,5 @@
     <ClCompile Include="vendor\stb\stb_image.cpp">
       <Filter>vendor\stb</Filter>
     </ClCompile>
-    <ClCompile Include="src\core\input\OrthorgraphicCameraController.cpp" />
   </ItemGroup>
 </Project>

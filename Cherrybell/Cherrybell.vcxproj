@@ -147,7 +147,6 @@
     <ClInclude Include="src\core\EntryPoint.h" />
     <ClInclude Include="src\core\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\core\Log.h" />
-    <ClInclude Include="src\core\input\OrthorgraphicCameraController.h" />
     <ClInclude Include="src\core\TimeStep.h" />
     <ClInclude Include="src\core\Window.h" />
     <ClInclude Include="src\core\events\ApplicationEvent.h" />
@@ -157,6 +156,7 @@
     <ClInclude Include="src\core\input\Input.h" />
     <ClInclude Include="src\core\input\KeyCodes.h" />
     <ClInclude Include="src\core\input\MouseButtonCodes.h" />
+    <ClInclude Include="src\core\input\OrthorgraphicCameraController.h" />
     <ClInclude Include="src\core\layer\Layer.h" />
     <ClInclude Include="src\core\layer\LayerStack.h" />
     <ClInclude Include="src\core\renderer\Buffer.h" />
@@ -187,9 +187,9 @@
     <ClCompile Include="src\core\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\core\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\core\Log.cpp" />
+    <ClCompile Include="src\core\input\OrthorgraphicCameraController.cpp" />
     <ClCompile Include="src\core\layer\Layer.cpp" />
     <ClCompile Include="src\core\layer\LayerStack.cpp" />
-    <ClCompile Include="src\core\input\OrthorgraphicCameraController.cpp" />
     <ClCompile Include="src\core\renderer\Buffer.cpp" />
     <ClCompile Include="src\core\renderer\OrthorgraphicCamera.cpp" />
     <ClCompile Include="src\core\renderer\RenderCommand.cpp" />
