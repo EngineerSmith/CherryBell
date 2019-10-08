@@ -1,10 +1,9 @@
 #pragma once
 #include "core/Core.h"
-#include "core/Window.h"
+#include "core/renderer/Window.h"
 #include "core/layer/LayerStack.h"
 #include "core/events/Event.h"
 #include "core/events/ApplicationEvent.h"
-
 #include "core/ImGui/ImGuiLayer.h"
 #include "core/TimeStep.h"
 

@@ -3,7 +3,13 @@
 
 #include "core/Core.h"
 #include "core/Application.h"
-#include "core/Timestep.h"
+
+// ----- Events ------------------------
+#include "core/events/Event.h"
+#include "core/events/ApplicationEvent.h"
+#include "core/events/KeyEvent.h"
+#include "core/events/MouseEvent.h"
+// -------------------------------------
 
 // ----- Math --------------------------
 #include <glm/glm.hpp>
@@ -18,6 +24,8 @@
 // ----- Layers ------------------------
 #include "core/layer/LayerStack.h"
 #include "core/layer/Layer.h"
+
+#include "core/Timestep.h"
 // -------------------------------------
 
 // ----- Render API --------------------

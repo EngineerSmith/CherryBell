@@ -1,7 +1,7 @@
 #pragma once
+#include "core/renderer/VertexArray.h"
 
 #include <glm/glm.hpp>
-#include "core/renderer/VertexArray.h"
 
 namespace CherryBell {
 	class RendererAPI

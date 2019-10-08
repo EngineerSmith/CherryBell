@@ -1,7 +1,5 @@
 #include "cbpch.h"
 #include "WindowsWindow.h"
-#include "core/Log.h"
-
 #include "core/events/ApplicationEvent.h"
 #include "core/events/MouseEvent.h"
 #include "core/events/KeyEvent.h"

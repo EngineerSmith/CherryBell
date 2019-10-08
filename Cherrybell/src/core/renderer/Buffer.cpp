@@ -1,7 +1,6 @@
 #include "cbpch.h"
 #include "Buffer.h"
-
-#include "Renderer.h"
+#include "core/renderer/Renderer.h"
 #include "platform/OpenGL/OpenGLBuffer.h"
 
 namespace CherryBell {

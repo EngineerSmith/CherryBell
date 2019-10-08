@@ -1,6 +1,4 @@
 #pragma once
-#include "cbpch.h"
-
 #include "core/Core.h"
 #include "core/events/Event.h"
 

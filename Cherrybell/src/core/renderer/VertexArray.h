@@ -1,6 +1,7 @@
 #pragma once
-#include <memory>
 #include "core/renderer/Buffer.h"
+
+#include <memory>
 
 namespace CherryBell {
 	class VertexArray

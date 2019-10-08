@@ -1,10 +1,8 @@
 #pragma once
 #include "core/renderer/OrthorgraphicCamera.h"
 #include "core/TimeStep.h"
-
 #include "core/events/ApplicationEvent.h"
 #include "core/events/MouseEvent.h"
-
 
 namespace CherryBell {
 	class OrthorgraphicCameraController

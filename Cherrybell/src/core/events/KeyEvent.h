@@ -1,5 +1,5 @@
 #pragma once
-#include "Event.h"
+#include "core/events/Event.h"
 
 namespace CherryBell {
 	class KeyEvent : public Event {

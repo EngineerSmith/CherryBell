@@ -1,5 +1,5 @@
 #pragma once
-#include "core/Window.h"
+#include "core/renderer/Window.h"
 #include "core/renderer/GraphicsContext.h"
 
 #include <GLFW/glfw3.h>

@@ -1,9 +1,9 @@
 #pragma once
 #include "core/renderer/Shader.h"
 #include "core/renderer/RendererID.h"
+
 #include <glm/glm.hpp>
 
-//TODO remove 
 typedef unsigned int GLenum;
 
 namespace CherryBell {

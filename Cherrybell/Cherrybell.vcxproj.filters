@@ -63,9 +63,6 @@
     <ClInclude Include="src\core\TimeStep.h">
       <Filter>src\core</Filter>
     </ClInclude>
-    <ClInclude Include="src\core\Window.h">
-      <Filter>src\core</Filter>
-    </ClInclude>
     <ClInclude Include="src\core\events\ApplicationEvent.h">
       <Filter>src\core\events</Filter>
     </ClInclude>
@@ -152,6 +149,9 @@
     </ClInclude>
     <ClInclude Include="vendor\stb\stb_image.h">
       <Filter>vendor\stb</Filter>
+    </ClInclude>
+    <ClInclude Include="src\core\renderer\Window.h">
+      <Filter>src\core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
