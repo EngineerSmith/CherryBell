@@ -9,6 +9,8 @@ namespace CherryBell {
 	class Renderer
 	{
 	public:
+		static void Init();
+
 		static void BeginScene(OrthorgraphicCamera& camera);
 		static void EndScene();
 

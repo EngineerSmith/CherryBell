@@ -6,6 +6,11 @@
 namespace CherryBell {
 	Renderer::SceneData Renderer::_sceneData = { glm::mat4(1.0f) };
 
+	void Renderer::Init()
+	{
+		RenderCommand::Init();
+	}
+
 	void Renderer::BeginScene(OrthorgraphicCamera& camera)
 	{ 
 		_sceneData.ViewProjectionMatrix = camera.GetViewProjectionMatrix();

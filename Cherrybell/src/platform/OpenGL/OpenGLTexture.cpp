@@ -18,12 +18,23 @@ namespace CherryBell {
 
 		glGenTextures(1, &_rendererID);
 		glBindTexture(GL_TEXTURE_2D, _rendererID);
-		//glTextureStorage2D(_rendererID, 1, GL_RGB8, _width, _height);
 
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		switch (channels)
+		{
+		case 3:
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB8, _width, _height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+			break;
+		case 4:
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, _width, _height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+			break;
+		default:
+			stbi_image_free(data);
+			CB_CORE_ASSERT(false, "Unsupported texture channels format!");
+			break;
+		}
 		
 		stbi_image_free(data);
 	}

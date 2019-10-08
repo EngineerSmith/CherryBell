@@ -72,7 +72,7 @@ public:
 		
 		_shader = CherryBell::Shader::Create(vertexSrc, fragmentSrc);
 
-		_texture = CherryBell::Texture2D::Create("assets/textures/brick-up.png");
+		_texture = CherryBell::Texture2D::Create("assets/textures/icecream.png");
 
 		_shader->Bind();
 		std::dynamic_pointer_cast<CherryBell::OpenGLShader>(_shader)->UploadUniformInt(0, "u_texture");

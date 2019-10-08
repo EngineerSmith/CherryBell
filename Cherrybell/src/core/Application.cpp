@@ -18,6 +18,8 @@ namespace CherryBell {
 		_window = std::unique_ptr<Window>(Window::Create());
 		_window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
 	
+		Renderer::Init();
+
 		_imGuiLayer = new ImGuiLayer();
 		PushOverlay(_imGuiLayer);
 	}
