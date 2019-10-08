@@ -27,7 +27,8 @@ namespace CherryBell {
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(std::bind(&Application::OnWindowClose, this, std::placeholders::_1));
+		dispatcher.Dispatch<WindowCloseEvent>(CB_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizeEvent>(CB_BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto it = _layerStack.end(); it != _layerStack.begin(); )
 		{
@@ -45,8 +46,11 @@ namespace CherryBell {
 			Timestep timestep = time - _lastFrameTime;
 			_lastFrameTime = time;
 
-			for (Layer* layer : _layerStack)
-				layer->OnUpdate(timestep);
+			if (!_minimize) 
+			{
+				for (Layer* layer : _layerStack)
+					layer->OnUpdate(timestep);
+			}
 
 			_imGuiLayer->Begin();
 			for (Layer* layer : _layerStack)
@@ -67,9 +71,22 @@ namespace CherryBell {
 		_layerStack.PushOverlay(layer);
 	}
 
-	bool Application::OnWindowClose(WindowCloseEvent& e)
+	bool Application::OnWindowClose(WindowCloseEvent& event)
 	{
 		_running = false;
 		return true;
+	}
+
+	bool Application::OnWindowResize(WindowResizeEvent& event)
+	{
+		if (event.GetWidth() == 0u || event.GetHeight() == 0u)
+		{
+			_minimize = true;
+			return false;
+		}
+		_minimize = false;
+		Renderer::OnWindowResize(event.GetWidth(), event.GetHeight());
+
+		return false;
 	}
 }

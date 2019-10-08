@@ -25,11 +25,13 @@ namespace CherryBell {
 		inline static Application& Get() { return *s_instance; }
 	private:
 		bool OnWindowClose(WindowCloseEvent& event);
+		bool OnWindowResize(WindowResizeEvent& event);
 	private:
 		//TODO allow for more than one window per application
 		Scope<Window> _window;
 		ImGuiLayer* _imGuiLayer;
 		bool _running = true;
+		bool _minimize = false;
 		LayerStack _layerStack;
 		float _lastFrameTime = 0.0f;
 	private:
