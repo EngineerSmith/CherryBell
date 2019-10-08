@@ -14,7 +14,7 @@ public:
 		_vertexArray = CherryBell::VertexArray::Create();
 
 		float vertices[] = {
-		   //a_position		  //a_color
+		   //a_position		  //a_texCoord
 			-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
 			 0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
 			 0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
