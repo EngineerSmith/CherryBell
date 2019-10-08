@@ -8,6 +8,7 @@ namespace CherryBell {
 	public:
 		virtual ~Shader() = default;
 
+		static Ref<Shader> Create(const std::string& filepath);
 		static Ref<Shader> Create(const std::string& vertexSrc, const std::string& fragmentSrc);
 
 		virtual void Bind() const = 0;
