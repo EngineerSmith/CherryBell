@@ -77,7 +77,13 @@ public:
 	void OnEvent(CherryBell::Event& event) override
 	{
 		_cameraController.OnEvent(event);
+		if (event.GetEventType() == CherryBell::EventType::KeyPressed)
+		{
+			auto e = *static_cast<CherryBell::KeyPressedEvent*>(&event);
+			CB_CORE_TRACE("{0}, {1}", e.GetKeyCode(), e.GetRepeatCount());
+		}
 	}
+
 
 	void OnImGuiRender() override
 	{

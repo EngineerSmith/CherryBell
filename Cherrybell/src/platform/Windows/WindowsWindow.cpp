@@ -76,7 +76,6 @@ namespace CherryBell {
 			{
 				auto& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-				//TODO convert keycodes from GLFW to CherryBell keycodes
 				switch (action)
 				{
 				case GLFW_PRESS:
@@ -87,13 +86,22 @@ namespace CherryBell {
 				}
 				case GLFW_RELEASE:
 				{
+					data.RepeatedKeys.erase(key);
 					KeyReleasedEvent event(key);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					KeyPressedEvent event(key, 1); //TODO repeat counter
+					if (data.RepeatedKeys.find(key) != data.RepeatedKeys.end())
+					{
+						data.RepeatedKeys[key]++;
+					}
+					else
+					{
+						data.RepeatedKeys[key] = 1;
+					}
+					KeyPressedEvent event(key, data.RepeatedKeys[key]);
 					data.EventCallback(event);
 					break;
 				}

@@ -38,6 +38,7 @@ namespace CherryBell {
 			unsigned int Width, Height;
 			bool VSync;
 			EventCallbackFn EventCallback;
+			std::unordered_map<int, int> RepeatedKeys;
 		};
 
 		WindowData _data;
