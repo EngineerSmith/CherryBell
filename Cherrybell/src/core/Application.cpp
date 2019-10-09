@@ -38,24 +38,33 @@ namespace CherryBell {
 
 	void Application::Run()
 	{
+		_lastFrameTime = _window->GetTimeSeconds();
 		while (_running)
 		{
-			float time = _window->GetTime();
-			Timestep timestep = time - _lastFrameTime;
-			_lastFrameTime = time;
+			double current = _window->GetTimeSeconds();
+			double delta = current - _lastFrameTime;
+			_lastFrameTime = current;
 
-			if (!_minimize) 
+			_window->OnUpdate();
+
+			if (!_minimize)
 			{
+				_latency += delta;
+				CB_CORE_WARN("{0}", _latency);
+				while (_latency >= MS_PER_UPDATE) {
+					for (Layer* layer : _layerStack)
+						layer->OnUpdate();
+					_latency -= MS_PER_UPDATE;
+				}
+
 				for (Layer* layer : _layerStack)
-					layer->OnUpdate(timestep);
+					layer->OnRender();
 			}
 
 			_imGuiLayer->Begin();
 			for (Layer* layer : _layerStack)
 				layer->OnImGuiRender();
 			_imGuiLayer->End();
-
-			_window->OnUpdate();
 		}
 	}
 
@@ -77,13 +86,9 @@ namespace CherryBell {
 
 	bool Application::OnWindowResize(WindowResizeEvent& event)
 	{
-		if (event.GetWidth() == 0u || event.GetHeight() == 0u)
-		{
-			_minimize = true;
-			return false;
-		}
-		_minimize = false;
-		Renderer::OnWindowResize(event.GetWidth(), event.GetHeight());
+		_minimize = event.GetWidth() == 0u || event.GetHeight() == 0u;
+		if (!_minimize)
+			Renderer::OnWindowResize(event.GetWidth(), event.GetHeight());
 
 		return false;
 	}

@@ -171,9 +171,9 @@ namespace CherryBell {
 		_context->SwapBuffers();
 	}
 
-	float WindowsWindow::GetTime() const
+	double WindowsWindow::GetTimeSeconds() const
 	{
-		return (float)glfwGetTime();
+		return glfwGetTime();
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)

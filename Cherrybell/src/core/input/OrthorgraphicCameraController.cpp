@@ -16,13 +16,13 @@ namespace CherryBell {
 		glm::vec3 position = _camera.GetPosition();
 
 		if (Input::IsKeyPressed(CB_KEY_A))
-			position.x -= _cameraPositionSpeed * timestep.GetSeconds();
+			position.x -= _cameraPositionSpeed * timestep.GetSecondsFloat();
 		if (Input::IsKeyPressed(CB_KEY_D))
-			position.x += _cameraPositionSpeed * timestep.GetSeconds();
+			position.x += _cameraPositionSpeed * timestep.GetSecondsFloat();
 		if (Input::IsKeyPressed(CB_KEY_W))
-			position.y += _cameraPositionSpeed * timestep.GetSeconds();
+			position.y += _cameraPositionSpeed * timestep.GetSecondsFloat();
 		else if (Input::IsKeyPressed(CB_KEY_S))
-			position.y -= _cameraPositionSpeed * timestep.GetSeconds();
+			position.y -= _cameraPositionSpeed * timestep.GetSecondsFloat();
 
 		_camera.SetPosition(position);
 

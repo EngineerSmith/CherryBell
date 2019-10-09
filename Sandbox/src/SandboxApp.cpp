@@ -45,15 +45,18 @@ public:
 		std::dynamic_pointer_cast<CherryBell::OpenGLShader>(shader)->UploadUniformInt(0, "u_texture");
 	}
 
-	void OnUpdate(CherryBell::Timestep timestep) override
+	void OnUpdate() override
 	{ 
-		_cameraController.OnUpdate(timestep);
+		_cameraController.OnUpdate(DELTATIME);
 
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_H))
-			_modelPosition.x -= 3.0f * 0.5f * timestep.GetSeconds();
+			_modelPosition.x -= 3.0f * 0.5f * DELTATIME;
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_K))
-			_modelPosition.x += 3.0f * 0.5f * timestep.GetSeconds();
+			_modelPosition.x += 3.0f * 0.5f * DELTATIME;
+	}
 
+	void OnRender() override
+	{
 		CherryBell::RenderCommand::SetClearColor({ 1.0, 0.0, 1.0, 1.0 });
 		CherryBell::RenderCommand::Clear();
 
@@ -62,7 +65,7 @@ public:
 		auto& shader = _shaderLibrary.Get("Texture");
 		shader->Bind();
 		std::dynamic_pointer_cast<CherryBell::OpenGLShader>(shader)->UploadUniformFloat3(_modelColor, "u_color");
-		
+
 		_texture->Bind();
 
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), _modelPosition);
@@ -77,11 +80,6 @@ public:
 	void OnEvent(CherryBell::Event& event) override
 	{
 		_cameraController.OnEvent(event);
-		if (event.GetEventType() == CherryBell::EventType::KeyPressed)
-		{
-			auto e = *static_cast<CherryBell::KeyPressedEvent*>(&event);
-			CB_CORE_TRACE("{0}, {1}", e.GetKeyCode(), e.GetRepeatCount());
-		}
 	}
 
 

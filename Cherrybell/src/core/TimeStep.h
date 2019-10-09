@@ -4,15 +4,17 @@ namespace CherryBell {
 	class Timestep
 	{
 	public:
-		Timestep(float time = 0.0f)
+		Timestep(double time)
 			: _time(time)
 		{}
 
-		operator float() { return _time; }
+		operator double() { return _time; }
 
-		float GetSeconds() const { return _time; }
-		float GetMilliseconds() const { return _time * 1000.0f; }
+		double GetSeconds() const { return _time; }
+		float GetSecondsFloat() const { return (float)_time; }
+		double GetMilliseconds() const { return _time * 1000.0f; }
+		float GetMillisecondsFloat() const { return(float)_time; }
 	private:
-		float _time;
+		double _time;
 	};
 }

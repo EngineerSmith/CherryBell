@@ -13,7 +13,7 @@ namespace CherryBell {
 
 		void OnUpdate() override;
 
-		float GetTime() const override;
+		double GetTimeSeconds() const override;
 
 		inline unsigned int GetWidth() const override { return _data.Width; }
 		inline unsigned int GetHeight() const override { return _data.Height; }

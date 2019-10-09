@@ -5,6 +5,10 @@
 
 #include <string>
 
+// TODO move to physics
+#define DELTATIME 0.01
+#define MS_PER_UPDATE DELTATIME
+
 namespace CherryBell {
 	class Layer
 	{
@@ -14,7 +18,8 @@ namespace CherryBell {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate(Timestep timestep) {}
+		virtual void OnUpdate() {}
+		virtual void OnRender() {};
 		virtual void OnImGuiRender() {}
 		virtual void OnEvent(Event& event) {}
 
