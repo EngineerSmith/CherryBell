@@ -5,8 +5,6 @@
 #include "core/renderer/Renderer.h"
 #include "core/input/Input.h"
 
-#include <GLFW/glfw3.h>
-
 namespace CherryBell {
 	Application* Application::s_instance = nullptr;
 
@@ -42,7 +40,7 @@ namespace CherryBell {
 	{
 		while (_running)
 		{
-			float time = (float)glfwGetTime(); //TODO platform::GetTime()
+			float time = _window->GetTime();
 			Timestep timestep = time - _lastFrameTime;
 			_lastFrameTime = time;
 
