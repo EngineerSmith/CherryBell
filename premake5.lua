@@ -84,7 +84,7 @@ project "CherryBell"
 		}
 		
 	filter "configurations:Debug"
-		defines {"CB_DEBUG","CB_ENABLE_ASSERTS"}
+		defines "CB_DEBUG"
 		runtime "Debug"
 		symbols "on"
 		

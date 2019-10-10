@@ -42,6 +42,10 @@
 	#error "Unknown platform!"
 #endif // End of platform detection
 
+#if CB_DEBUG
+	#define CB_ENABLE_ASSERTS
+#endif
+
 #ifdef CB_ENABLE_ASSERTS
 	#define CB_CORE_ASSERT(x, ...) {if(!(x)){CB_CORE_ERROR("Assertion Failed: {0} {1} {2}", __LINE__, __FILE__, __VA_ARGS__); __debugbreak();}}
 	#define CB_ASSERT(x, ...) {if(!(x)){CB_ERROR("Assertion Failed: {0} {1} {2}", __LINE__, __FILE__, __VA_ARGS__); __debugbreak();}}

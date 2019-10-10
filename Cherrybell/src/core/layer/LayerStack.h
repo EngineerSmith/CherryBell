@@ -8,7 +8,7 @@ namespace CherryBell {
 	class LayerStack 
 	{
 	public:
-		LayerStack();
+		LayerStack() = default;
 		~LayerStack();
 	
 		void PushLayer(Layer* layer); // Takes ownership of pointer and deletes it if this object is deleted
