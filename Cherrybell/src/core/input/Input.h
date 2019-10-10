@@ -4,7 +4,12 @@
 namespace CherryBell {
 	class Input
 	{
+	protected:
+		Input() = default;
 	public:
+		Input(const Input&) = delete;
+		Input& operator=(const Input&) = delete;
+
 		inline static bool IsKeyPressed(int keycode) { return s_instance->IsKeyPressedImpl(keycode); }
 		//Only returns true if key hasn't been recorded as repeating
 		inline static bool IsKeyPressedNotRepeat(int keycode) { return s_instance->IsKeyPressedNotRepeatImpl(keycode); }
