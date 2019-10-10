@@ -52,21 +52,19 @@ namespace CherryBell {
 		bool _handled = false;
 	};
 
-	class EventDispatcher {
-	private:
-		template<typename T>
-		using EventFn = std::function<bool(T&)>;
+	class EventDispatcher 
+	{
 	public:
 		EventDispatcher(Event& event)
 			: _event(event)
 		{}
 
-		template<typename T> //Event
-		bool Dispatch(EventFn<T> func)
+		template<typename T, typename F> //Event
+		bool Dispatch(const F& func)
 		{
 			if (_event.GetEventType() == T::GetStaticType()) 
 			{
-				_event._handled = func(*(T*)& _event);
+				_event._handled = func(static_cast<T&>( _event));
 				return true;
 			}
 			return false;
