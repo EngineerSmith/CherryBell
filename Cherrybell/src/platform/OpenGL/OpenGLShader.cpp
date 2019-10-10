@@ -160,8 +160,10 @@ namespace CherryBell {
 		}
 
 		for (auto& shaderId : glShaderIDs)
+		{
 			glDetachShader(program, shaderId);
-
+			glDeleteShader(shaderId);
+		}
 		_rendererID = program;
 	}
 
