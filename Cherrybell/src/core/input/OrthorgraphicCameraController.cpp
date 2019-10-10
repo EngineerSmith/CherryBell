@@ -14,25 +14,40 @@ namespace CherryBell {
 	void OrthorgraphicCameraController::OnUpdate(Timestep timestep)
 	{
 		glm::vec3 position = _camera.GetPosition();
-
+		float rotation = _camera.GetRotation();
+		const float rotationRad = glm::radians(rotation);
 		if (Input::IsKeyPressed(CB_KEY_A))
-			position.x -= _cameraPositionSpeed * timestep.GetSecondsFloat();
+		{
+			position.x -= cos(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
+			position.y -= sin(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
+		}
 		if (Input::IsKeyPressed(CB_KEY_D))
-			position.x += _cameraPositionSpeed * timestep.GetSecondsFloat();
+		{
+			position.x += cos(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
+			position.y += sin(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
+		}
 		if (Input::IsKeyPressed(CB_KEY_W))
-			position.y += _cameraPositionSpeed * timestep.GetSecondsFloat();
+		{
+			position.x += -sin(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
+			position.y += cos(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
+		}
 		else if (Input::IsKeyPressed(CB_KEY_S))
-			position.y -= _cameraPositionSpeed * timestep.GetSecondsFloat();
-
+		{
+			position.x -= -sin(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
+			position.y -= cos(rotationRad) *_cameraPositionSpeed * timestep.GetSecondsFloat();
+		}
 		_camera.SetPosition(position);
 
 		if (_rotation) {
-			float rotation = _camera.GetRotation();
-
 			if (Input::IsKeyPressed(CB_KEY_Q))
 				rotation += _cameraRotationSpeed * timestep.GetSecondsFloat();
 			if (Input::IsKeyPressed(CB_KEY_E))
 				rotation -= _cameraRotationSpeed * timestep.GetSecondsFloat();
+
+			if (_rotation > 180.0f)
+				_rotation -= 360.0f;
+			else if (_rotation <= -180.0f)
+				_rotation += 360.0f;
 
 			_camera.SetRotation(rotation);
 		}
