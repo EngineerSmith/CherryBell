@@ -80,7 +80,6 @@ project "CherryBell"
 		
 		defines
 		{
-			"CB_PLATFORM_WINDOWS",
 			"GLFW_INCLUDE_NONE"
 		}
 		
@@ -130,11 +129,6 @@ project "Sandbox"
 	
 	filter "system:windows"
 		systemversion "latest"
-		
-		defines
-		{
-			"CB_PLATFORM_WINDOWS"
-		}
 		
 	filter "configurations:Debug"
 		defines "CB_DEBUG"
