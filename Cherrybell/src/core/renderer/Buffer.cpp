@@ -8,7 +8,7 @@ namespace CherryBell {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLVertexBuffer>(vertices, size);
+		case RendererAPI::API::OpenGL: return CreateRef<OpenGLVertexBuffer>(vertices, size);
 		case RendererAPI::API::None:
 			CB_CORE_ASSERT(false, "Renderer API \"None\" currently unsupported!");
 			return nullptr;

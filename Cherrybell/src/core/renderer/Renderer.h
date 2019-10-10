@@ -24,6 +24,6 @@ namespace CherryBell {
 			glm::mat4 ViewProjectionMatrix;
 		};
 
-		static SceneData _sceneData;
+		static Scope<SceneData> _sceneData;
 	};
 }

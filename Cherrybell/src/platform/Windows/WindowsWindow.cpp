@@ -46,7 +46,7 @@ namespace CherryBell {
 
 		_window = glfwCreateWindow((int)_data.Width, (int)_data.Height, _data.Title.c_str(), nullptr, nullptr);
 		
-		_context = new OpenGLContext(_window);
+		_context = CreateScope<OpenGLContext>(_window);
 		_context->Init();
 		
 		glfwSetWindowUserPointer(_window, &_data);

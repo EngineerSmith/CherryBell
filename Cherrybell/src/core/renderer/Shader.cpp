@@ -8,7 +8,7 @@ namespace CherryBell {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLShader>(filepath);
+		case RendererAPI::API::OpenGL: return CreateRef<OpenGLShader>(filepath);
 		case RendererAPI::API::None:
 			CB_CORE_ASSERT(false, "Renderer API \"None\" currently unsupported!");
 			return nullptr;
@@ -22,7 +22,7 @@ namespace CherryBell {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLShader>(name, filepath);
+		case RendererAPI::API::OpenGL: return CreateRef<OpenGLShader>(name, filepath);
 		case RendererAPI::API::None:
 			CB_CORE_ASSERT(false, "Renderer API \"None\" currently unsupported!");
 			return nullptr;
@@ -36,7 +36,7 @@ namespace CherryBell {
 	{
 		switch (Renderer::GetAPI())
 		{
-		case RendererAPI::API::OpenGL: return std::make_shared<OpenGLShader>(name, vertexSrc, fragmentSrc);
+		case RendererAPI::API::OpenGL: return CreateRef<OpenGLShader>(name, vertexSrc, fragmentSrc);
 		case RendererAPI::API::None:
 			CB_CORE_ASSERT(false, "Renderer API \"None\" currently unsupported!");
 			return nullptr;

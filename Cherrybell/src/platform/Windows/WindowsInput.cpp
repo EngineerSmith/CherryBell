@@ -6,7 +6,7 @@
 
 namespace CherryBell {
 
-	Input* Input::s_instance = new WindowsInput();
+	Scope<Input> Input::s_instance = CreateScope<WindowsInput>();
 
 	bool WindowsInput::IsKeyPressedImpl(int keycode)
 	{

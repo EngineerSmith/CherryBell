@@ -3,5 +3,5 @@
 #include "platform/OpenGL/OpenGLRendererAPI.h"
 
 namespace CherryBell {
-	RendererAPI* RenderCommand::s_rendererAPI = new OpenGLRendererAPI();
+	Scope<RendererAPI> RenderCommand::s_rendererAPI = CreateScope<OpenGLRendererAPI>();
 }

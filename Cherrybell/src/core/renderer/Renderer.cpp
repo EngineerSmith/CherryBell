@@ -3,7 +3,7 @@
 #include "platform/OpenGL/OpenGLShader.h"
 
 namespace CherryBell {
-	Renderer::SceneData Renderer::_sceneData = { glm::mat4(1.0f) };
+	Scope<Renderer::SceneData> Renderer::_sceneData = CreateScope<Renderer::SceneData>(glm::mat4(1.0f));
 
 	void Renderer::Init()
 	{

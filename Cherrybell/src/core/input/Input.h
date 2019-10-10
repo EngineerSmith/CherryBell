@@ -27,6 +27,6 @@ namespace CherryBell {
 		virtual float GetMouseXImpl() = 0;
 		virtual float GetMouseYImpl() = 0;
 	private:
-		static Input* s_instance;
+		static Scope<Input> s_instance;
 	};
 }
