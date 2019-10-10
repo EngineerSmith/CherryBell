@@ -1,15 +1,11 @@
-﻿# Directories
-/.vs
-/bin/
-/bin-int/
+﻿# Binaries
+**/bin/
+!vendor/bin/premake/
+bin-int/
 
-# Files
-*.users
-/Cherrybell/Cherrybell.vcxproj.user
-/Sandbox/Sandbox.vcxproj.user
-/Cherrybell/vendor/Glad/bin/Debug-windows-x86_64/Glad
-/Cherrybell/vendor/Glad/bin-int/Debug-windows-x86_64/Glad
-/Cherrybell/vendor/Glad/bin
-/Cherrybell/vendor/Glad/bin-int/Dist-windows-x86_64/Glad
-/Cherrybell/vendor/Glad/bin-int/Release-windows-x86_64/Glad/Glad.tlog
-/Cherrybell/vendor/Glad/bin-int/Release-windows-x86_64/Glad
+# Visual Studio files and folder
+.vs/
+**.sln
+**.vcxproj
+**.vcxproj.filters
+**.vcxproj.user
