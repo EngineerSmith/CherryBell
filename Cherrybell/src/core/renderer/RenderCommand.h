@@ -1,5 +1,6 @@
 #pragma once
 #include "core/renderer/RendererAPI.h"
+#include "core/Core.h"
 
 namespace CherryBell {
 	class RenderCommand

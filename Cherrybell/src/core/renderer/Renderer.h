@@ -21,6 +21,9 @@ namespace CherryBell {
 	private:
 		struct SceneData
 		{
+			SceneData(glm::mat4 viewProjectionMatrix)
+				: ViewProjectionMatrix(viewProjectionMatrix)
+			{}
 			glm::mat4 ViewProjectionMatrix;
 		};
 
