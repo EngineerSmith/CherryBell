@@ -30,9 +30,9 @@ namespace CherryBell {
 			float rotation = _camera.GetRotation();
 
 			if (Input::IsKeyPressed(CB_KEY_Q))
-				rotation += _cameraRotationSpeed * timestep.GetSeconds();
+				rotation += _cameraRotationSpeed * timestep.GetSecondsFloat();
 			if (Input::IsKeyPressed(CB_KEY_E))
-				rotation -= _cameraRotationSpeed * timestep.GetSeconds();
+				rotation -= _cameraRotationSpeed * timestep.GetSecondsFloat();
 
 			_camera.SetRotation(rotation);
 		}
