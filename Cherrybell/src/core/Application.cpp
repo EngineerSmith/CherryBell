@@ -50,7 +50,6 @@ namespace CherryBell {
 			if (!_minimize)
 			{
 				_latency += delta;
-				CB_CORE_WARN("{0}", _latency);
 				while (_latency >= MS_PER_UPDATE) {
 					for (Layer* layer : _layerStack)
 						layer->OnUpdate();
