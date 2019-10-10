@@ -48,7 +48,7 @@ namespace CherryBell {
 				rotation -= 360.0f;
 			else if (rotation <= -180.0f)
 				rotation += 360.0f;
-
+			 
 			_camera.SetRotation(rotation);
 		}
 	}
