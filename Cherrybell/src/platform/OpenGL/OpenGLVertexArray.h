@@ -17,6 +17,7 @@ namespace CherryBell {
 		const Ref<IndexBuffer>& GetIndexBuffer() const override { return _indexBuffer; }
 	private:
 		RendererID _rendererID;
+		uint32_t _vertexBufferIndex = 0;
 		std::vector<Ref<VertexBuffer>> _vertexBuffers;
 		Ref<IndexBuffer> _indexBuffer;
 	};

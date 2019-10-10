@@ -28,7 +28,7 @@ namespace CherryBell {
 	void LayerStack::PopLayer(Layer* layer)
 	{
 		auto it = std::find(_layers.begin(), _layers.end(), layer);
-		if (it != _layers.end())
+		if (it != _layers.begin() + _layerInsertIndex)
 		{
 			_layers.erase(it);
 			_layerInsertIndex--;

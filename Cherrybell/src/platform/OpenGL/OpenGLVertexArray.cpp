@@ -53,18 +53,17 @@ namespace CherryBell {
 		vertexBuffer->Bind();
 
 		const auto& layout = vertexBuffer->GetLayout();
-		uint32_t index = 0;
 		for (const auto& element : layout)
 		{
-			glEnableVertexAttribArray(index);
-			glVertexAttribPointer(index,
+			glEnableVertexAttribArray(_vertexBufferIndex);
+			glVertexAttribPointer(_vertexBufferIndex,
 				element.GetComponentCount(),
 				ShaderDataTypeToOpenGLBaseType(element.Type),
 				element.Normalized ? GL_TRUE : GL_FALSE,
 				layout.GetStride(),
-				(const void*)element.Offset
+				(const void*)(intptr_t)element.Offset
 			);
-			index++;
+			_vertexBufferIndex++;
 		}
 		_vertexBuffers.push_back(vertexBuffer);
 	}
