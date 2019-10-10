@@ -44,10 +44,10 @@ namespace CherryBell {
 			if (Input::IsKeyPressed(CB_KEY_E))
 				rotation -= _cameraRotationSpeed * timestep.GetSecondsFloat();
 
-			if (_rotation > 180.0f)
-				_rotation -= 360.0f;
-			else if (_rotation <= -180.0f)
-				_rotation += 360.0f;
+			if (rotation > 180.0f)
+				rotation -= 360.0f;
+			else if (rotation <= -180.0f)
+				rotation += 360.0f;
 
 			_camera.SetRotation(rotation);
 		}
