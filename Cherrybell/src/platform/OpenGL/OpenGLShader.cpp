@@ -1,7 +1,7 @@
 #include "cbpch.h"
 #include "OpenGLShader.h"
+#include "core/io/File.h"
 
-#include <fstream>
 #include <glad/glad.h>
 #include <glm/gtc/type_ptr.hpp>
 
@@ -18,7 +18,7 @@ namespace CherryBell {
 
 	OpenGLShader::OpenGLShader(const std::string& filepath)
 	{
-		std::string source = ReadFile(filepath);
+		std::string source = IO::ReadFile(filepath);
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
 	
@@ -34,7 +34,7 @@ namespace CherryBell {
 	OpenGLShader::OpenGLShader(const std::string& name, const std::string& filepath)
 		: _name(name)
 	{
-		std::string source = ReadFile(filepath);
+		std::string source = IO::ReadFile(filepath);
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
 	}
@@ -51,25 +51,6 @@ namespace CherryBell {
 	OpenGLShader::~OpenGLShader()
 	{
 		glDeleteProgram(_rendererID);
-	}
-
-	std::string OpenGLShader::ReadFile(const std::string& filepath)
-	{
-		std::string fileContents;
-		std::ifstream in(filepath, std::ios::in | std::ios::binary);
-		if (in)
-		{
-			in.seekg(0, std::ios::end);
-			fileContents.resize(in.tellg());
-			in.seekg(0, std::ios::beg);
-			in.read(&fileContents[0], fileContents.size());
-			in.close();
-		}
-		else
-		{
-			CB_CORE_ERROR("Could not open file \"{0}\"", filepath);
-		}
-		return fileContents;
 	}
 
 	std::unordered_map<GLenum, std::string> OpenGLShader::PreProcess(const std::string& source)
@@ -146,13 +127,10 @@ namespace CherryBell {
 			GLint maxLength = 0;
 			glGetProgramiv(program, GL_INFO_LOG_LENGTH, &maxLength);
 
-			// The maxLength includes the NULL character
 			std::vector<GLchar> infoLog(maxLength);
 			glGetProgramInfoLog(program, maxLength, &maxLength, &infoLog[0]);
 
-			// We don't need the program anymore.
 			glDeleteProgram(program);
-			// Don't leak shaders either.
 			for (auto& shaderId : glShaderIDs)
 				glDeleteShader(shaderId);
 
@@ -220,6 +198,4 @@ namespace CherryBell {
 		GLint location = glGetUniformLocation(_rendererID, name.c_str());
 		glUniform1i(location, value);
 	}
-
-
 }

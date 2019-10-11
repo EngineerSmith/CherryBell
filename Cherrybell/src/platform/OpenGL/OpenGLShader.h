@@ -30,7 +30,6 @@ namespace CherryBell {
 
 		void UploadUniformInt(int value, const std::string& name);
 	private:
-		std::string ReadFile(const std::string& filepath);
 		std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);
 		void Compile(const std::unordered_map<GLenum, std::string>& shaderSources);
 	private:
