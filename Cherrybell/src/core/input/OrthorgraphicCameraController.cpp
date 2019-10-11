@@ -16,25 +16,26 @@ namespace CherryBell {
 		glm::vec3 position = _camera.GetPosition();
 		float rotation = _camera.GetRotation();
 		const float rotationRad = glm::radians(rotation);
+		const float movementAmount = _cameraPositionSpeed * timestep.GetSecondsFloat();
 		if (Input::IsKeyPressed(CB_KEY_A))
 		{
-			position.x -= cos(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
-			position.y -= sin(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
+			position.x -= cos(rotationRad) * movementAmount;
+			position.y -= sin(rotationRad) * movementAmount;
 		}
 		if (Input::IsKeyPressed(CB_KEY_D))
 		{
-			position.x += cos(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
-			position.y += sin(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
+			position.x += cos(rotationRad) * movementAmount;
+			position.y += sin(rotationRad) * movementAmount;
 		}
 		if (Input::IsKeyPressed(CB_KEY_W))
 		{
-			position.x += -sin(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
-			position.y += cos(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
+			position.x += -sin(rotationRad) * movementAmount;
+			position.y += cos(rotationRad) * movementAmount;
 		}
 		else if (Input::IsKeyPressed(CB_KEY_S))
 		{
-			position.x -= -sin(rotationRad) * _cameraPositionSpeed * timestep.GetSecondsFloat();
-			position.y -= cos(rotationRad) *_cameraPositionSpeed * timestep.GetSecondsFloat();
+			position.x -= -sin(rotationRad) * movementAmount;
+			position.y -= cos(rotationRad) * movementAmount;
 		}
 		_camera.SetPosition(position);
 

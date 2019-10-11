@@ -7,7 +7,7 @@
 #include <examples/imgui_impl_glfw.h>
 #include <examples/imgui_impl_opengl3.h>
 
-//HACK temporary
+// TODO move different impl into different files
 #include <GLFW/glfw3.h>
 
 namespace CherryBell {
