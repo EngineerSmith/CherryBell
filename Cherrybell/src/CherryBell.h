@@ -54,6 +54,7 @@
 // -------------------------------------
 
 // ----- Entry Point -------------------
+// Define CB_ENTRYPOINT in your project where you define the CreateApplication function
 #ifdef CB_ENTRYPOINT
 	#include "core/EntryPoint.h"
 #endif
