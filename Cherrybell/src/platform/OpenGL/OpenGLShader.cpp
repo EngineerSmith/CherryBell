@@ -22,8 +22,9 @@ namespace CherryBell {
 		auto shaderSources = PreProcess(source);
 		Compile(shaderSources);
 	
-		// Extract name from filepath
+		// Extract file name from filepath
 		// assets/shaders/Texture.glsl -> Texture
+		// TODO move to helper class
 		auto lastSlash = filepath.find_last_of("/\\");
 		lastSlash = lastSlash == std::string::npos ? 0 : lastSlash + 1;
 		auto lastDot = filepath.rfind(".");
