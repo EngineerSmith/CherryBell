@@ -20,6 +20,9 @@ namespace CherryBell {
 
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
+		void PopLayer(Layer* layer);
+		void PopOverlay(Layer* layer);
+
 		inline Window& GetWindow() const { return *_window; }
 		inline static Application& Get() { return *s_instance; }
 	private:

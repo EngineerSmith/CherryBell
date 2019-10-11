@@ -54,5 +54,7 @@
 // -------------------------------------
 
 // ----- Entry Point -------------------
-#include "core/EntryPoint.h"
+#ifdef  CB_ENTRYPOINT
+	#include "core/EntryPoint.h"
+#endif //  CB_ENTRYPOINT
 // -------------------------------------

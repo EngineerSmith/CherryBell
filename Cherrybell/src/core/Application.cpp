@@ -77,6 +77,16 @@ namespace CherryBell {
 		_layerStack.PushOverlay(layer);
 	}
 
+	void Application::PopLayer(Layer* layer)
+	{
+		_layerStack.PopLayer(layer);
+	}
+
+	void Application::PopOverlay(Layer* layer)
+	{
+		_layerStack.PopOverlay(layer);
+	}
+
 	bool Application::OnWindowClose(WindowCloseEvent& event)
 	{
 		_running = false;

@@ -1,4 +1,6 @@
+#define CB_ENTRYPOINT
 #include <CherryBell.h>
+#include "Sandbox2D.h"
 
 // TODO move shader into render API
 #include "platform/OpenGL/OpenGLShader.h"
@@ -85,8 +87,8 @@ public:
 
 	void OnImGuiRender() override
 	{
-		ImGui::Begin("Model Settings");
-		ImGui::ColorEdit3("Model Color", glm::value_ptr(_modelColor));
+		ImGui::Begin("Settings");
+		ImGui::ColorEdit3("Color", glm::value_ptr(_modelColor));
 		ImGui::End();
 	}
 
@@ -106,7 +108,8 @@ class Sandbox : public CherryBell::Application {
 public:
 	Sandbox()
 	{
-		PushLayer(new ExampleLayer());
+		//PushLayer(new ExampleLayer());
+		PushLayer(new Sandbox2D());
 	}
 	virtual ~Sandbox() = default;
 };
