@@ -1,5 +1,8 @@
 #pragma once
 
+#define DELTATIME 0.01
+#define MS_PER_UPDATE DELTATIME
+
 namespace CherryBell {
 	class Timestep
 	{

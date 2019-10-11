@@ -5,10 +5,6 @@
 
 #include <string>
 
-// TODO move to physics
-#define DELTATIME 0.01
-#define MS_PER_UPDATE DELTATIME
-
 namespace CherryBell {
 	class Layer
 	{
