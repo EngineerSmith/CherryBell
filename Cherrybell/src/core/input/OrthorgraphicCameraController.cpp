@@ -32,7 +32,7 @@ namespace CherryBell {
 			position.x += -sin(rotationRad) * movementAmount;
 			position.y += cos(rotationRad) * movementAmount;
 		}
-		else if (Input::IsKeyPressed(CB_KEY_S))
+		if (Input::IsKeyPressed(CB_KEY_S))
 		{
 			position.x -= -sin(rotationRad) * movementAmount;
 			position.y -= cos(rotationRad) * movementAmount;
