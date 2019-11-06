@@ -2,9 +2,6 @@
 #include <CherryBell.h>
 #include "Sandbox2D.h"
 
-// TODO move shader into render API
-#include "platform/OpenGL/OpenGLShader.h"
-
 class ExampleLayer : public CherryBell::Layer
 {
 public:
@@ -44,7 +41,7 @@ public:
 		_texture = CherryBell::Texture2D::Create("assets/textures/icecream.png");
 
 		shader->Bind();
-		std::dynamic_pointer_cast<CherryBell::OpenGLShader>(shader)->UploadUniformInt(0, "u_texture");
+		shader->Set(0, "u_texture");
 	}
 
 	void OnUpdate() override
@@ -66,7 +63,7 @@ public:
 
 		auto& shader = _shaderLibrary.Get("Texture");
 		shader->Bind();
-		std::dynamic_pointer_cast<CherryBell::OpenGLShader>(shader)->UploadUniformFloat3(_modelColor, "u_color");
+		shader->Set(_modelColor, "u_color");
 
 		_texture->Bind();
 

@@ -6,6 +6,7 @@
 namespace CherryBell {
 	class Shader
 	{
+
 	public:
 		virtual ~Shader() = default;
 
@@ -17,6 +18,15 @@ namespace CherryBell {
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
+
+		virtual void Set(const glm::mat4& value, const std::string& name) = 0;
+		virtual void Set(const glm::mat3& value, const std::string& name) = 0;
+		virtual void Set(const glm::vec4& value, const std::string& name) = 0;
+		virtual void Set(const glm::vec3& value, const std::string& name) = 0;
+		virtual void Set(const glm::vec2& value, const std::string& name) = 0;
+		virtual void Set(const float value, const std::string& name) = 0;
+		virtual void Set(const int value, const std::string& name) = 0;
+
 	};
 
 	class ShaderLibrary

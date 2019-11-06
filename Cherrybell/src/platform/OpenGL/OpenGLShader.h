@@ -19,15 +19,21 @@ namespace CherryBell {
 		void Unbind() const override;
 
 		const std::string& GetName() const override { return _name; }
-		
-		void UploadUniformMat3(const glm::mat3& matrix, const std::string& name);
-		void UploadUniformMat4(const glm::mat4& matrix, const std::string& name);
 
+		void Set(const glm::mat4& value, const std::string& name) override;
+		void Set(const glm::mat3& value, const std::string& name) override;
+		void Set(const glm::vec4& value, const std::string& name) override;
+		void Set(const glm::vec3& value, const std::string& name) override;
+		void Set(const glm::vec2& value, const std::string& name) override;
+		void Set(const float value, const std::string& name) override;
+		void Set(const int value, const std::string& name) override;
+
+		void UploadUniformMat4(const glm::mat4& matrix, const std::string& name);
+		void UploadUniformMat3(const glm::mat3& matrix, const std::string& name);
 		void UploadUniformFloat4(const glm::vec4& value, const std::string& name);
 		void UploadUniformFloat3(const glm::vec3& value, const std::string& name);
 		void UploadUniformFloat2(const glm::vec2& value, const std::string& name);
 		void UploadUniformFloat(float value, const std::string& name);
-
 		void UploadUniformInt(int value, const std::string& name);
 	private:
 		std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);

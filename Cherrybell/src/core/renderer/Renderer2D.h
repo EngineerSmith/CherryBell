@@ -13,6 +13,7 @@ namespace CherryBell {
 		static void EndScene();
 
 		// Primitives
+
 		static void FillQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
 		static void FillQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
 

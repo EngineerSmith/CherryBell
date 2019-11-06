@@ -158,6 +158,41 @@ namespace CherryBell {
 		glUseProgram(0);
 	}
 
+	void OpenGLShader::Set(const glm::mat4& value, const std::string& name)
+	{
+		UploadUniformMat4(value, name);
+	}
+
+	void OpenGLShader::Set(const glm::mat3& value, const std::string& name)
+	{
+		UploadUniformMat3(value, name);
+	}
+
+	void OpenGLShader::Set(const glm::vec4& value, const std::string& name)
+	{
+		UploadUniformFloat4(value, name);
+	}
+
+	void OpenGLShader::Set(const glm::vec3& value, const std::string& name)
+	{
+		UploadUniformFloat3(value, name);
+	}
+
+	void OpenGLShader::Set(const glm::vec2& value, const std::string& name)
+	{
+		UploadUniformFloat2(value, name);
+	}
+
+	void OpenGLShader::Set(const float value, const std::string& name)
+	{
+		UploadUniformFloat(value, name);
+	}
+
+	void OpenGLShader::Set(const int value, const std::string& name)
+	{
+		UploadUniformInt(value, name);
+	}
+
 	void OpenGLShader::UploadUniformMat3(const glm::mat3& matrix, const std::string& name)
 	{
 		GLint location = glGetUniformLocation(_rendererID, name.c_str());

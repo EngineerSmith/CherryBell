@@ -18,15 +18,8 @@ void Sandbox2D::OnRender()
 	CherryBell::RenderCommand::Clear();
 
 	CherryBell::Renderer2D::BeginScene(_cameraController.GetCamera());
-
 	CherryBell::Renderer2D::LineQuad({ 0,0 }, { 1,1 }, { _quadColor,1 });
-
 	CherryBell::Renderer2D::EndScene();
-
-	//TODO: Shader::SetMat4, Shader::SetVec3 - OR Materials
-	//auto& shader = _shaderLibrary.Get("FlatColor");
-	//shader->Bind();
-	//std::dynamic_pointer_cast<CherryBell::OpenGLShader>(shader)->UploadUniformFloat3(_quadColor, "u_color");
 }
 
 void Sandbox2D::OnImGuiRender()

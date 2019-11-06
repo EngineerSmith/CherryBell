@@ -6,9 +6,6 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-//TEMP
-#include "platform/OpenGL/OpenGLShader.h"
-
 namespace CherryBell
 {
 	struct Renderer2DData
@@ -60,7 +57,7 @@ namespace CherryBell
 	{ 
 		auto& shader = s_Data->ShaderLibrary.Get("FlatColor");
 		shader->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4(camera.GetViewProjectionMatrix(), "u_viewProjection");
+		shader->Set(camera.GetViewProjectionMatrix(), "u_viewProjection");
 	}
 
 	void Renderer2D::EndScene()
@@ -90,9 +87,9 @@ namespace CherryBell
 	{
 		auto& shader = s_Data->ShaderLibrary.Get("FlatColor");
 		shader->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformFloat4(color, "u_color");
+		shader->Set(color, "u_color");
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), glm::vec3(size, 1));
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4(transform, "u_transform");
+		shader->Set(transform, "u_transform");
 
 		s_Data->VertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->VertexArray, drawType);
