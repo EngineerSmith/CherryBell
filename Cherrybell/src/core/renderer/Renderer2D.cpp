@@ -79,6 +79,26 @@ namespace CherryBell
 		DrawQuad(position, size, rotation, color, DrawType::Fill);
 	}
 
+	void Renderer2D::FillQuad(const glm::vec2& position, const glm::vec2& size, const float rotation, const Ref<Texture2D>& texture)
+	{
+		FillQuad(glm::vec3(position, 0), size, rotation, texture);
+	}
+
+	void Renderer2D::FillQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const Ref<Texture2D>& texture)
+	{
+		FillQuad(position, size, rotation, glm::vec4(1, 1, 1, 1), texture);
+	}
+
+	void Renderer2D::FillQuad(const glm::vec2& position, const glm::vec2& size, const float rotation, const glm::vec4& color, const Ref<Texture2D>& texture)
+	{
+		FillQuad(glm::vec3(position, 0), size, rotation, color, texture);
+	}
+
+	void Renderer2D::FillQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color, const Ref<Texture2D>& texture)
+	{
+		DrawQuad(position, size, rotation, color, texture, DrawType::Fill);
+	}
+
 	void Renderer2D::LineQuad(const glm::vec2& position, const glm::vec2& size, const float rotation, const glm::vec4& color)
 	{
 		LineQuad(glm::vec3(position, 0), size, rotation, color);
@@ -87,6 +107,26 @@ namespace CherryBell
 	void Renderer2D::LineQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color)
 	{
 		DrawQuad(position, size, rotation, color, DrawType::Line);
+	}
+
+	void Renderer2D::LineQuad(const glm::vec2& position, const glm::vec2& size, const float rotation, const Ref<Texture2D>& texture)
+	{
+		LineQuad(glm::vec3(position, 0), size, rotation, texture);
+	}
+
+	void Renderer2D::LineQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const Ref<Texture2D>& texture)
+	{
+		LineQuad(position, size, rotation, glm::vec4(1, 1, 1, 1), texture);
+	}
+
+	void Renderer2D::LineQuad(const glm::vec2& position, const glm::vec2& size, const float rotation, const glm::vec4& color, const Ref<Texture2D>& texture)
+	{
+		LineQuad(glm::vec3(position, 0), size, rotation, color, texture);
+	}
+
+	void Renderer2D::LineQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color, const Ref<Texture2D>& texture)
+	{
+		DrawQuad(position, size, rotation, color, texture, DrawType::Line);
 	}
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color, const DrawType drawType)

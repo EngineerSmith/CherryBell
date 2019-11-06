@@ -23,7 +23,8 @@ void Sandbox2D::OnRender()
 	CherryBell::Renderer2D::FillQuad({ 0,0 }, { 0.5f,0.5f }, 0, { _quadColor,1 });
 	CherryBell::Renderer2D::FillQuad({ -0.5f,0 }, { 0.5f,0.5f }, TO_RAD(237.0f), { _quadColor*2.0f,1 });
 	
-	CherryBell::Renderer2D::DrawQuad({ 0,-0.0f,-0.1f }, { 2.5f,2.5f }, 0, { _quadColor,1 }, _texture);
+	CherryBell::Renderer2D::FillQuad({ 0,-0.0f,-0.1f }, { 2.5f,2.5f }, 0, { _quadColor,1 }, _texture);
+	CherryBell::Renderer2D::FillQuad({ 0,-0.65f }, { 0.5f,0.5f }, 0, _texture);
 	
 	CherryBell::Renderer2D::EndScene();
 }
