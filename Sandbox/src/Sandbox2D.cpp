@@ -19,7 +19,7 @@ void Sandbox2D::OnRender()
 
 	CherryBell::Renderer2D::BeginScene(_cameraController.GetCamera());
 
-	CherryBell::Renderer2D::FillQuad({ 0,0 }, { 1,1 }, { _quadColor,1 });
+	CherryBell::Renderer2D::LineQuad({ 0,0 }, { 1,1 }, { _quadColor,1 });
 
 	CherryBell::Renderer2D::EndScene();
 

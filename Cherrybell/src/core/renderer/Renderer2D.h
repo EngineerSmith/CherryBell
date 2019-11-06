@@ -1,4 +1,5 @@
 #pragma once
+#include "core/renderer/DrawType.h"
 #include "core/renderer/OrthorgraphicCamera.h"
 
 namespace CherryBell {
@@ -14,5 +15,10 @@ namespace CherryBell {
 		// Primitives
 		static void FillQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
 		static void FillQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
+
+		static void LineQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color);
+		static void LineQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color);
+
+		static void DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color, const DrawType drawType);
 	};
 }

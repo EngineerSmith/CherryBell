@@ -26,9 +26,9 @@ namespace CherryBell {
 			s_rendererAPI->Clear();
 		}
 
-		inline static void DrawIndexed(const Ref<VertexArray>& vertexArray)
+		inline static void DrawIndexed(const Ref<VertexArray>& vertexArray, const DrawType type = DrawType::Fill)
 		{
-			s_rendererAPI->DrawIndexed(vertexArray);
+			s_rendererAPI->DrawIndexed(vertexArray, type);
 		}
 
 	private:

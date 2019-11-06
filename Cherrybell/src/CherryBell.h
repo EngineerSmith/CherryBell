@@ -33,6 +33,7 @@
 #include "core/renderer/Renderer2D.h"
 #include "core/renderer/RenderCommand.h"
 #include "core/renderer/RendererID.h"
+#include "core/renderer/DrawType.h"
 
 #include "core/renderer/Buffer.h"
 #include "core/renderer/Shader.h"

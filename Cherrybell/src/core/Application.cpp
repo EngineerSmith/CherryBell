@@ -70,6 +70,7 @@ namespace CherryBell {
 
 	void Application::Shutdown()
 	{
+		CB_CORE_INFO("Shutting down application");
 		Renderer::Shutdown();
 	}
 
