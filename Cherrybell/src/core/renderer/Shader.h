@@ -38,6 +38,9 @@ namespace CherryBell {
 
 		Ref<Shader> Get(const std::string& name);
 		bool Exists(const std::string& name) const;
+
+		std::unordered_map<std::string, Ref<Shader>>::iterator begin() { return _shaders.begin(); }
+		std::unordered_map<std::string, Ref<Shader>>::iterator end() { return _shaders.end(); }
 	private:
 		std::unordered_map<std::string, Ref<Shader>> _shaders;
 	};

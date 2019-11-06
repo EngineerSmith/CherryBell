@@ -15,7 +15,7 @@ public:
 private:
 	CherryBell::OrthorgraphicCameraController _cameraController;
 	
-
+	CherryBell::Ref<CherryBell::Texture2D> _texture;
 
 	glm::vec3 _quadColor = glm::vec3(1);
 };

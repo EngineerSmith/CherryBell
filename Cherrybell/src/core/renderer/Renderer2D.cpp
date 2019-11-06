@@ -23,16 +23,17 @@ namespace CherryBell
 		s_Data->VertexArray = VertexArray::Create();
 
 		float vertices[] = {
-			//a_position	   
-			 -0.5f, -0.5f, 0.0f,
-			  0.5f, -0.5f, 0.0f,
-			  0.5f,  0.5f, 0.0f,
-			 -0.5f,  0.5f, 0.0f
+			//a_position	   //a_texCoord
+			 -0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
+			  0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
+			  0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
+			 -0.5f,  0.5f, 0.0f, 0.0f, 1.0f
 		};
 		Ref<VertexBuffer> vertexBuffer = VertexBuffer::Create(vertices, sizeof(vertices));
 
 		BufferLayout layout = {
-			{ShaderDataType::Float3, "a_position"}
+			{ShaderDataType::Float3, "a_position"},
+			{ShaderDataType::Float2, "a_texCoord"}
 		};
 
 		vertexBuffer->SetLayout(layout);
@@ -45,6 +46,9 @@ namespace CherryBell
 		s_Data->VertexArray->SetIndexBuffer(indexBuffer);
 
 		s_Data->ShaderLibrary.Load("assets/shaders/FlatColor.glsl");
+		auto& shader = s_Data->ShaderLibrary.Load("assets/shaders/Texture.glsl");
+		shader->Bind();
+		shader->Set(0, "u_texture");
 	}
 
 	void Renderer2D::Shutdown()
@@ -55,9 +59,11 @@ namespace CherryBell
 
 	void Renderer2D::BeginScene(const OrthorgraphicCamera& camera)
 	{ 
-		auto& shader = s_Data->ShaderLibrary.Get("FlatColor");
-		shader->Bind();
-		shader->Set(camera.GetViewProjectionMatrix(), "u_viewProjection");
+		for (auto& shader : s_Data->ShaderLibrary)
+		{
+			shader.second->Bind();
+			shader.second->Set(camera.GetViewProjectionMatrix(), "u_viewProjection");
+		}
 	}
 
 	void Renderer2D::EndScene()
@@ -90,6 +96,20 @@ namespace CherryBell
 		shader->Set(color, "u_color");
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, {0,0,1}) * glm::scale(glm::mat4(1.0f), glm::vec3(size, 1));
 		shader->Set(transform, "u_transform");
+
+		s_Data->VertexArray->Bind();
+		RenderCommand::DrawIndexed(s_Data->VertexArray, drawType);
+	}
+
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color, const Ref<Texture2D>& texture, const DrawType drawType)
+	{
+		auto& shader = s_Data->ShaderLibrary.Get("Texture");
+		shader->Bind();
+		shader->Set(color, "u_color");
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, { 0,0,1 }) * glm::scale(glm::mat4(1.0f), glm::vec3(size, 1));
+		shader->Set(transform, "u_transform");
+		
+		texture->Bind();
 
 		s_Data->VertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->VertexArray, drawType);

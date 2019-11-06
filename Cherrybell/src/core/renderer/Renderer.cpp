@@ -1,7 +1,6 @@
 #include "cbpch.h"
 #include "Renderer.h"
 #include "core/renderer/Renderer2D.h"
-#include "platform/OpenGL/OpenGLShader.h"
 
 namespace CherryBell {
 	Scope<Renderer::SceneData> Renderer::_sceneData = CreateScope<Renderer::SceneData>(glm::mat4(1.0f));
@@ -33,8 +32,8 @@ namespace CherryBell {
 	void Renderer::Submit(const Ref<Shader>& shader, const Ref<VertexArray>& vertexArray, const glm::mat4& transform)
 	{
 		shader->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4(_sceneData->ViewProjectionMatrix, "u_viewProjection");
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat4(transform, "u_transform");
+		shader->Set(_sceneData->ViewProjectionMatrix, "u_viewProjection");
+		shader->Set(transform, "u_transform");
 		vertexArray->Bind();
 		RenderCommand::DrawIndexed(vertexArray);
 	}
