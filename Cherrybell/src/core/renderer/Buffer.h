@@ -36,7 +36,7 @@ namespace CherryBell {
 		ShaderDataType Type;
 		std::string Name;
 		uint32_t Size;
-		uint32_t Offset;
+		size_t Offset;
 		bool Normalized;
 
 		BufferElement()
@@ -90,7 +90,7 @@ namespace CherryBell {
 	private:
 		void CalculateOffsetAndStride()
 		{
-			uint32_t offset = 0u;
+			size_t offset = 0u;
 			_stride = 0u;
 			for (auto& element : _elements)
 			{
