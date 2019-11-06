@@ -36,9 +36,6 @@ void Sandbox2D::OnAttach()
 	_shaderLibrary.Load("assets/shaders/FlatColor.glsl");
 }
 
-void Sandbox2D::OnDetach()
-{ }
-
 void Sandbox2D::OnUpdate()
 {
 	_cameraController.OnUpdate(DELTATIME);

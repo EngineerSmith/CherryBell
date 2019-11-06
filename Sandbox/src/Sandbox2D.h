@@ -7,7 +7,6 @@ public:
 	Sandbox2D();
 
 	void OnAttach() override;
-	void OnDetach() override;
 
 	void OnUpdate() override;
 	void OnRender() override;
