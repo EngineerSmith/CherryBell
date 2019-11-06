@@ -63,32 +63,32 @@ namespace CherryBell
 	void Renderer2D::EndScene()
 	{ }
 
-	void Renderer2D::FillQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
+	void Renderer2D::FillQuad(const glm::vec2& position, const glm::vec2& size, const float rotation, const glm::vec4& color)
 	{ 
-		FillQuad(glm::vec3(position, 0), size, color);
+		FillQuad(glm::vec3(position, 0), size, rotation, color);
 	}
 
-	void Renderer2D::FillQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
+	void Renderer2D::FillQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color)
 	{ 
-		DrawQuad(position, size, color, DrawType::Fill);
+		DrawQuad(position, size, rotation, color, DrawType::Fill);
 	}
 
-	void Renderer2D::LineQuad(const glm::vec2& position, const glm::vec2& size, const glm::vec4& color)
+	void Renderer2D::LineQuad(const glm::vec2& position, const glm::vec2& size, const float rotation, const glm::vec4& color)
 	{
-		LineQuad(glm::vec3(position, 0), size, color);
+		LineQuad(glm::vec3(position, 0), size, rotation, color);
 	}
 
-	void Renderer2D::LineQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color)
+	void Renderer2D::LineQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color)
 	{
-		DrawQuad(position, size, color, DrawType::Line);
+		DrawQuad(position, size, rotation, color, DrawType::Line);
 	}
 
-	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const glm::vec4& color, const DrawType drawType)
+	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color, const DrawType drawType)
 	{
 		auto& shader = s_Data->ShaderLibrary.Get("FlatColor");
 		shader->Bind();
 		shader->Set(color, "u_color");
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::scale(glm::mat4(1.0f), glm::vec3(size, 1));
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, {0,0,1}) * glm::scale(glm::mat4(1.0f), glm::vec3(size, 1));
 		shader->Set(transform, "u_transform");
 
 		s_Data->VertexArray->Bind();
