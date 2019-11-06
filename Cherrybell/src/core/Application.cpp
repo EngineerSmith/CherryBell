@@ -13,8 +13,8 @@ namespace CherryBell {
 		CB_CORE_ASSERT(!s_instance, "Application already exists!");
 		s_instance = this;
 
-		_window = std::unique_ptr<Window>(Window::Create());
-		_window->SetEventCallback(std::bind(&Application::OnEvent, this, std::placeholders::_1));
+		_window = Scope<Window>(Window::Create());
+		_window->SetEventCallback(CB_BIND_EVENT_FN(Application::OnEvent));
 	
 		Renderer::Init();
 
@@ -65,6 +65,12 @@ namespace CherryBell {
 				layer->OnImGuiRender();
 			_imGuiLayer->End();
 		}
+		Shutdown();
+	}
+
+	void Application::Shutdown()
+	{
+		Renderer::Shutdown();
 	}
 
 	void Application::PushLayer(Layer* layer)

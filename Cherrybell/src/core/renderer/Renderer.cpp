@@ -1,5 +1,6 @@
 #include "cbpch.h"
 #include "Renderer.h"
+#include "core/renderer/Renderer2D.h"
 #include "platform/OpenGL/OpenGLShader.h"
 
 namespace CherryBell {
@@ -8,6 +9,12 @@ namespace CherryBell {
 	void Renderer::Init()
 	{
 		RenderCommand::Init();
+		Renderer2D::Init();
+	}
+
+	void Renderer::Shutdown()
+	{
+		Renderer2D::Shutdown();
 	}
 
 	void Renderer::OnWindowResize(uint32_t width, uint32_t height)

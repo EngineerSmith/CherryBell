@@ -15,6 +15,7 @@ namespace CherryBell {
 		virtual ~Application() = default;
 
 		void Run();
+		void Shutdown();
 
 		void OnEvent(Event& event);
 

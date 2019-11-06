@@ -15,9 +15,7 @@ public:
 private:
 	CherryBell::OrthorgraphicCameraController _cameraController;
 	
-	// TEMP 
-	CherryBell::ShaderLibrary _shaderLibrary;
-	CherryBell::Ref<CherryBell::VertexArray> _vertexArray;
+
 
 	glm::vec3 _quadColor = glm::vec3(1);
 };
