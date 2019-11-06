@@ -1,12 +1,12 @@
 #pragma once
 #include "core/renderer/RendererID.h"
 
+#include <glm/glm.hpp>
 #include <string>
 
 namespace CherryBell {
 	class Shader
 	{
-
 	public:
 		virtual ~Shader() = default;
 
@@ -26,7 +26,6 @@ namespace CherryBell {
 		virtual void Set(const glm::vec2& value, const std::string& name) = 0;
 		virtual void Set(const float value, const std::string& name) = 0;
 		virtual void Set(const int value, const std::string& name) = 0;
-
 	};
 
 	class ShaderLibrary
