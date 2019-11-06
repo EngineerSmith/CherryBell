@@ -6,7 +6,7 @@
 #include "platform/OpenGL/OpenGLContext.h"
 
 namespace CherryBell {
-	static bool s_GLFWInitialized = false;
+	static uint8_t s_GLFWWindowCount = 0;
 
 	static void GLFWErrorCallback(int error, const char* detail)
 	{
@@ -36,16 +36,17 @@ namespace CherryBell {
 
 		CB_CORE_INFO("Creating Window \"{0}\" ({1}, {2})", _data.Title, _data.Width, _data.Height);
 
-		if (!s_GLFWInitialized)
+		if (s_GLFWWindowCount == 0)
 		{
+			CB_CORE_INFO("Initalizing GLFW");
 			int success = glfwInit();
 			CB_CORE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
-			s_GLFWInitialized = true;
 		}
 
 		_window = glfwCreateWindow((int)_data.Width, (int)_data.Height, _data.Title.c_str(), nullptr, nullptr);
-		
+		s_GLFWWindowCount++;
+
 		_context = CreateScope<OpenGLContext>(_window);
 		_context->Init();
 		
@@ -163,6 +164,13 @@ namespace CherryBell {
 	void WindowsWindow::Shutdown()
 	{
 		glfwDestroyWindow(_window);
+
+		s_GLFWWindowCount--;
+		if (s_GLFWWindowCount == 0)
+		{
+			CB_CORE_INFO("Terminating GLFW");
+			glfwTerminate();
+		}
 	}
 
 	void WindowsWindow::OnUpdate()
