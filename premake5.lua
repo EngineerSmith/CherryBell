@@ -1,3 +1,5 @@
+include "./premake_customizations.lua"
+
 workspace "CherryBell"
 	architecture "x64"
 	startproject "Sandbox"
@@ -12,6 +14,11 @@ workspace "CherryBell"
 	flags
 	{
 		"MultiProcessorCompile"
+	}
+	
+	workspace_files
+	{
+		".editorconfig"
 	}
 	
 outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
