@@ -58,7 +58,7 @@ namespace CherryBell {
 	{
 		EventDispatcher dispatch(event);
 		dispatch.Dispatch<MouseScrolledEvent>(CB_BIND_EVENT_FN(OrthorgraphicCameraController::OnMouseScrolled));
-		dispatch.Dispatch<WindowResizeEvent>(CB_BIND_EVENT_FN(OrthorgraphicCameraController::OnWindowResize));
+		dispatch.Dispatch<WindowResizedEvent>(CB_BIND_EVENT_FN(OrthorgraphicCameraController::OnWindowResize));
 	}
 
 	bool OrthorgraphicCameraController::OnMouseScrolled(MouseScrolledEvent& event)
@@ -68,7 +68,7 @@ namespace CherryBell {
 		_camera.SetProjection(-_aspectRatio * _zoomLevel, _aspectRatio * _zoomLevel, -_zoomLevel, _zoomLevel);
 		return true;
 	}
-	bool OrthorgraphicCameraController::OnWindowResize(WindowResizeEvent& event)
+	bool OrthorgraphicCameraController::OnWindowResize(WindowResizedEvent& event)
 	{
 		_aspectRatio = (float)event.GetWidth() / (float)event.GetHeight();
 		_camera.SetProjection(-_aspectRatio * _zoomLevel, _aspectRatio * _zoomLevel, -_zoomLevel, _zoomLevel);

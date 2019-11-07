@@ -74,7 +74,7 @@ namespace CherryBell {
 				data.Width = width;
 				data.Height = height;
 
-				WindowResizeEvent event(width, height);
+				WindowResizedEvent event(width, height);
 				data.EventCallback(event);
 			});
 		glfwSetWindowCloseCallback(_window,
@@ -82,8 +82,32 @@ namespace CherryBell {
 			{
 				auto& data = *(WindowData*)glfwGetWindowUserPointer(window);
 
-				WindowCloseEvent event;
+				WindowClosedEvent event;
 				data.EventCallback(event);
+			});
+		glfwSetWindowPosCallback(_window,
+			[](GLFWwindow* window, int x, int y)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				WindowMovedEvent event(x, y);
+				data.EventCallback(event);
+			});
+		glfwSetWindowFocusCallback(_window, 
+			[](GLFWwindow* window, int focused)
+			{
+				WindowData& data = *(WindowData*)glfwGetWindowUserPointer(window);
+
+				if (focused == GLFW_TRUE)
+				{
+					WindowFocusedEvent event;
+					data.EventCallback(event);
+				}
+				else
+				{
+					WindowLostFocusEvent event;
+					data.EventCallback(event);
+				}
 			});
 		glfwSetKeyCallback(_window,
 			[](GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -248,7 +272,7 @@ namespace CherryBell {
 		_data.Height = height;
 
 		if (_data.EventCallback) {
-			WindowResizeEvent e(width, height);
+			WindowResizedEvent e(width, height);
 			_data.EventCallback(e);
 		}
 

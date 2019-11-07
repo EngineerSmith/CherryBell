@@ -17,7 +17,7 @@ namespace CherryBell {
 		void OnEvent(Event& event);
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& event);
-		bool OnWindowResize(WindowResizeEvent& event);
+		bool OnWindowResize(WindowResizedEvent& event);
 	private:
 		float _aspectRatio, _zoomLevel = 1.0f;
 		OrthorgraphicCamera _camera;

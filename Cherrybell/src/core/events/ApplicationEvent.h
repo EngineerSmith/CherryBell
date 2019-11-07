@@ -4,10 +4,19 @@
 #include <sstream>
 
 namespace CherryBell {
-	class WindowResizeEvent : public Event
+	class  WindowClosedEvent : public Event
 	{
 	public:
-		WindowResizeEvent(unsigned int width, unsigned int height)
+		WindowClosedEvent() = default;
+
+		EVENT_CLASS_TYPE(WindowClosed)
+		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	};
+
+	class WindowResizedEvent : public Event
+	{
+	public:
+		WindowResizedEvent(unsigned int width, unsigned int height)
 			: _width(width), _height(height)
 		{}
 
@@ -17,23 +26,54 @@ namespace CherryBell {
 		std::string ToString() const override
 		{
 			std::stringstream ss;
-			ss << "WindowResizeEvent: " << _width << ", " << _height;
+			ss << "WindowResizedEvent: " << _width << ", " << _height;
 			return ss.str();
 		}
 
-		EVENT_CLASS_TYPE(WindowResize)
+		EVENT_CLASS_TYPE(WindowResized)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
 
 	private:
 		unsigned int _width, _height;
 	};
 
-	class  WindowCloseEvent : public Event
+	class WindowFocusedEvent : public Event
 	{
 	public:
-		WindowCloseEvent() = default;
+		WindowFocusedEvent() = default;
 
-		EVENT_CLASS_TYPE(WindowClose)
+		EVENT_CLASS_TYPE(WindowFocused)
 		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	};
+
+	class WindowLostFocusEvent : public Event
+	{
+	public:
+		WindowLostFocusEvent() = default;
+
+		EVENT_CLASS_TYPE(WindowLostFocus)
+		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	};
+
+	class WindowMovedEvent : public Event
+	{
+	public:
+		WindowMovedEvent(int x, int y)
+			: _x(x), _y(y) {}
+
+		inline int GetX() const { return _x; }
+		inline int GetY() const { return _y; }
+
+		std::string ToString() const override
+		{
+			std::stringstream ss;
+			ss << "WindowMovedEvent: " << _x << ", " << _y;
+			return ss.str();
+		}
+
+		EVENT_CLASS_TYPE(WindowMoved)
+		EVENT_CLASS_CATEGORY(EventCategoryApplication)
+	private:
+		int _x, _y;
 	};
 }

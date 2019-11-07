@@ -27,8 +27,8 @@ namespace CherryBell {
 		inline Window& GetWindow() const { return *_window; }
 		inline static Application& Get() { return *s_instance; }
 	private:
-		bool OnWindowClose(WindowCloseEvent& event);
-		bool OnWindowResize(WindowResizeEvent& event);
+		bool OnWindowClose(WindowClosedEvent& event);
+		bool OnWindowResize(WindowResizedEvent& event);
 	private:
 		Scope<Window> _window;
 		ImGuiLayer* _imGuiLayer;

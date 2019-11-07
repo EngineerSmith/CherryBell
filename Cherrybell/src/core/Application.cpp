@@ -25,8 +25,8 @@ namespace CherryBell {
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
-		dispatcher.Dispatch<WindowCloseEvent>(CB_BIND_EVENT_FN(Application::OnWindowClose));
-		dispatcher.Dispatch<WindowResizeEvent>(CB_BIND_EVENT_FN(Application::OnWindowResize));
+		dispatcher.Dispatch<WindowClosedEvent>(CB_BIND_EVENT_FN(Application::OnWindowClose));
+		dispatcher.Dispatch<WindowResizedEvent>(CB_BIND_EVENT_FN(Application::OnWindowResize));
 
 		for (auto it = _layerStack.end(); it != _layerStack.begin(); )
 		{
@@ -94,13 +94,13 @@ namespace CherryBell {
 		_layerStack.PopOverlay(layer);
 	}
 
-	bool Application::OnWindowClose(WindowCloseEvent& event)
+	bool Application::OnWindowClose(WindowClosedEvent& event)
 	{
 		_running = false;
 		return true;
 	}
 
-	bool Application::OnWindowResize(WindowResizeEvent& event)
+	bool Application::OnWindowResize(WindowResizedEvent& event)
 	{
 		_minimize = event.GetWidth() == 0u || event.GetHeight() == 0u;
 		if (!_minimize)

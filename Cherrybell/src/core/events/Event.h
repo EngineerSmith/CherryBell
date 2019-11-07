@@ -10,7 +10,7 @@ namespace CherryBell {
 
 	enum class EventType {
 		Null = 0,
-		WindowClose, WindowResize, WindowFocus, WindowLostFocus, WindowMoved,
+		WindowClosed, WindowResized, WindowFocused, WindowLostFocus, WindowMoved,
 		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled
 	};
