@@ -10,8 +10,9 @@ namespace CherryBell
 {
 	struct Renderer2DData
 	{
-		ShaderLibrary ShaderLibrary;
+		Ref<Shader> Shader;
 		Ref<VertexArray> VertexArray;
+		Ref<Texture> WhiteTexture;
 	};
 
 	static Renderer2DData* s_Data = nullptr;
@@ -45,10 +46,13 @@ namespace CherryBell
 		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
 		s_Data->VertexArray->SetIndexBuffer(indexBuffer);
 
-		s_Data->ShaderLibrary.Load("assets/shaders/FlatColor.glsl");
-		auto& shader = s_Data->ShaderLibrary.Load("assets/shaders/Texture.glsl");
-		shader->Bind();
-		shader->Set(0, "u_texture");
+		uint32_t whiteTextureData = 0xffffffff;
+		s_Data->WhiteTexture = Texture2D::Create(1U, 1U);
+		s_Data->WhiteTexture->SetData(&whiteTextureData, sizeof(uint32_t));
+
+		s_Data->Shader = Shader::Create("assets/shaders/Texture.glsl");
+		s_Data->Shader->Bind();
+		s_Data->Shader->Set(0, "u_texture");
 	}
 
 	void Renderer2D::Shutdown()
@@ -58,12 +62,9 @@ namespace CherryBell
 	}
 
 	void Renderer2D::BeginScene(const OrthorgraphicCamera& camera)
-	{ 
-		for (auto& shader : s_Data->ShaderLibrary)
-		{
-			shader.second->Bind();
-			shader.second->Set(camera.GetViewProjectionMatrix(), "u_viewProjection");
-		}
+	{
+		s_Data->Shader->Bind();
+		s_Data->Shader->Set(camera.GetViewProjectionMatrix(), "u_viewProjection");
 	}
 
 	void Renderer2D::EndScene()
@@ -131,11 +132,13 @@ namespace CherryBell
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color, const DrawType drawType)
 	{
-		auto& shader = s_Data->ShaderLibrary.Get("FlatColor");
-		shader->Bind();
-		shader->Set(color, "u_color");
+		//TODO: Track which shader is bound
+		//s_Data->Shader->Bind();
+		s_Data->Shader->Set(color, "u_color");
+		s_Data->WhiteTexture->Bind();
+
 		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, {0,0,1}) * glm::scale(glm::mat4(1.0f), glm::vec3(size, 1));
-		shader->Set(transform, "u_transform");
+		s_Data->Shader->Set(transform, "u_transform");
 
 		s_Data->VertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->VertexArray, drawType);
@@ -143,13 +146,13 @@ namespace CherryBell
 
 	void Renderer2D::DrawQuad(const glm::vec3& position, const glm::vec2& size, const float rotation, const glm::vec4& color, const Ref<Texture2D>& texture, const DrawType drawType)
 	{
-		auto& shader = s_Data->ShaderLibrary.Get("Texture");
-		shader->Bind();
-		shader->Set(color, "u_color");
-		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, { 0,0,1 }) * glm::scale(glm::mat4(1.0f), glm::vec3(size, 1));
-		shader->Set(transform, "u_transform");
-		
+		//TODO: Track which shader is bound
+		//s_Data->Shader->Bind();
+		s_Data->Shader->Set(color, "u_color");
 		texture->Bind();
+
+		glm::mat4 transform = glm::translate(glm::mat4(1.0f), position) * glm::rotate(glm::mat4(1.0f), rotation, { 0,0,1 }) * glm::scale(glm::mat4(1.0f), glm::vec3(size, 1));
+		s_Data->Shader->Set(transform, "u_transform");
 
 		s_Data->VertexArray->Bind();
 		RenderCommand::DrawIndexed(s_Data->VertexArray, drawType);

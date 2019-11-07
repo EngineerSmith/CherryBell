@@ -1,11 +1,11 @@
 #type vertex
 #version 330 core
 
-layout(location = 0) in vec3 a_position;
-layout(location = 1) in vec2 a_texCoord;
-
 uniform mat4 u_viewProjection;
 uniform mat4 u_transform;
+
+layout(location = 0) in vec3 a_position;
+layout(location = 1) in vec2 a_texCoord;
 
 out vec2 v_texCoord;
 
@@ -18,12 +18,12 @@ void main()
 #type fragment
 #version 330 core
 
-layout(location = 0) out vec4 _color;
-
 uniform vec4 u_color;
 uniform sampler2D u_texture;
 
 in vec2 v_texCoord;
+
+layout(location = 0) out vec4 _color;
 
 void main()
 {
