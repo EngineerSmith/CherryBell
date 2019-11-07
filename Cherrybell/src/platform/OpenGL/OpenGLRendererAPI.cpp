@@ -30,7 +30,7 @@ namespace CherryBell {
 	{
 		switch (type)
 		{
-		case DrawType::Line:
+		case DrawType::WireFrame:
 			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
 			glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr);
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);

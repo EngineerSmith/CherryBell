@@ -1,5 +1,6 @@
 #pragma once
 #include "core/events/Event.h"
+
 #include <sstream>
 
 namespace CherryBell {

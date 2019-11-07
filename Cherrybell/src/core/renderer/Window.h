@@ -7,7 +7,7 @@ namespace CherryBell {
 	{
 		std::string Title;
 		unsigned int Width, Height;
-		WindowProps(const std::string& title = "CherryBell Engine",
+		WindowProps(std::string_view title = "CherryBell Engine",
 			unsigned int width = 1280,
 			unsigned int height = 720)
 			: Title(title), Width(width), Height(height)

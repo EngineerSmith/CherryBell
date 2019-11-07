@@ -1,6 +1,8 @@
 #pragma once
 #include "core/events/Event.h"
 
+#include <sstream>
+
 namespace CherryBell {
 	class KeyEvent : public Event {
 	public:

@@ -4,7 +4,6 @@
 #include <string>
 #include <functional>
 
-
 namespace CherryBell {
 	// Events are blocking calls - have to be dealt with as they happen in a frame
 	// In the future moving to a queue/buffer for events would stop this blocking call

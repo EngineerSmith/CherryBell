@@ -1,6 +1,8 @@
 #pragma once
 #include "core/events/Event.h"
 
+#include <sstream>
+
 namespace CherryBell {
 	class MouseMovedEvent : public Event
 	{
@@ -88,7 +90,7 @@ namespace CherryBell {
 
 		std::string ToString() const override
 		{
-			std::stringstream ss; 
+			std::stringstream ss;
 			ss << "MouseButtonReleasedEvent: " << _button;
 			return ss.str();
 		}

@@ -16,7 +16,7 @@ namespace CherryBell {
 		return 0;
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& filepath)
+	OpenGLShader::OpenGLShader(std::string_view filepath)
 	{
 		std::string source = IO::ReadFile(filepath);
 		auto shaderSources = PreProcess(source);
@@ -32,7 +32,7 @@ namespace CherryBell {
 		_name = filepath.substr(lastSlash, count);
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& name, const std::string& filepath)
+	OpenGLShader::OpenGLShader(std::string_view name, std::string_view filepath)
 		: _name(name)
 	{
 		std::string source = IO::ReadFile(filepath);
@@ -40,7 +40,7 @@ namespace CherryBell {
 		Compile(shaderSources);
 	}
 
-	OpenGLShader::OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc)
+	OpenGLShader::OpenGLShader(std::string_view name, std::string_view vertexSrc, std::string_view fragmentSrc)
 		: _name(name)
 	{
 		std::unordered_map<GLenum, std::string> shaderSources;
@@ -158,80 +158,80 @@ namespace CherryBell {
 		glUseProgram(0);
 	}
 
-	void OpenGLShader::Set(const glm::mat4& value, const std::string& name)
+	void OpenGLShader::Set(const glm::mat4& value, std::string_view name)
 	{
 		UploadUniformMat4(value, name);
 	}
 
-	void OpenGLShader::Set(const glm::mat3& value, const std::string& name)
+	void OpenGLShader::Set(const glm::mat3& value, std::string_view name)
 	{
 		UploadUniformMat3(value, name);
 	}
 
-	void OpenGLShader::Set(const glm::vec4& value, const std::string& name)
+	void OpenGLShader::Set(const glm::vec4& value, std::string_view name)
 	{
 		UploadUniformFloat4(value, name);
 	}
 
-	void OpenGLShader::Set(const glm::vec3& value, const std::string& name)
+	void OpenGLShader::Set(const glm::vec3& value, std::string_view name)
 	{
 		UploadUniformFloat3(value, name);
 	}
 
-	void OpenGLShader::Set(const glm::vec2& value, const std::string& name)
+	void OpenGLShader::Set(const glm::vec2& value, std::string_view name)
 	{
 		UploadUniformFloat2(value, name);
 	}
 
-	void OpenGLShader::Set(const float value, const std::string& name)
+	void OpenGLShader::Set(const float value, std::string_view name)
 	{
 		UploadUniformFloat(value, name);
 	}
 
-	void OpenGLShader::Set(const int value, const std::string& name)
+	void OpenGLShader::Set(const int value, std::string_view name)
 	{
 		UploadUniformInt(value, name);
 	}
 
-	void OpenGLShader::UploadUniformMat3(const glm::mat3& matrix, const std::string& name)
+	void OpenGLShader::UploadUniformMat3(const glm::mat3& matrix, std::string_view name)
 	{
-		GLint location = glGetUniformLocation(_rendererID, name.c_str());
+		GLint location = glGetUniformLocation(_rendererID, name.data());
 		glUniformMatrix3fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
-	void OpenGLShader::UploadUniformMat4(const glm::mat4& matrix, const std::string& name)
+	void OpenGLShader::UploadUniformMat4(const glm::mat4& matrix, std::string_view name)
 	{
-		GLint location = glGetUniformLocation(_rendererID, name.c_str());
+		GLint location = glGetUniformLocation(_rendererID, name.data());
 		glUniformMatrix4fv(location, 1, GL_FALSE, glm::value_ptr(matrix));
 	}
 
-	void OpenGLShader::UploadUniformFloat4(const glm::vec4& value, const std::string& name)
+	void OpenGLShader::UploadUniformFloat4(const glm::vec4& value, std::string_view name)
 	{
-		GLint location = glGetUniformLocation(_rendererID, name.c_str());
+		GLint location = glGetUniformLocation(_rendererID, name.data());
 		glUniform4f(location, value.x, value.y, value.z, value.w);
 	}
 
-	void OpenGLShader::UploadUniformFloat3(const glm::vec3& value, const std::string& name)
+	void OpenGLShader::UploadUniformFloat3(const glm::vec3& value, std::string_view name)
 	{
-		GLint location = glGetUniformLocation(_rendererID, name.c_str());
+		GLint location = glGetUniformLocation(_rendererID, name.data());
 		glUniform3f(location, value.x, value.y, value.z);
 	}
 
-	void OpenGLShader::UploadUniformFloat2(const glm::vec2& value, const std::string& name)
+	void OpenGLShader::UploadUniformFloat2(const glm::vec2& value, std::string_view name)
 	{
-		GLint location = glGetUniformLocation(_rendererID, name.c_str());
+		GLint location = glGetUniformLocation(_rendererID, name.data());
 		glUniform2f(location, value.x, value.y);
 	}
 
-	void OpenGLShader::UploadUniformFloat(float value, const std::string& name)
+	void OpenGLShader::UploadUniformFloat(float value, std::string_view name)
 	{
-		GLint location = glGetUniformLocation(_rendererID, name.c_str());
+		GLint location = glGetUniformLocation(_rendererID, name.data());
 		glUniform1f(location, value);
 	}
 
-	void OpenGLShader::UploadUniformInt(int value, const std::string& name)
+	void OpenGLShader::UploadUniformInt(int value, std::string_view name)
 	{
-		GLint location = glGetUniformLocation(_rendererID, name.c_str());
+		GLint location = glGetUniformLocation(_rendererID, name.data());
 		glUniform1i(location, value);
 	}
 }

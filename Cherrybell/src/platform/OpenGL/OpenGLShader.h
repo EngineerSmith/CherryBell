@@ -10,9 +10,9 @@ namespace CherryBell {
 	class OpenGLShader : public Shader
 	{
 	public:
-		OpenGLShader(const std::string& filepath);
-		OpenGLShader(const std::string& name, const std::string& filepath);
-		OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);
+		OpenGLShader(std::string_view filepath);
+		OpenGLShader(std::string_view name, std::string_view filepath);
+		OpenGLShader(std::string_view name, std::string_view vertexSrc, std::string_view fragmentSrc);
 		~OpenGLShader();
 
 		void Bind() const override;
@@ -20,21 +20,21 @@ namespace CherryBell {
 
 		const std::string& GetName() const override { return _name; }
 
-		void Set(const glm::mat4& value, const std::string& name) override;
-		void Set(const glm::mat3& value, const std::string& name) override;
-		void Set(const glm::vec4& value, const std::string& name) override;
-		void Set(const glm::vec3& value, const std::string& name) override;
-		void Set(const glm::vec2& value, const std::string& name) override;
-		void Set(const float value, const std::string& name) override;
-		void Set(const int value, const std::string& name) override;
+		void Set(const glm::mat4& value, std::string_view name) override;
+		void Set(const glm::mat3& value, std::string_view name) override;
+		void Set(const glm::vec4& value, std::string_view name) override;
+		void Set(const glm::vec3& value, std::string_view name) override;
+		void Set(const glm::vec2& value, std::string_view name) override;
+		void Set(const float value, std::string_view name) override;
+		void Set(const int value, std::string_view name) override;
 
-		void UploadUniformMat4(const glm::mat4& matrix, const std::string& name);
-		void UploadUniformMat3(const glm::mat3& matrix, const std::string& name);
-		void UploadUniformFloat4(const glm::vec4& value, const std::string& name);
-		void UploadUniformFloat3(const glm::vec3& value, const std::string& name);
-		void UploadUniformFloat2(const glm::vec2& value, const std::string& name);
-		void UploadUniformFloat(float value, const std::string& name);
-		void UploadUniformInt(int value, const std::string& name);
+		void UploadUniformMat4(const glm::mat4& matrix, std::string_view name);
+		void UploadUniformMat3(const glm::mat3& matrix, std::string_view name);
+		void UploadUniformFloat4(const glm::vec4& value, std::string_view name);
+		void UploadUniformFloat3(const glm::vec3& value, std::string_view name);
+		void UploadUniformFloat2(const glm::vec2& value, std::string_view name);
+		void UploadUniformFloat(float value, std::string_view name);
+		void UploadUniformInt(int value, std::string_view name);
 	private:
 		std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);
 		void Compile(const std::unordered_map<GLenum, std::string>& shaderSources);

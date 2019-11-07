@@ -14,7 +14,6 @@ namespace CherryBell {
 		void SetRotation(float rotation);
 		float GetRotation() const { return _rotation; }
 
-
 		const glm::mat4& GetProjectionMatrix() const { return _projectionMatrix; }
 		const glm::mat4& GetViewMatrix() const { return _viewMatrix; }
 		const glm::mat4& GetViewProjectionMatrix() const { return _viewProjectionMatrix; }

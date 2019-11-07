@@ -4,7 +4,7 @@
 #include "platform/OpenGL/OpenGLTexture.h"
 
 namespace CherryBell {
-	Ref<Texture2D> Texture2D::Create(const std::string& path)
+	Ref<Texture2D> Texture2D::Create(std::string_view path)
 	{
 		switch (Renderer::GetAPI())
 		{

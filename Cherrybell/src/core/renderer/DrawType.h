@@ -4,6 +4,6 @@ namespace CherryBell
 {
 	enum class DrawType
 	{
-		Fill, Line
+		Fill, WireFrame
 	};
 }

@@ -4,10 +4,10 @@
 #include <fstream>
 
 namespace CherryBell {
-	std::string IO::ReadFile(const std::string& filepath)
+	std::string IO::ReadFile(std::string_view filepath)
 	{
 		std::string fileContents;
-		std::ifstream in(filepath, std::ios::in | std::ios::binary);
+		std::ifstream in(filepath.data(), std::ios::in | std::ios::binary);
 		if (in)
 		{
 			in.seekg(0, std::ios::end);

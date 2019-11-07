@@ -6,7 +6,7 @@ namespace CherryBell {
 	class OpenGLTexture2D : public Texture2D
 	{
 	public:
-		OpenGLTexture2D(const std::string& path);
+		OpenGLTexture2D(std::string_view path);
 		~OpenGLTexture2D();
 
 		uint32_t GetWidth() const override { return _width; };
