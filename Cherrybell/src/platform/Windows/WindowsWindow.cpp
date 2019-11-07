@@ -45,6 +45,10 @@ namespace CherryBell {
 			glfwSetErrorCallback(GLFWErrorCallback);
 		}
 
+#ifdef CB_DEBUG
+		glfwWindowHint(GLFW_OPENGL_DEBUG_CONTEXT, GLFW_TRUE);
+#endif
+
 		_window = glfwCreateWindow((int)_data.Width, (int)_data.Height, _data.Title.c_str(), nullptr, nullptr);
 		s_GLFWWindowCount++;
 
