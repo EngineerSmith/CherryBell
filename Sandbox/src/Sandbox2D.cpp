@@ -12,10 +12,8 @@ void Sandbox2D::OnUpdate()
 {
 	_cameraController.OnUpdate(DELTATIME);
 
-	if (CherryBell::Input::IsKeyPressed(CB_KEY_B))
-		CherryBell::Application::Get().GetWindow().SetWindowMode(CherryBell::WindowMode::Windowed);
 	if (CherryBell::Input::IsKeyPressed(CB_KEY_N))
-		CherryBell::Application::Get().GetWindow().SetWindowMode(CherryBell::WindowMode::FullScreen);
+		CherryBell::Application::Get().GetWindow().SetWindowMode(CherryBell::WindowMode::Windowed);
 	if (CherryBell::Input::IsKeyPressed(CB_KEY_M))
 		CherryBell::Application::Get().GetWindow().SetWindowMode(CherryBell::WindowMode::Boarderless);
 }
