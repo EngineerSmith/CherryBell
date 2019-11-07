@@ -3,14 +3,28 @@
 #include "core/events/Event.h"
 
 namespace CherryBell {
+	enum class WindowMode
+	{
+		None = 0,
+		Windowed, 
+		Boarderless
+	};
+
+	struct WindowedModeData {
+		int X, Y, Width, Height;
+	};
+
 	struct WindowProps
 	{
 		std::string Title;
 		unsigned int Width, Height;
+		WindowMode Mode;
+
 		WindowProps(std::string_view title = "CherryBell Engine",
-			unsigned int width = 1280,
-			unsigned int height = 720)
-			: Title(title), Width(width), Height(height)
+			unsigned int width = 720,
+			unsigned int height = 480,
+			WindowMode mode = WindowMode::Windowed)
+			: Title(title), Width(width), Height(height), Mode(mode)
 		{}
 	};
 
@@ -31,6 +45,8 @@ namespace CherryBell {
 		virtual void SetEventCallback(const EventCallbackFn& callback) = 0;
 		virtual void SetVSync(bool enabled) = 0;
 		virtual bool IsVSync() const = 0;
+		
+		virtual void SetWindowMode(WindowMode mode, int width = 0, int height = 0) = 0;
 
 		virtual inline void* GetNativeWindow() const = 0;
 

@@ -24,23 +24,28 @@ namespace CherryBell {
 		void SetVSync(bool enabled) override;
 		bool IsVSync() const override;
 
+		void SetWindowMode(WindowMode mode, int width = 0, int height = 0) override;
+
 		inline void* GetNativeWindow() const override { return _window; };
 	private:
 		virtual void Init(const WindowProps& props);
 		virtual void Shutdown();
 	private:
 		GLFWwindow* _window;
+		GLFWmonitor* _primaryMonitor;
+		GLFWvidmode _primaryVidmode;
 		Scope<GraphicsContext> _context;
 
 		struct WindowData
 		{
 			std::string Title;
-			unsigned int Width, Height;
+			int Width, Height;
 			bool VSync;
+			WindowMode Mode;
+			WindowedModeData WindowedData;
 			EventCallbackFn EventCallback;
 			std::unordered_map<int, int> RepeatedKeys;
 		};
-
 		WindowData _data;
 	};
 }

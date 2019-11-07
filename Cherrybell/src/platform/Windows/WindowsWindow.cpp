@@ -33,6 +33,7 @@ namespace CherryBell {
 		_data.Title = props.Title;
 		_data.Width = props.Width;
 		_data.Height = props.Height;
+		_data.Mode = WindowMode::None;
 
 		CB_CORE_INFO("Creating Window \"{0}\" ({1}, {2})", _data.Title, _data.Width, _data.Height);
 
@@ -47,8 +48,16 @@ namespace CherryBell {
 		_window = glfwCreateWindow((int)_data.Width, (int)_data.Height, _data.Title.c_str(), nullptr, nullptr);
 		s_GLFWWindowCount++;
 
+		_primaryMonitor = glfwGetPrimaryMonitor();
+		_primaryVidmode = *glfwGetVideoMode(_primaryMonitor);
+
 		_context = CreateScope<OpenGLContext>(_window);
 		_context->Init();
+
+		_data.WindowedData.Width = props.Width;
+		_data.WindowedData.Height = props.Height;
+		glfwGetWindowPos(_window, &_data.WindowedData.X, &_data.WindowedData.Y);
+		SetWindowMode(props.Mode);
 		
 		glfwSetWindowUserPointer(_window, &_data);
 		SetVSync(true);
@@ -196,5 +205,50 @@ namespace CherryBell {
 	bool WindowsWindow::IsVSync() const
 	{
 		return _data.VSync;
+	}
+
+	void WindowsWindow::SetWindowMode(WindowMode mode, int width, int height)
+	{
+		if (_window == nullptr)
+		{
+			CB_CORE_ERROR(false, "Attempted to SetWindowMode before window exists!");
+			return;
+		}
+
+		if (_data.Mode == mode)
+			return;
+
+		if (_data.Mode == WindowMode::Windowed) 
+		{
+			_data.WindowedData.Width = _data.Width;
+			_data.WindowedData.Height = _data.Height;
+			glfwGetWindowPos(_window, &_data.WindowedData.X, &_data.WindowedData.Y);
+		}
+
+		GLFWmonitor* monitor = mode == WindowMode::Windowed ? nullptr : _primaryMonitor;
+
+		if (mode == WindowMode::Boarderless) 
+		{
+			width = _primaryVidmode.width;
+			height = _primaryVidmode.height;
+		}
+		else if (width == 0 || height == 0) 
+		{
+			width = _data.WindowedData.Width;
+			height = _data.WindowedData.Height;
+		}
+
+		glfwSetWindowMonitor(_window, monitor, _data.WindowedData.X, _data.WindowedData.Y, width, height, monitor == nullptr? 0 : _primaryVidmode.refreshRate);
+		
+		_data.Width = width;
+		_data.Height = height;
+
+		if (_data.EventCallback) {
+			WindowResizeEvent e(width, height);
+			_data.EventCallback(e);
+		}
+
+		CB_CORE_INFO("Changed window mode from {0} to {1}: [{2}, {3}]", _data.Mode, mode, width, height);
+		_data.Mode = mode;
 	}
 }

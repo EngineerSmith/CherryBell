@@ -81,7 +81,6 @@ public:
 		_cameraController.OnEvent(event);
 	}
 
-
 	void OnImGuiRender() override
 	{
 		ImGui::Begin("Settings");
