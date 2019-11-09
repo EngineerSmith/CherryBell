@@ -11,10 +11,18 @@ namespace CherryBell {
 		if (in)
 		{
 			in.seekg(0, std::ios::end);
-			fileContents.resize(in.tellg());
-			in.seekg(0, std::ios::beg);
-			in.read(&fileContents[0], fileContents.size());
-			in.close();
+			size_t size = in.tellg();
+			if (size != -1)
+			{
+				fileContents.resize(in.tellg());
+				in.seekg(0, std::ios::beg);
+				in.read(&fileContents[0], fileContents.size());
+				in.close();
+			}
+			else
+			{
+				CB_CORE_ERROR("Could not read from file \"{0}\"", filepath);
+			}
 		}
 		else
 		{
