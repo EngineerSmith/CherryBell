@@ -48,6 +48,8 @@ namespace CherryBell {
 		
 		virtual void SetWindowMode(WindowMode mode, int width = 0, int height = 0) = 0;
 
+		virtual void SetWindowIcon(std::string_view path) = 0;
+
 		virtual inline void* GetNativeWindow() const = 0;
 
 		static Window* Create(const WindowProps& props = WindowProps());

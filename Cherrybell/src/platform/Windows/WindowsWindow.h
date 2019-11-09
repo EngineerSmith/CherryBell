@@ -26,6 +26,8 @@ namespace CherryBell {
 
 		void SetWindowMode(WindowMode mode, int width = 0, int height = 0) override;
 
+		void SetWindowIcon(std::string_view path) override;
+
 		inline void* GetNativeWindow() const override { return _window; };
 	private:
 		virtual void Init(const WindowProps& props);

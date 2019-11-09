@@ -5,6 +5,8 @@
 #include "core/events/KeyEvent.h"
 #include "platform/OpenGL/OpenGLContext.h"
 
+#include <stb_image.h>
+
 namespace CherryBell {
 	static uint8_t s_GLFWWindowCount = 0;
 
@@ -273,5 +275,20 @@ namespace CherryBell {
 
 		CB_CORE_INFO("Changed window mode from {0} to {1}: [{2}, {3}]", _data.Mode, mode, width, height);
 		_data.Mode = mode;
+	}
+
+	void WindowsWindow::SetWindowIcon(std::string_view path)
+	{
+		int width, height, channels;
+		stbi_set_flip_vertically_on_load(1);
+		stbi_uc* data = stbi_load(path.data(), &width, &height, &channels, 4);
+		CB_CORE_ASSERT(channels == 4, "Icon must be RGBA!");
+
+		GLFWimage images[1];
+		images[0].width = width;
+		images[0].height = height;
+		images[0].pixels = data;
+		glfwSetWindowIcon(_window, 1, images);
+		stbi_image_free(data);
 	}
 }
