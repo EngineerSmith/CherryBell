@@ -16,7 +16,7 @@ namespace CherryBell {
 		glm::vec3 position = _camera.GetPosition();
 		float rotation = _camera.GetRotation();
 		const float rotationRad = glm::radians(rotation);
-		const float movementAmount = _cameraPositionSpeed * timestep.GetSecondsFloat();
+		const float movementAmount = _cameraPositionSpeed * _zoomLevel * timestep.GetSecondsFloat();
 		if (Input::IsKeyPressed(CB_KEY_A))
 		{
 			position.x -= cos(rotationRad) * movementAmount;
@@ -66,6 +66,7 @@ namespace CherryBell {
 		_zoomLevel -= event.GetOffsetY() * _cameraZoomSpeed;
 		_zoomLevel = std::max(_zoomLevel, 0.25f);
 		_camera.SetProjection(-_aspectRatio * _zoomLevel, _aspectRatio * _zoomLevel, -_zoomLevel, _zoomLevel);
+		
 		return true;
 	}
 	bool OrthorgraphicCameraController::OnWindowResize(WindowResizedEvent& event)

@@ -23,6 +23,6 @@ namespace CherryBell {
 		OrthorgraphicCamera _camera;
 
 		bool _rotation;
-		const float _cameraPositionSpeed = 3.0f, _cameraRotationSpeed = 45.0f, _cameraZoomSpeed = 0.5f;
+		const float _cameraPositionSpeed = 1.5f, _cameraRotationSpeed = 45.0f, _cameraZoomSpeed = 0.5f;
 	};
 }
