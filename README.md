@@ -1,5 +1,5 @@
 # CherryBell
-## How to get
+## How to clone and Setup
 
 `git clone https://github.com/EngineerSmith/CherryBell --recurse-submodules`
 
