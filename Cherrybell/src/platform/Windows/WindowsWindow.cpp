@@ -128,14 +128,14 @@ namespace CherryBell {
 				case GLFW_RELEASE:
 				{
 					data.RepeatedKeys.erase(keyCode);
-					KeyReleasedEvent event(static_cast<KeyCode>(key));
+					KeyReleasedEvent event(keyCode);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					data.RepeatedKeys[key]++;
-					KeyPressedEvent event(static_cast<KeyCode>(key), data.RepeatedKeys[key]);
+					data.RepeatedKeys[keyCode]++;
+					KeyPressedEvent event(keyCode, data.RepeatedKeys[keyCode]);
 					data.EventCallback(event);
 					break;
 				}
