@@ -44,7 +44,7 @@ namespace CherryBell {
 			WindowMode Mode;
 			WindowedModeData WindowedData;
 			EventCallbackFn EventCallback;
-			std::unordered_map<int, int> RepeatedKeys;
+			std::unordered_map<KeyCode, unsigned int> RepeatedKeys;
 		};
 		WindowData _data;
 	};

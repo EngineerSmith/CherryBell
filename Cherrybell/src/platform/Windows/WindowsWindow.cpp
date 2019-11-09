@@ -113,32 +113,26 @@ namespace CherryBell {
 			[](GLFWwindow* window, int key, int scancode, int action, int mods)
 			{
 				auto& data = *(WindowData*)glfwGetWindowUserPointer(window);
-
+				KeyCode keyCode = static_cast<KeyCode>(key);
 				switch (action)
 				{
 				case GLFW_PRESS:
 				{
-					KeyPressedEvent event(static_cast<KeyCode>(key), 0);
+					data.RepeatedKeys[keyCode] = 0;
+					KeyPressedEvent event(keyCode, 0);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
-					data.RepeatedKeys.erase(key);
+					data.RepeatedKeys.erase(keyCode);
 					KeyReleasedEvent event(static_cast<KeyCode>(key));
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_REPEAT:
 				{
-					if (data.RepeatedKeys.find(key) != data.RepeatedKeys.end())
-					{
-						data.RepeatedKeys[key]++;
-					}
-					else
-					{
-						data.RepeatedKeys[key] = 1;
-					}
+					data.RepeatedKeys[key]++;
 					KeyPressedEvent event(static_cast<KeyCode>(key), data.RepeatedKeys[key]);
 					data.EventCallback(event);
 					break;
@@ -200,6 +194,7 @@ namespace CherryBell {
 
 	void WindowsWindow::Shutdown()
 	{
+		_data.RepeatedKeys.clear();
 		glfwDestroyWindow(_window);
 
 		s_GLFWWindowCount--;
