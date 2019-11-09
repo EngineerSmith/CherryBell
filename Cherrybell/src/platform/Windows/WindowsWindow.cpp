@@ -118,14 +118,14 @@ namespace CherryBell {
 				{
 				case GLFW_PRESS:
 				{
-					KeyPressedEvent event(key, 0);
+					KeyPressedEvent event(static_cast<KeyCode>(key), 0);
 					data.EventCallback(event);
 					break;
 				}
 				case GLFW_RELEASE:
 				{
 					data.RepeatedKeys.erase(key);
-					KeyReleasedEvent event(key);
+					KeyReleasedEvent event(static_cast<KeyCode>(key));
 					data.EventCallback(event);
 					break;
 				}
@@ -139,7 +139,7 @@ namespace CherryBell {
 					{
 						data.RepeatedKeys[key] = 1;
 					}
-					KeyPressedEvent event(key, data.RepeatedKeys[key]);
+					KeyPressedEvent event(static_cast<KeyCode>(key), data.RepeatedKeys[key]);
 					data.EventCallback(event);
 					break;
 				}
@@ -151,7 +151,7 @@ namespace CherryBell {
 		glfwSetCharCallback(_window,
 			[](GLFWwindow* window, unsigned int key){
 				auto& data = *(WindowData*)glfwGetWindowUserPointer(window);
-				KeyTypedEvent event(key);
+				KeyTypedEvent event(static_cast<KeyCode>(key));
 				data.EventCallback(event);
 			});
 		glfwSetMouseButtonCallback(_window,
@@ -163,13 +163,13 @@ namespace CherryBell {
 				{
 					case GLFW_PRESS:
 					{
-						MouseButtonPressedEvent event(button);
+						MouseButtonPressedEvent event(static_cast<MouseCode>(button));
 						data.EventCallback(event);
 						break;
 					}
 					case GLFW_RELEASE:
 					{
-						MouseButtonReleasedEvent event(button);
+						MouseButtonReleasedEvent event(static_cast<MouseCode>(button));
 						data.EventCallback(event);
 						break;
 					}

@@ -1,5 +1,6 @@
 #pragma once
 #include "core/events/Event.h"
+#include "core/input/MouseButtonCodes.h"
 
 #include <sstream>
 
@@ -53,21 +54,21 @@ namespace CherryBell {
 	class  MouseButtonEvent : public Event
 	{
 	public:
-		inline int GetMouseButton() const { return _button; }
+		inline MouseCode GetMouseButton() const { return _button; }
 	
 		EVENT_CLASS_CATEGORY(EventCategoryMouse | EventCategoryInput)
 	protected:
-		MouseButtonEvent(int button)
+		MouseButtonEvent(MouseCode button)
 			: _button(button)
 		{}
 
-		int _button;
+		MouseCode _button;
 	};
 
 	class  MouseButtonPressedEvent : public MouseButtonEvent
 	{
 	public:
-		MouseButtonPressedEvent(int button)
+		MouseButtonPressedEvent(MouseCode button)
 			: MouseButtonEvent(button)
 		{}
 
@@ -84,7 +85,7 @@ namespace CherryBell {
 	class  MouseButtonReleasedEvent : public MouseButtonEvent
 	{
 	public:
-		MouseButtonReleasedEvent(int button)
+		MouseButtonReleasedEvent(MouseCode button)
 			: MouseButtonEvent(button)
 		{}
 

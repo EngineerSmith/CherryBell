@@ -1,25 +1,26 @@
 #pragma once
 #include "core/events/Event.h"
+#include "core/input/KeyCodes.h"
 
 #include <sstream>
 
 namespace CherryBell {
 	class KeyEvent : public Event {
 	public:
-		inline int GetKeyCode() const { return _keyCode; }
+		inline KeyCode GetKeyCode() const { return _keyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
-		KeyEvent(int keyCode) 
+		KeyEvent(KeyCode keyCode) 
 			: _keyCode(keyCode)
 		{}
 
-		int _keyCode;
+		KeyCode _keyCode;
 	};
 
 	class  KeyPressedEvent : public KeyEvent {
 	public:
-		KeyPressedEvent(int keyCode, int repeatCount) 
+		KeyPressedEvent(KeyCode keyCode, int repeatCount) 
 			: KeyEvent(keyCode), _repeatCount(repeatCount)
 		{}
 
@@ -39,7 +40,7 @@ namespace CherryBell {
 
 	class  KeyReleasedEvent : public KeyEvent {
 	public:
-		KeyReleasedEvent(int keyCode) 
+		KeyReleasedEvent(KeyCode keyCode) 
 			: KeyEvent(keyCode)
 		{}
 
@@ -55,7 +56,7 @@ namespace CherryBell {
 
 	class  KeyTypedEvent : public KeyEvent {
 	public:
-		KeyTypedEvent(int keyCode)
+		KeyTypedEvent(KeyCode keyCode)
 			: KeyEvent(keyCode)
 		{}
 
