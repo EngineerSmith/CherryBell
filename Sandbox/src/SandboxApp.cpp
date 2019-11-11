@@ -32,8 +32,7 @@ public:
 
 		uint32_t indices[] = { 0u,1u,2u, 2u,3u,0u };
 
-		CherryBell::Ref<CherryBell::IndexBuffer> indexBuffer;
-		indexBuffer.reset(CherryBell::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		CherryBell::Ref<CherryBell::IndexBuffer> indexBuffer = CherryBell::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		_vertexArray->SetIndexBuffer(indexBuffer);
 
 		auto& shader = _shaderLibrary.Load("assets/shaders/Texture.glsl");

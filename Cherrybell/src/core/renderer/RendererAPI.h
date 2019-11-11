@@ -12,6 +12,7 @@ namespace CherryBell {
 			None = 0, OpenGL = 1,
 		};
 	public:
+		static Scope<RendererAPI> Create();
 		virtual ~RendererAPI() = default;
 
 		virtual void Init() = 0;

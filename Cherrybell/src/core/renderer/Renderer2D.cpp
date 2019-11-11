@@ -42,8 +42,7 @@ namespace CherryBell
 
 		uint32_t indices[] = { 0u,1u,2u, 2u,3u,0u };
 
-		Ref<IndexBuffer> indexBuffer;
-		indexBuffer.reset(IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t)));
+		Ref<IndexBuffer> indexBuffer = IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
 		s_Data->VertexArray->SetIndexBuffer(indexBuffer);
 
 		uint32_t whiteTextureData = 0xffffffff;
