@@ -22,6 +22,11 @@ namespace CherryBell {
 		PushOverlay(_imGuiLayer);
 	}
 
+	Application::~Application()
+	{
+		Shutdown();
+	}
+
 	void Application::OnEvent(Event& e)
 	{
 		EventDispatcher dispatcher(e);
@@ -65,7 +70,6 @@ namespace CherryBell {
 				layer->OnImGuiRender();
 			_imGuiLayer->End();
 		}
-		Shutdown();
 	}
 
 	void Application::Shutdown()

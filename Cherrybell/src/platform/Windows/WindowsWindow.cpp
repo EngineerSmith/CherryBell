@@ -41,7 +41,6 @@ namespace CherryBell {
 
 		if (s_GLFWWindowCount == 0)
 		{
-			CB_CORE_INFO("Initalizing GLFW");
 			int success = glfwInit();
 			CB_CORE_ASSERT(success, "Could not initialize GLFW!");
 			glfwSetErrorCallback(GLFWErrorCallback);
@@ -198,11 +197,10 @@ namespace CherryBell {
 	{
 		_data.RepeatedKeys.clear();
 		glfwDestroyWindow(_window);
-
 		s_GLFWWindowCount--;
+
 		if (s_GLFWWindowCount == 0)
 		{
-			CB_CORE_INFO("Terminating GLFW");
 			glfwTerminate();
 		}
 	}
