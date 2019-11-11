@@ -123,7 +123,7 @@ namespace CherryBell {
 	public:
 		virtual ~IndexBuffer() = default;
 
-		static IndexBuffer* Create(uint32_t* indices, uint32_t count);
+		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t count);
 
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
