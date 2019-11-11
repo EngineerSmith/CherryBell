@@ -1,8 +1,7 @@
 #pragma once
+#include "cbpch.h"
 #include "core/Core.h"
 
-#include <string>
-#include <functional>
 
 namespace CherryBell {
 	// Events are blocking calls - have to be dealt with as they happen in a frame

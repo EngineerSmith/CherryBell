@@ -2,8 +2,6 @@
 #include "core/events/Event.h"
 #include "core/input/KeyCodes.h"
 
-#include <sstream>
-
 namespace CherryBell {
 	class KeyEvent : public Event {
 	public:

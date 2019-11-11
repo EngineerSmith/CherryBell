@@ -2,8 +2,6 @@
 #include "core/events/Event.h"
 #include "core/input/MouseButtonCodes.h"
 
-#include <sstream>
-
 namespace CherryBell {
 	class MouseMovedEvent : public Event
 	{
