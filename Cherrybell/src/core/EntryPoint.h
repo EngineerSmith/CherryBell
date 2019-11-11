@@ -9,10 +9,9 @@ int main(int argc, char* argv) {
 	CherryBell::Log::Init();
 	CB_CORE_INFO("Welcome to CherryBell!");
 
-	CB_CORE_INFO("Creating application");
 	auto app = CherryBell::CreateApplication();
 
-	CB_CORE_INFO("Starting application");
+	CB_CORE_INFO("Running application");
 	app->Run();
 	delete app;
 }
