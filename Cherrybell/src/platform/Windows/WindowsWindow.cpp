@@ -57,7 +57,7 @@ namespace CherryBell {
 		_primaryMonitor = glfwGetPrimaryMonitor();
 		_primaryVidmode = *glfwGetVideoMode(_primaryMonitor);
 
-		_context = CreateScope<OpenGLContext>(_window);
+		_context = GraphicsContext::Create(_window);
 		_context->Init();
 
 		_data.WindowedData.Width = props.Width;
