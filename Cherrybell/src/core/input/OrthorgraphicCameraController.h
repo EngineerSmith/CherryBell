@@ -13,7 +13,7 @@ namespace CherryBell {
 		OrthorgraphicCamera& GetCamera() { return _camera; }
 		const OrthorgraphicCamera& GetCamera() const { return _camera; }
 
-		void OnUpdate(Timestep timestep);
+		void OnUpdate(Time timestep);
 		void OnEvent(Event& event);
 	private:
 		bool OnMouseScrolled(MouseScrolledEvent& event);

@@ -49,9 +49,9 @@ public:
 		_cameraController.OnUpdate(DELTATIME);
 
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_H))
-			_modelPosition.x -= 3.0f * 0.5f * (float)DELTATIME;
+			_modelPosition.x -= 3.0f * 0.5f * DELTATIMEF;
 		if (CherryBell::Input::IsKeyPressed(CB_KEY_K))
-			_modelPosition.x += 3.0f * 0.5f * (float)DELTATIME;
+			_modelPosition.x += 3.0f * 0.5f * DELTATIMEF;
 	}
 
 	void OnRender() override

@@ -11,7 +11,7 @@ namespace CherryBell {
 		_rotation(rotation)
 	{ }
 
-	void OrthorgraphicCameraController::OnUpdate(Timestep timestep)
+	void OrthorgraphicCameraController::OnUpdate(Time timestep)
 	{
 		glm::vec3 position = _camera.GetPosition();
 		float rotation = _camera.GetRotation();
