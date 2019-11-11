@@ -33,6 +33,8 @@ namespace CherryBell {
 	public:
 		using EventCallbackFn = std::function<void(Event&)>;
 
+		static Scope<Window> Create(const WindowProps& props = WindowProps());
+
 		virtual ~Window() = default;
 
 		virtual void OnUpdate() = 0;
@@ -51,7 +53,5 @@ namespace CherryBell {
 		virtual void SetWindowIcon(std::string_view path) = 0;
 
 		virtual inline void* GetNativeWindow() const = 0;
-
-		static Window* Create(const WindowProps& props = WindowProps());
 	};
 }

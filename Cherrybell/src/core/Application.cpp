@@ -13,7 +13,7 @@ namespace CherryBell {
 		CB_CORE_ASSERT(!s_instance, "Application already exists!");
 		s_instance = this;
 
-		_window = Scope<Window>(Window::Create());
+		_window = Window::Create();
 		_window->SetEventCallback(CB_BIND_EVENT_FN(Application::OnEvent));
 	
 		Renderer::Init();
