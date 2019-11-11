@@ -56,7 +56,8 @@ namespace CherryBell {
 			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 			break;
 		case DrawType::Fill:
-			glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr); break;
+			glDrawElements(GL_TRIANGLES, vertexArray->GetIndexBuffer()->GetCount(), GL_UNSIGNED_INT, nullptr); 
+			break;
 		}
 	}
 }

@@ -47,7 +47,6 @@ namespace CherryBell {
 		}
 	}
 
-
 	OpenGLTexture2D::OpenGLTexture2D(uint32_t width, uint32_t height)
 		: _width(width), _height(height), _internalFormat(GL_RGBA8), _dataFormat(GL_RGBA)
 	{
