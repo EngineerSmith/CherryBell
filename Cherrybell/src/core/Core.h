@@ -44,6 +44,7 @@
 
 #if CB_DEBUG
 	#define CB_ENABLE_ASSERTS
+	#define CB_PROFILE 1
 #endif
 
 #ifdef CB_ENABLE_ASSERTS

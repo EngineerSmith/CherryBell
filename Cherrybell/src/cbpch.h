@@ -14,7 +14,7 @@
 
 #include "core/Core.h"
 #include "core/Log.h"
-
+#include "core/debug/Instrumentor.h"
 
 #ifdef CB_PLATFORM_WINDOWS
 	#include <Windows.h>

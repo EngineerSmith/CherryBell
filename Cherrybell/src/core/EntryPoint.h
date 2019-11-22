@@ -7,13 +7,18 @@ extern CherryBell::Application* CherryBell::CreateApplication();
 
 int main(int argc, char* argv) {
 	CherryBell::Log::Init();
-	CB_CORE_INFO("Welcome to CherryBell!");
 
+	CB_PROFILE_BEGIN_SESSION("Startup", "CherryBellProfile_Startup.json");
 	auto app = CherryBell::CreateApplication();
+	CB_PROFILE_END_SESSION();
 
-	CB_CORE_INFO("Running application");
+	CB_PROFILE_BEGIN_SESSION("Runtime", "CherryBellProfile_Runtime.json");
 	app->Run();
+	CB_PROFILE_END_SESSION();
+
+	CB_PROFILE_BEGIN_SESSION("Shutdown", "CherryBellProfile_Shutdown.json");
 	delete app;
+	CB_PROFILE_END_SESSION();
 }
 
 #endif
