@@ -10,6 +10,7 @@ void Sandbox2D::OnAttach()
 
 void Sandbox2D::OnUpdate()
 {
+	CB_PROFILE_FUNCTION();
 	_cameraController.OnUpdate(DELTATIME);
 
 	if (CherryBell::Input::IsKeyPressed(CB_KEY_N))
@@ -20,6 +21,7 @@ void Sandbox2D::OnUpdate()
 
 void Sandbox2D::OnRender()
 {
+	CB_PROFILE_FUNCTION();
 	CherryBell::RenderCommand::SetClearColor({ 1.0, 0.0, 1.0, 1.0 });
 	CherryBell::RenderCommand::Clear();
 
@@ -43,5 +45,6 @@ void Sandbox2D::OnImGuiRender()
 
 void Sandbox2D::OnEvent(CherryBell::Event& event)
 {
+	CB_PROFILE_FUNCTION();
 	_cameraController.OnEvent(event);
 }

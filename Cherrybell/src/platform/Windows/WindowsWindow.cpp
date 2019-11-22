@@ -17,6 +17,7 @@ namespace CherryBell {
 
 	Scope<Window> Window::Create(const WindowProps& props)
 	{
+		CB_PROFILE_FUNCTION();
 		return CreateScope<WindowsWindow>(props);
 	}
 

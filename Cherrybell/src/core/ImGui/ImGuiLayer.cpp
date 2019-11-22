@@ -48,12 +48,6 @@ namespace CherryBell {
 		ImGui::DestroyContext();
 	}
 
-	void ImGuiLayer::OnImGuiRender()
-	{
-		static bool showWindow = true;
-		ImGui::ShowDemoWindow(&showWindow);
-	}
-
 	void ImGuiLayer::Begin()
 	{
 		ImGui_ImplOpenGL3_NewFrame();

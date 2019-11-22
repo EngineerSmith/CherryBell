@@ -6,6 +6,7 @@
 namespace CherryBell {
 	std::string IO::ReadFile(std::string_view filepath)
 	{
+		CB_PROFILE_FUNCTION();
 		std::string fileContents;
 		std::ifstream in(filepath.data(), std::ios::in | std::ios::binary);
 		if (in)

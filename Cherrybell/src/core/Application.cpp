@@ -10,6 +10,7 @@ namespace CherryBell {
 
 	Application::Application()
 	{
+		CB_PROFILE_FUNCTION();
 		CB_CORE_ASSERT(!s_instance, "Application already exists!");
 		s_instance = this;
 
@@ -46,6 +47,7 @@ namespace CherryBell {
 		_lastFrameTime = _window->GetTimeSeconds();
 		while (_running)
 		{
+			CB_PROFILE_SCOPE("Frame");
 			double current = _window->GetTimeSeconds();
 			double delta = current - _lastFrameTime;
 			_lastFrameTime = current;
@@ -54,21 +56,30 @@ namespace CherryBell {
 
 			if (!_minimize)
 			{
-				_latency += delta;
-				while (_latency >= MS_PER_UPDATE) {
-					for (Layer* layer : _layerStack)
-						layer->OnUpdate();
-					_latency -= MS_PER_UPDATE;
+				{
+					CB_PROFILE_SCOPE("Update Frame");
+					_latency += delta;
+					while (_latency >= MS_PER_UPDATE) {
+						for (Layer* layer : _layerStack)
+							layer->OnUpdate();
+						_latency -= MS_PER_UPDATE;
+					}
 				}
 
-				for (Layer* layer : _layerStack)
-					layer->OnRender();
+				{
+					CB_PROFILE_SCOPE("Render Frame");
+					for (Layer* layer : _layerStack)
+						layer->OnRender();
+				}
 			}
 
-			_imGuiLayer->Begin();
-			for (Layer* layer : _layerStack)
-				layer->OnImGuiRender();
-			_imGuiLayer->End();
+			{
+				CB_PROFILE_SCOPE("Render ImGUI");
+				_imGuiLayer->Begin();
+				for (Layer* layer : _layerStack)
+					layer->OnImGuiRender();
+				_imGuiLayer->End();
+			}
 		}
 	}
 

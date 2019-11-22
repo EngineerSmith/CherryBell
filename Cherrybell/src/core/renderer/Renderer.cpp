@@ -7,6 +7,7 @@ namespace CherryBell {
 
 	void Renderer::Init()
 	{
+		CB_PROFILE_FUNCTION();
 		RenderCommand::Init();
 		Renderer2D::Init();
 	}
