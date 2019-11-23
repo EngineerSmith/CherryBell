@@ -13,6 +13,8 @@ namespace CherryBell {
 		static void BeginScene(const OrthorgraphicCamera& camera);
 		static void EndScene();
 
+		static const OrthorgraphicCamera& GetSceneCamera();
+
 		// Primitives
 
 		static void FillQuad(const glm::vec2& position, const glm::vec2& size, const float rotation, const glm::vec4& color);

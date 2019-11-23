@@ -10,6 +10,7 @@ namespace CherryBell
 {
 	struct Renderer2DData
 	{
+		const OrthorgraphicCamera* SceneCamera = nullptr;
 		Ref<Shader> Shader;
 		Ref<VertexArray> VertexArray;
 		Ref<Texture> WhiteTexture;
@@ -62,12 +63,20 @@ namespace CherryBell
 
 	void Renderer2D::BeginScene(const OrthorgraphicCamera& camera)
 	{
+		s_Data->SceneCamera = &camera;
 		s_Data->Shader->Bind();
 		s_Data->Shader->Set(camera.GetViewProjectionMatrix(), "u_viewProjection");
 	}
 
 	void Renderer2D::EndScene()
-	{ }
+	{
+		s_Data->SceneCamera = nullptr;
+	}
+
+	const OrthorgraphicCamera& Renderer2D::GetSceneCamera()
+	{
+		return *s_Data->SceneCamera;
+	}
 
 	void Renderer2D::FillQuad(const glm::vec2& position, const glm::vec2& size, const float rotation, const glm::vec4& color)
 	{ 
