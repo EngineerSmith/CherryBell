@@ -112,7 +112,7 @@ namespace CherryBell {
 			long long start = std::chrono::time_point_cast<std::chrono::microseconds>(_startTimepoint).time_since_epoch().count();
 			long long end = std::chrono::time_point_cast<std::chrono::microseconds>(endTimepoint).time_since_epoch().count();
 
-			uint32_t threadID = std::hash<std::thread::id>{}(std::this_thread::get_id());
+			uint32_t threadID = (uint32_t)std::hash<std::thread::id>()(std::this_thread::get_id());
 			Instrumentor::Get().WriteProfile({ _name, start, end, threadID });
 
 			_stopped = true;
