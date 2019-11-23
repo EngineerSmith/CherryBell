@@ -2,8 +2,11 @@
 
 Sandbox2D::Sandbox2D()
 	: Layer("Sandbox2D"), _cameraController(1280.0f / 720.0f, true), 
-	_texture(CherryBell::Texture2D::Create("assets/textures/icecream.png"))
-{ }
+	_texture(CherryBell::Texture2D::Create("assets/textures/icecream.png")),
+	_tilemap(1, 1)
+{
+	_tilemap.GetMap()[std::make_pair<int, int>(0,0)] = std::dynamic_pointer_cast<CherryBell::Tile>(CherryBell::CreateRef<CherryBell::TexturedTile>(_texture));
+}
 
 void Sandbox2D::OnAttach()
 { }
@@ -33,6 +36,8 @@ void Sandbox2D::OnRender()
 	CherryBell::Renderer2D::FillQuad({ 0,-0.0f,-0.1f }, { 2.5f,2.5f }, 0, { _quadColor,1 }, _texture);
 	CherryBell::Renderer2D::FillQuad({ 0,-0.65f }, { 0.5f,0.5f }, 0, _texture);
 	
+	_tilemap.Render();
+
 	CherryBell::Renderer2D::EndScene();
 }
 

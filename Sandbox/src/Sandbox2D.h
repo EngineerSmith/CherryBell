@@ -17,5 +17,7 @@ private:
 	
 	CherryBell::Ref<CherryBell::Texture2D> _texture;
 
+	CherryBell::Tilemap _tilemap;
+
 	glm::vec3 _quadColor = glm::vec3(1);
 };

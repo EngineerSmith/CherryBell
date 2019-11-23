@@ -43,6 +43,8 @@
 #include "core/renderer/VertexArray.h"
 
 #include "core/renderer/OrthorgraphicCamera.h"
+
+#include "core/tilemap/Tilemap.h"
 // -------------------------------------
 
 // ----- GUI ---------------------------
