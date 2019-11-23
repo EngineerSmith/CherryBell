@@ -16,10 +16,11 @@ namespace CherryBell {
 
 		double GetTimeSeconds() const override;
 
-		inline unsigned int GetWidth() const override { return _data.Width; }
-		inline unsigned int GetHeight() const override { return _data.Height; }
+		unsigned int GetWidth() const override { return _data.Width; }
+		unsigned int GetHeight() const override { return _data.Height; }
+		std::pair<unsigned int, unsigned int> GetSize() override { return std::make_pair<unsigned int, unsigned int>((unsigned int)_data.Width, (unsigned int)_data.Height); }
 
-		inline void SetEventCallback(const EventCallbackFn& callback) override {
+		void SetEventCallback(const EventCallbackFn& callback) override {
 			_data.EventCallback = callback;
 		}
 		void SetVSync(bool enabled) override;
