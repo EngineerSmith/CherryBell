@@ -43,6 +43,8 @@
 	#error "Unknown platform!"
 #endif // End of platform detection
 
+#define CB_ENABLE_WARNINGS
+
 #if CB_DEBUG
 	#define CB_ENABLE_ASSERTS
 	#define CB_PROFILE 1
@@ -51,10 +53,31 @@
 #ifdef CB_ENABLE_ASSERTS
 	#define CB_CORE_ASSERT(x, ...) {if(!(x)){CB_CORE_ERROR("Assertion Failed: {0} {1} {2}", __LINE__, __FILE__, __VA_ARGS__); __debugbreak();}}
 	#define CB_ASSERT(x, ...) {if(!(x)){CB_ERROR("Assertion Failed: {0} {1} {2}", __LINE__, __FILE__, __VA_ARGS__); __debugbreak();}}
+	
+	#define CB_CORE_NOT_IMPLEMENTED() CB_CORE_ASSERT(false, "Not implemented!")
+	#define CB_NOT_IMPLEMENTED() CB_ASSERT(false, "Not implemented!")
 #else
 	#define CB_CORE_ASSERT(x, ...)
 	#define CB_ASSERT(x, ...)
+	
+	#define CB_CORE_NOT_IMPLEMENTED() __debugbreak()
+	#define CB_NOT_IMPLEMENTED() __debugbreak()
 #endif // CB_ENABLE_ASSERTS
+
+#ifdef _MSC_VER
+#define CB_PRAGMA(arg) __pragma(arg)
+#else
+#define CB_PRAGMA(arg) _Pragma(arg)
+#endif
+
+#define CB_STRING2(x) #x
+#define CB_STRING(x) CB_STRING2(x)
+
+#ifdef CB_ENABLE_WARNINGS
+	#define CB_COMPILER_WARNING(code, note) CB_PRAGMA(message ( ##__FILE__ "[" CB_STRING(__LINE__) "]: warning CB"#code": "#note ))
+#else
+	#define CB_COMPILER_WARNING(code, note)
+#endif
 
 #define BIT(x) (1 << x)
 
