@@ -1,5 +1,6 @@
 #pragma once
 #include <memory>
+#include <unordered_map>
 
 // Platform detection using predefined macros
 #ifdef _WIN32
@@ -60,7 +61,6 @@
 #define CB_BIND_EVENT_FN(fn) std::bind(&fn, this, std::placeholders::_1)
 
 namespace CherryBell {
-
 	template<typename T>
 	using Scope = std::unique_ptr<T>;
 	template<typename T, typename ... Args>
@@ -76,4 +76,16 @@ namespace CherryBell {
 	{
 		return std::make_shared<T>(std::forward<Args>(args)...);
 	}
+	
+	//Hash operator for std::pair in std::unordered_map
+	struct pair_hash
+	{
+		template<class T1, class T2>
+		std::size_t operator() (const std::pair<T1, T2>& pair) const
+		{
+			return std::hash<T1>()(pair.first) & std::hash<T2>()(pair.second);
+		}
+	};
+	template<class T1, class T2>
+	using pair_map = std::unordered_map<T1, T2, pair_hash>;
 }
