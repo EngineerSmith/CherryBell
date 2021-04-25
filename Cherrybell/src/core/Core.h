@@ -24,7 +24,7 @@
 		#define CB_PLATFORM_IOS
 		#error "IOS is not supported!"
 	#elif TARGET_OS_MAC == 1
-		#define HZ_PLATFORM_MACOS
+		#define CB_PLATFORM_MACOS
 		#error "MacOS is not supported!"
 	#else
 		#error "Unknown Apple platform!"
